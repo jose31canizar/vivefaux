@@ -1,0 +1,38 @@
+{
+  "name": "vivefaux",
+  "version": "1.0.0",
+  "description": "Music, film, and upcoming artists.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server --inline --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jose31canizar/vivefaux.git"
+  },
+  "keywords": [
+    "vivefaux",
+    "faux",
+    "kamakura"
+  ],
+  "author": "Thomas Canizares",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jose31canizar/vivefaux/issues"
+  },
+  "homepage": "https://github.com/jose31canizar/vivefaux#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-react": "^6.16.0",
+    "html-webpack-plugin": "^2.26.0",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
