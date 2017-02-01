@@ -1,0 +1,42 @@
+[
+{
+    "color": "#F2DEDA",
+    "ID": "0",
+    "title": "Kamakura",
+    "subtitle": "Kamakura Record Label",
+    "publisher": "Thomas Canizares",
+    "numPanels": "10",
+    "backgroundImage": "",
+    "panels": ""
+},
+{
+    "color": "#596982",
+    "ID": "0",
+    "title": "Black Label",
+    "subtitle": "Black Label",
+    "publisher": "Thomas Canizares",
+    "numPanels": "4",
+    "backgroundImage": "",
+    "panels": ""
+},
+{
+    "color": "#727ead",
+    "ID": "0",
+    "title": "Soken Costa",
+    "subtitle": "Soken Costa Record Label",
+    "publisher": "Thomas Canizares",
+    "numPanels": "4",
+    "backgroundImage": "",
+    "panels": ""
+},
+{
+    "color": "#c6834b",
+    "ID": "0",
+    "title": "Collaborators",
+    "subtitle": "Artists we work with",
+    "publisher": "Thomas Canizares",
+    "numPanels": "4",
+    "backgroundImage": "",
+    "panels": ""
+}
+]

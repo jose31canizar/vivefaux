@@ -1,0 +1,21 @@
+.HeaderArrow {
+    position: absolute;
+    width: 20%;
+    left: 40%;
+    transform: translate(0%, -30vw);
+
+    h3 {
+        font-size: 10px;
+    }
+
+    button {
+        font: 100% $font-stack;
+        width: 100%;
+        border: none;
+        background-color: transparent;
+    }
+
+    button:focus {
+        outline: 0;
+    }
+}
