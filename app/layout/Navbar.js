@@ -5,8 +5,9 @@ var Navbar = React.createClass({
     render: function () {
         return (
             <div className={this.props.className}>
-                {React.Children.map(this.props.children, (child) => (
-                    <button id="top">{child}</button>))}
+                <SmoothScroll Array={this.props.sectionsArray}>
+                  {this.props.children}
+                </SmoothScroll>
             </div>
         );
     }

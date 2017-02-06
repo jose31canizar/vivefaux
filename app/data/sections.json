@@ -5,9 +5,16 @@
     "title": "Kamakura",
     "subtitle": "Kamakura Record Label",
     "publisher": "Thomas Canizares",
-    "numPanels": "10",
-    "backgroundImage": "",
-    "panels": ""
+    "backgroundImage": "2",
+    "panels": [
+      "Artists",
+      "Streams",
+      "Releases",
+      "Merchandise",
+      "Collaborators",
+      "Media",
+      "Network"
+    ]
 },
 {
     "color": "#596982",
@@ -15,9 +22,13 @@
     "title": "Black Label",
     "subtitle": "Black Label",
     "publisher": "Thomas Canizares",
-    "numPanels": "4",
-    "backgroundImage": "",
-    "panels": ""
+    "backgroundImage": "1",
+    "panels": [
+      "Art",
+      "Bands",
+      "Spotify",
+      "Pandora"
+    ]
 },
 {
     "color": "#727ead",
@@ -25,9 +36,13 @@
     "title": "Soken Costa",
     "subtitle": "Soken Costa Record Label",
     "publisher": "Thomas Canizares",
-    "numPanels": "4",
-    "backgroundImage": "",
-    "panels": ""
+    "backgroundImage": "3",
+    "panels": [
+      "Vagabond",
+      "Fashion",
+      "Interviews",
+      "Poetry"
+    ]
 },
 {
     "color": "#c6834b",
@@ -35,8 +50,14 @@
     "title": "Collaborators",
     "subtitle": "Artists we work with",
     "publisher": "Thomas Canizares",
-    "numPanels": "4",
-    "backgroundImage": "",
-    "panels": ""
+    "backgroundImage": "4",
+    "panels": [
+      "Artworks",
+      "Canvases",
+      "Mugs",
+      "Rags",
+      "Cloths",
+      "Muk"
+    ]
 }
 ]

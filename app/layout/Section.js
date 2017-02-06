@@ -1,16 +1,16 @@
 var React = require('react');
 var NavBar = require('./Navbar');
-var Panel = require('./Panel');
+var PanelContainer = require('./PanelContainer');
 
 var Section = React.createClass({
     render: function () {
         return (
-            <div className={'Section'} id={this.props.name}>
+            <div className={'SectionContainer'} id={this.props.name}>
+              <div className={'Section'}>
                 <h2>{this.props.name}</h2>
-                  <div>
-                    <div>{this.props.panels.map(function(panel, i) {return <div key={i}>{panel}</div>})}</div>
-                    <div>Total Panels: {this.props.numPanels}</div>
-                  </div>
+                  <PanelContainer sectionName={this.props.name} panels={this.props.panels}></PanelContainer>
+                <img src={'/app/images/' + this.props.sectionImage + '.jpg'} alt={this.props.sectionImage}/>
+                </div>
             </div>
         );
     }

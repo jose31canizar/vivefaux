@@ -5,7 +5,7 @@ var HeaderArrow = React.createClass({
     render: function () {
         return (
             <div className={'HeaderArrow'}>
-                <SmoothScroll goTo={'Welcome'}>
+                <SmoothScroll Array={['Kamakura']}>
                     <h3>
                         <svg viewBox="0 0 100 50">
                             <defs>

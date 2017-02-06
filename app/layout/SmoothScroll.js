@@ -78,14 +78,14 @@ var SmoothScroll = React.createClass({
         //<div className="smooth-scroll--spacer" />
         return (
             <div className="smooth-scroll">
-                {React.Children.map(this.props.children, (child) => (
-                    <button id="top" onClick={this.handleSectionClick}>{child}</button>))}
+                {React.Children.map(this.props.children, (child, i) => (
+                    <button id="top" onClick={this.handleSectionClick.bind(null, i)}>{child}</button>))}
             </div>
         );
     },
 
-    handleSectionClick: function () {
-        smoothScroll.scrollTo(this.props.goTo);
+    handleSectionClick: function (i) {
+        smoothScroll.scrollTo(this.props.Array[i]);
     }
 });
 

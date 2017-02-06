@@ -5,28 +5,29 @@ var Navigation = require('./layout/Navigation');
 var BaselineFooter = require('./layout/BaselineFooter');
 var Section = require('./layout/Section');
 var Button = require('./layout/Button');
+var Data = require('./data/Sections.json');
 
 var App = React.createClass({
   getInitialState: function() {
-    return {numPanels: 3, panels: ['artists', 'stream', 'releases'], currentPage: 0, sectionsArray: ["Welcome", "Gallery"]};
-  },
-  addPanel: function() {
-    this.setState((prevState, props) => {
-      var newNumPanels = prevState.numPanels += 1;
-      var newPanels = prevState.panels;
-      newPanels.push('panelnew' + newNumPanels);
-      return {numPanels: newNumPanels, panels: newPanels};
-    });
+    return {sectionsArray: ["Kamakura", "Soken Costa", "Black Label", "Collaborators"]};
   },
   render: function() {
     return (
       <div>
-        <Header />
-                {this.state.sectionsArray.map((name, i) => <Section key={i} id={i} numPanels={this.state.numPanels} panels={this.state.panels} name={name}/>)}
-                <Navigation />
-                <Footer />
-                <BaselineFooter />
-        <Button onChange={this.addPanel}/>
+        <Header sectionsArray={this.state.sectionsArray}>
+          {this.state.sectionsArray.map((name, i) => (
+              <h3 key={i} id={"navTo" + name}>
+                {this.state.sectionsArray[i]}
+              </h3>))}
+        </Header>
+
+        {this.state.sectionsArray.map((name, i) => <Section key={i} id={name} panels={Data[i].panels} sectionImage={Data[i].backgroundImage} name={name}/>)}
+
+        <Navigation sectionsArray={this.state.sectionsArray}>
+          {this.state.sectionsArray.map((name, i) => <h3 key={i} id={"navElement" + i}>{this.state.sectionsArray[i]}</h3>)}
+        </Navigation>
+        <Footer />
+        <BaselineFooter />
       </div>
     );
   }

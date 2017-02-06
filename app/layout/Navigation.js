@@ -6,11 +6,8 @@ var Navigation = React.createClass({
         return (
             <div className={'Navigation'}>
                 <h2>Navigation</h2>
-                <NavBar className={'BottomNavbar'}>
-                    <h3 id="TravelInfo1">Kamakura</h3>
-                    <h3 id="Booking1">Black Label</h3>
-                    <h3 id="Safaris1">Soken Costa</h3>
-                    <h3 id="Tours1">Collaborators</h3>
+                <NavBar className={'BottomNavbar'} sectionsArray={this.props.sectionsArray}>
+                    {this.props.children}
                 </NavBar>
             </div>
         );
