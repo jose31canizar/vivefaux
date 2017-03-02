@@ -1,36 +1,69 @@
-$panel-font-stack: Didot, Futura, sans-serif;
+$panel-font-stack: Futura, sans-serif;
 $panel-color: #41374c;
+$panel-hover-color: #f27460;
+
+@mixin css-transition($prop, $time, $easing) {
+  -webkit-transition: $prop $time $easing;
+  -moz-transition: $prop $time $easing;
+  transition: $prop $time $easing;
+}
+
+@mixin css-transition-banter($time, $easing) {
+  -webkit-transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing .25s;
+  -moz-transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing .25s;
+  transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing .25s;
+}
+
+@mixin css-transition-backwards($time, $easing) {
+  -webkit-transition: height $time $easing .25s, margin-left $time $easing .25s, margin-top $time $easing .25s, background-color $time $easing .25s, width $time $easing;
+  -moz-transition: height $time $easing .25s, margin-left $time $easing .25s, margin-top $time $easing .25s, background-color $time $easing .25s, width $time $easing;
+  transition: height $time $easing .25s, margin-left $time $easing .25s, margin-top $time $easing .25s, background-color $time $easing .25s, width $time $easing;
+}
 
 .PanelContainer {
   position: absolute;
-  width: 50%;
-  transform: translateX(40vw);
-  height: 33.33%;
+  width: 100%;
+  padding-left: 50%;
+  height: 100%;
   float:left;
   display: inline-grid;
-  overflow: hidden;
+
+}
+
+.PanelClass {
+  /*@include css-transition(all, .4s ,ease-in-out);*/
+  /*float: left;*/
 }
 
 .PanelClass button {
+  position: absolute;
   font-family: $panel-font-stack;
-  background-color: #7a6782;
+  letter-spacing: 0.2em;
+  background-color: #27192d;
   border: none;
   margin: 0;
-  margin-left: 5em;
+  margin-left: 1em;
   margin-top: 1em;
   padding: 0;
   float:left;
   width: 8em;
   height: 8em;
   outline: none;
-  transition: all 0.25s ease-in-out;
   display: block;
   color: white;
+  @include css-transition-banter(.2s ,ease-in-out);
 }
 
-.PanelClass:hover {
+.PanelClass button:hover {
+    background-color: $panel-hover-color;
+    color: $panel-hover-color;
+    z-index: 999;
+}
+
+.PanelClass button:active {
 
 }
+
 
 /*.PanelClass:hover {
   position: absolute !important;
