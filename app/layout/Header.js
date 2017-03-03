@@ -11,7 +11,7 @@ var Header = React.createClass({
                 <NavBar sectionsArray={this.props.sectionsArray} className={'TopNavbar'}>
                   {this.props.children}
                 </NavBar>
-                <h1>ViveFaux</h1>
+                <h1>⌃</h1>
                 <HeaderArrow />
             </div>
         );
