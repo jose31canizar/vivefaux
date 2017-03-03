@@ -6,7 +6,7 @@ var SmoothScroll = require('./SmoothScroll');
 var Section = React.createClass({
     render: function () {
         return (
-            <div className={'SectionContainer'} id={this.props.name}>
+            <div className={'SectionContainer'} style={{backgroundImage: "url(" + "/app/images/1.jpg" + ")"}} id={this.props.name}>
               <div className={'Section'}>
                 <h2>{this.props.name}</h2>
                   <PanelContainer sectionName={this.props.name} panels={this.props.panels}></PanelContainer>
