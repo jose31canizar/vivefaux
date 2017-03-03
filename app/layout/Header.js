@@ -11,7 +11,9 @@ var Header = React.createClass({
                 <NavBar sectionsArray={this.props.sectionsArray} className={'TopNavbar'}>
                   {this.props.children}
                 </NavBar>
-                <h1>⌃</h1>
+                <h1>
+                  <img src={'/app/images/kamakura_vivefaux.svg'} alt={'vivefaux'}/>
+                </h1>
                 <HeaderArrow />
             </div>
         );
