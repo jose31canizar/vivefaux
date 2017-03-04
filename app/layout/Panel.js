@@ -12,14 +12,15 @@ var Panel = React.createClass({
 
     var squareSpacing = 110;
     var panelOpenState = 600;
-    var cellCount = 2;
-
+    var cellCount = 3;
+    var rowIndex = (Math.floor(this.props.index / cellCount));
+    var columnIndex = (this.props.index % cellCount);
 
     var panelStyle = {
     }
 
     var panelButtonStyle = {
-      transform: "translateX(" + (this.props.index % cellCount)*squareSpacing + "%) translateY(" + (Math.floor(this.props.index / cellCount))*squareSpacing + "%)",
+      transform: "translateX(" + columnIndex*squareSpacing + "%) translateY(" + rowIndex*squareSpacing + "%)",
       width: "9vw",
       height: "9vw"
     }
@@ -27,17 +28,18 @@ var Panel = React.createClass({
     if(this.props.index == this.props.clickPanelIndex) {
       console.log(" " + this.props.index + " panel is selected!");
       panelStyle = {
-        transition: "width 0.2s ease-in-out",
       };
       panelButtonStyle = {
-        marginLeft: "-33.33%",
-        width: "100%",
-        height: "500px",
-        marginTop: "-150px",
-        backgroundColor: "#f27460",
-        zIndex: "999"
+        transform: "translateX(-550%) translateY(-100%)",
       }
     }
+
+    // marginLeft: "-" + (33.33 + columnIndex*(9)) + "%",
+    // width: "10vw",
+    // height: "500px",
+    // marginTop: "-150px",
+    // backgroundColor: "#f27460",
+    // zIndex: "999"
 
     //        transform: "translateX(-" + panelOpenState + "%)",
 

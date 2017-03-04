@@ -1,6 +1,6 @@
 $panel-font-stack: Futura, sans-serif;
-$panel-color: #41374c;
-$panel-hover-color: #f27460;
+$panel-color: #1c1e22;
+$panel-hover-color: #f25555;
 
 @mixin css-transition($prop, $time, $easing) {
   -webkit-transition: $prop $time $easing;
@@ -8,10 +8,16 @@ $panel-hover-color: #f27460;
   transition: $prop $time $easing;
 }
 
+@mixin banter-transition($time, $easing) {
+-webkit-transition: transform $time $easing;
+-moz-transition: transform $time $easing;
+transition: transform $time $easing;
+}
+
 @mixin css-transition-banter($time, $easing) {
-  -webkit-transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing .25s;
-  -moz-transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing .25s;
-  transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing .25s;
+  -webkit-transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing $time;
+  -moz-transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing $time;
+  transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing $time;
 }
 
 @mixin css-transition-backwards($time, $easing) {
@@ -39,19 +45,19 @@ $panel-hover-color: #f27460;
   position: absolute;
   font-family: $panel-font-stack;
   letter-spacing: 0.2em;
-  background-color: #27192d;
+  background-color: $panel-color;
   border: none;
   margin: 0;
   margin-left: 1em;
   margin-top: 1em;
   padding: 0;
   float:left;
-  width: 8em;
-  height: 8em;
+  width: 9vw;
+  height: 9vw;
   outline: none;
   display: block;
   color: white;
-  @include css-transition-banter(.2s ,ease-in-out);
+  @include banter-transition(.6s ,ease-in-out);
 }
 
 .PanelClass button:hover {

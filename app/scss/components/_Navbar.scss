@@ -1,3 +1,11 @@
+$navbar-button-hover-color: #878494;
+
+@mixin css-transition($prop, $time, $easing) {
+  -webkit-transition: $prop $time $easing;
+  -moz-transition: $prop $time $easing;
+  transition: $prop $time $easing;
+}
+
 .TopNavbar {
     position: absolute;
     top: 10vh;
@@ -13,6 +21,15 @@
     border: 2px solid white;
     border-radius: 5px;
     margin-top: 10px;
+    outline: none;
+}
+
+.TopNavbar button h3 {
+    @include css-transition(all, 0.2s, ease-in-out);
+}
+
+.TopNavbar button h3:hover {
+  color: $navbar-button-hover-color;
 }
 
 .BottomNavbar {
