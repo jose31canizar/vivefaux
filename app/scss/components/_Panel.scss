@@ -9,9 +9,9 @@ $panel-hover-color: #f25555;
 }
 
 @mixin banter-transition($time, $easing) {
--webkit-transition: transform $time $easing;
--moz-transition: transform $time $easing;
-transition: transform $time $easing;
+-webkit-transition:  margin-left $time $easing, margin-top $time $easing, height $time $easing, left $time $easing, top $time $easing, width $time $easing $time, padding-right $time $easing $time, background-color $time $easing, color $time $easing $time;
+-moz-transition:  margin-left $time $easing, margin-top $time $easing, height $time $easing, left $time $easing, top $time $easing, width $time $easing $time, padding-right $time $easing $time, background-color $time $easing, color $time $easing $time;
+transition:  margin-left $time $easing, margin-top $time $easing, height $time $easing, left $time $easing, top $time $easing, width $time $easing $time, padding-right $time $easing $time, background-color $time $easing, color $time $easing $time;
 }
 
 @mixin css-transition-banter($time, $easing) {
@@ -50,20 +50,17 @@ transition: transform $time $easing;
   margin: 0;
   margin-left: 1em;
   margin-top: 1em;
-  padding: 0;
-  float:left;
   width: 9vw;
   height: 9vw;
   outline: none;
-  display: block;
   color: white;
-  @include banter-transition(.6s ,ease-in-out);
+  @include banter-transition(.25s ,ease-in-out);
+
 }
 
 .PanelClass button:hover {
-    background-color: $panel-hover-color;
-    color: $panel-hover-color;
-    z-index: 999;
+  background-color: $panel-hover-color;
+  color: $panel-hover-color;
 }
 
 .PanelClass button:active {
