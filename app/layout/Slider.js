@@ -25,7 +25,7 @@ var Slider = React.createClass({
         for (var i = 1; i < 9; i++) {
             images.push(<div className={'SliderImage'} key={i}>
                 <h3>
-                    <img src={'/app/images/' + i + '.jpg'} alt={i}/>
+                    <img src={'/build/images/' + i + '.jpg'} alt={i}/>
                 </h3>
             </div>);
         }

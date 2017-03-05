@@ -6,7 +6,7 @@ var SmoothScroll = require('./SmoothScroll');
 var Section = React.createClass({
     render: function () {
         var sectionContainerStyle = {
-          backgroundImage: 'url(/app/images/' + this.props.sectionImage + '.jpg)',
+          backgroundImage: 'url(/build/images/' + this.props.sectionImage + '.jpg)',
           backgroundSize: "cover"
         };
 
