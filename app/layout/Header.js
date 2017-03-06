@@ -5,6 +5,7 @@ var HeaderArrow = require('./HeaderArrow');
 
 var Header = React.createClass({
     render: function () {
+
         return (
             <div className={'Header'}>
                 <Slider></Slider>
@@ -12,7 +13,7 @@ var Header = React.createClass({
                   {this.props.children}
                 </NavBar>
                 <h1>
-                  <img src={'/build/images/kamakura_vivefaux.svg'} alt={'vivefaux'}/>
+                  <img src={'images/kamakura_vivefaux.svg'} alt={'vivefaux'}/>
                 </h1>
                 <HeaderArrow />
             </div>

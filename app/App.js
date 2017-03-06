@@ -21,7 +21,7 @@ var App = React.createClass({
               </h3>))}
         </Header>
 
-        {this.state.sectionsArray.map((name, i) => <Section key={i} id={name} panels={Data[i].panels} sectionImage={Data[i].backgroundImage} name={name}/>)}
+        {this.state.sectionsArray.map((name, i) => <Section key={i} id={name} index={i} panels={Data[i].panels} sectionImage={Data[i].backgroundImage} name={name}/>)}
 
         <Navigation sectionsArray={this.state.sectionsArray}>
           {this.state.sectionsArray.map((name, i) => <h3 key={i} id={"navElement" + i}>{this.state.sectionsArray[i]}</h3>)}

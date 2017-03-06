@@ -21517,7 +21517,7 @@
 	    displayName: 'Header',
 
 	    render: function () {
-	        return React.createElement('div', { className: 'Header' }, React.createElement(Slider, null), React.createElement(NavBar, { sectionsArray: this.props.sectionsArray, className: 'TopNavbar' }, this.props.children), React.createElement('h1', null, React.createElement('img', { src: '/build/images/kamakura_vivefaux.svg', alt: 'vivefaux' })), React.createElement(HeaderArrow, null));
+	        return React.createElement('div', { className: 'Header' }, React.createElement(Slider, null), React.createElement(NavBar, { sectionsArray: this.props.sectionsArray, className: 'TopNavbar' }, this.props.children), React.createElement('h1', null, React.createElement('img', { src: 'images/kamakura_vivefaux.svg', alt: 'vivefaux' })), React.createElement(HeaderArrow, null));
 	    }
 	});
 
@@ -21656,7 +21656,7 @@
 	        };
 	        var images = [];
 	        for (var i = 1; i < 9; i++) {
-	            images.push(React.createElement('div', { className: 'SliderImage', key: i }, React.createElement('h3', null, React.createElement('img', { src: '/build/images/' + i + '.jpg', alt: i }))));
+	            images.push(React.createElement('div', { className: 'SliderImage', key: i }, React.createElement('h3', null, React.createElement('img', { src: 'images/' + i + '.jpg', alt: i }))));
 	        }
 	        return React.createElement(SlickSlider, settings, images);
 	    }
@@ -21674,7 +21674,7 @@
 	    displayName: 'SliderImage',
 
 	    render: function () {
-	        return React.createElement('div', { className: 'SliderImage', key: this.props.key }, React.createElement('h3', null, React.createElement('img', { src: '/build/images/' + this.props.imageName + '.jpg', alt: this.props.imageName })));
+	        return React.createElement('div', { className: 'SliderImage', key: this.props.key }, React.createElement('h3', null, React.createElement('img', { src: 'images/' + this.props.imageName + '.jpg', alt: this.props.imageName })));
 	    }
 	});
 
@@ -24011,7 +24011,7 @@
 
 	    render: function () {
 	        var sectionContainerStyle = {
-	            backgroundImage: 'url(/build/images/' + this.props.sectionImage + '.jpg)',
+	            backgroundImage: 'url(images/' + this.props.sectionImage + '.jpg)',
 	            backgroundSize: "cover"
 	        };
 

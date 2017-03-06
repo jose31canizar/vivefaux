@@ -1,8 +1,17 @@
 var React = require('react');
 var SlickSliderImage = require('./SliderImage');
 var SlickSlider = require('react-slick-carousel');
+var Parallax = require('scroll-parallax');
 
 var Slider = React.createClass({
+    componentDidMount : function() {
+      var p = new Parallax('.parallax', {
+        offsetYBounds: 50,
+        intensity: 30,
+        center: 0.5,
+        safeHeight: 0.15
+      }).init();
+    },
     render: function () {
         var settings = {
             dots: true,
@@ -23,10 +32,8 @@ var Slider = React.createClass({
         };
         var images = [];
         for (var i = 1; i < 9; i++) {
-            images.push(<div className={'SliderImage'} key={i}>
-                <h3>
-                    <img src={'/build/images/' + i + '.jpg'} alt={i}/>
-                </h3>
+            images.push(<div key={i}>
+                    <img className={'SliderImage parallax'} src={'images/' + i + '.jpg'} alt={i}/>
             </div>);
         }
         return (

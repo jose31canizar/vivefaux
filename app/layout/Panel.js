@@ -33,10 +33,10 @@ var Panel = React.createClass({
       panelStyle = {
       };
       panelButtonStyle = {
-        left: "0vw",
-        top: "-15vw",
-        width: "100vw",
-        height: "50vw",
+        left: "5vw",
+        top: "-20vh",
+        width: "90vw",
+        height: "70vh",
         paddingRight: "50%",
         backgroundColor: panelHoverColor,
         zIndex: 999
