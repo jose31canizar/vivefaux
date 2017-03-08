@@ -8,7 +8,7 @@ var Section = React.createClass({
     componentDidMount : function() {
       var p = new Parallax('.parallax' + this.props.index, {
         offsetYBounds: 50,
-        intensity: 20,
+        intensity: 32,
         center: 0.5,
         safeHeight: 0.55
       }).init();

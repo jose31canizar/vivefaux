@@ -7,7 +7,7 @@ var Slider = React.createClass({
     componentDidMount : function() {
       var p = new Parallax('.parallax', {
         offsetYBounds: 50,
-        intensity: 30,
+        intensity: 32,
         center: 0.5,
         safeHeight: 0.15
       }).init();
