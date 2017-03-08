@@ -47,7 +47,7 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(32);
 	var App = __webpack_require__(178);
-	__webpack_require__(210);
+	__webpack_require__(212);
 
 	ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
 
@@ -21484,12 +21484,12 @@
 
 	var React = __webpack_require__(1);
 	var Header = __webpack_require__(179);
-	var Footer = __webpack_require__(202);
-	var Navigation = __webpack_require__(203);
-	var BaselineFooter = __webpack_require__(204);
-	var Section = __webpack_require__(205);
-	var Button = __webpack_require__(208);
-	var Data = __webpack_require__(209);
+	var Footer = __webpack_require__(204);
+	var Navigation = __webpack_require__(205);
+	var BaselineFooter = __webpack_require__(206);
+	var Section = __webpack_require__(207);
+	var Button = __webpack_require__(210);
+	var Data = __webpack_require__(211);
 
 	var App = React.createClass({
 	  displayName: 'App',
@@ -21498,7 +21498,7 @@
 	    return { sectionsArray: ["Kamakura", "Soken Costa", "Black Label", "Collaborators"] };
 	  },
 	  render: function () {
-	    return React.createElement('div', null, React.createElement(Header, { sectionsArray: this.state.sectionsArray }, this.state.sectionsArray.map((name, i) => React.createElement('h3', { key: i, id: "navTo" + name }, this.state.sectionsArray[i]))), this.state.sectionsArray.map((name, i) => React.createElement(Section, { key: i, id: name, panels: Data[i].panels, sectionImage: Data[i].backgroundImage, name: name })), React.createElement(Navigation, { sectionsArray: this.state.sectionsArray }, this.state.sectionsArray.map((name, i) => React.createElement('h3', { key: i, id: "navElement" + i }, this.state.sectionsArray[i]))), React.createElement(Footer, null), React.createElement(BaselineFooter, null));
+	    return React.createElement('div', null, React.createElement(Header, { sectionsArray: this.state.sectionsArray }, this.state.sectionsArray.map((name, i) => React.createElement('h3', { key: i, id: "navTo" + name }, this.state.sectionsArray[i]))), this.state.sectionsArray.map((name, i) => React.createElement(Section, { key: i, id: name, index: i, panels: Data[i].panels, sectionImage: Data[i].backgroundImage, name: name })), React.createElement(Navigation, { sectionsArray: this.state.sectionsArray }, this.state.sectionsArray.map((name, i) => React.createElement('h3', { key: i, id: "navElement" + i }, this.state.sectionsArray[i]))), React.createElement(Footer, null), React.createElement(BaselineFooter, null));
 	  }
 	});
 
@@ -21511,12 +21511,13 @@
 	var React = __webpack_require__(1);
 	var NavBar = __webpack_require__(180);
 	var Slider = __webpack_require__(182);
-	var HeaderArrow = __webpack_require__(201);
+	var HeaderArrow = __webpack_require__(203);
 
 	var Header = React.createClass({
 	    displayName: 'Header',
 
 	    render: function () {
+
 	        return React.createElement('div', { className: 'Header' }, React.createElement(Slider, null), React.createElement(NavBar, { sectionsArray: this.props.sectionsArray, className: 'TopNavbar' }, this.props.children), React.createElement('h1', null, React.createElement('img', { src: 'images/kamakura_vivefaux.svg', alt: 'vivefaux' })), React.createElement(HeaderArrow, null));
 	    }
 	});
@@ -21632,10 +21633,19 @@
 	var React = __webpack_require__(1);
 	var SlickSliderImage = __webpack_require__(183);
 	var SlickSlider = __webpack_require__(184);
+	var Parallax = __webpack_require__(201);
 
 	var Slider = React.createClass({
 	    displayName: 'Slider',
 
+	    componentDidMount: function () {
+	        var p = new Parallax('.parallax', {
+	            offsetYBounds: 50,
+	            intensity: 30,
+	            center: 0.5,
+	            safeHeight: 0.15
+	        }).init();
+	    },
 	    render: function () {
 	        var settings = {
 	            dots: true,
@@ -21656,7 +21666,7 @@
 	        };
 	        var images = [];
 	        for (var i = 1; i < 9; i++) {
-	            images.push(React.createElement('div', { className: 'SliderImage', key: i }, React.createElement('h3', null, React.createElement('img', { src: 'images/' + i + '.jpg', alt: i }))));
+	            images.push(React.createElement('div', { key: i }, React.createElement('img', { className: 'SliderImage parallax', src: 'images/' + i + '.jpg', alt: i })));
 	        }
 	        return React.createElement(SlickSlider, settings, images);
 	    }
@@ -23933,6 +23943,607 @@
 /* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// use here your library name
+	module.exports = __webpack_require__(202)
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+	  if (true) {
+	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  } else if (typeof exports !== "undefined") {
+	    factory(module);
+	  } else {
+	    var mod = {
+	      exports: {}
+	    };
+	    factory(mod);
+	    global.Parallax = mod.exports;
+	  }
+	})(this, function (module) {
+	  'use strict';
+
+	  function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	      throw new TypeError("Cannot call a class as a function");
+	    }
+	  }
+
+	  var _createClass = function () {
+	    function defineProperties(target, props) {
+	      for (var i = 0; i < props.length; i++) {
+	        var descriptor = props[i];
+	        descriptor.enumerable = descriptor.enumerable || false;
+	        descriptor.configurable = true;
+	        if ("value" in descriptor) descriptor.writable = true;
+	        Object.defineProperty(target, descriptor.key, descriptor);
+	      }
+	    }
+
+	    return function (Constructor, protoProps, staticProps) {
+	      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	      if (staticProps) defineProperties(Constructor, staticProps);
+	      return Constructor;
+	    };
+	  }();
+
+	  function $$(selector, ctx) {
+	    var els;
+	    if (typeof selector == 'string') els = (ctx || document).querySelectorAll(selector);else els = selector;
+	    return Array.prototype.slice.call(els);
+	  }
+
+	  function extend(src) {
+	    var obj,
+	        args = arguments;
+	    for (var i = 1; i < args.length; ++i) {
+	      if (obj = args[i]) {
+	        for (var key in obj) {
+	          src[key] = obj[key];
+	        }
+	      }
+	    }
+	    return src;
+	  }
+
+	  function isUndefined(val) {
+	    return typeof val == 'undefined';
+	  }
+
+	  function toCamel(string) {
+	    return string.replace(/-(\w)/g, function (_, c) {
+	      return c.toUpperCase();
+	    });
+	  }
+
+	  function elementData(el, attr) {
+	    if (attr) return el.dataset[attr] || el.getAttribute('data-' + attr);else return el.dataset || Array.prototype.slice.call(el.attributes).reduce(function (ret, attribute) {
+	      if (/data-/.test(attribute.name)) ret[toCamel(attribute.name)] = attribute.value;
+	      return ret;
+	    }, {});
+	  }
+
+	  function prefix(obj, prop, value) {
+	    var prefixes = ['ms', 'o', 'Moz', 'webkit', ''],
+	        i = prefixes.length;
+	    while (i--) {
+	      var prefix = prefixes[i],
+	          p = prefix ? prefix + prop[0].toUpperCase() + prop.substr(1) : prop.toLowerCase() + prop.substr(1);
+	      if (p in obj) {
+	        obj[p] = value;
+	        return true;
+	      }
+	    }
+	    return false;
+	  }
+
+	  var observable = function observable(el) {
+
+	    el = el || {};
+
+	    var callbacks = {},
+	        slice = Array.prototype.slice;
+
+	    function onEachEvent(e, fn) {
+	      var es = e.split(' '),
+	          l = es.length,
+	          i = 0,
+	          name,
+	          indx;
+	      for (; i < l; i++) {
+	        name = es[i];
+	        indx = name.indexOf('.');
+	        if (name) fn(~indx ? name.substring(0, indx) : name, i, ~indx ? name.slice(indx + 1) : null);
+	      }
+	    }
+
+	    Object.defineProperties(el, {
+	      on: {
+	        value: function value(events, fn) {
+	          if (typeof fn != 'function') return el;
+
+	          onEachEvent(events, function (name, pos, ns) {
+	            (callbacks[name] = callbacks[name] || []).push(fn);
+	            fn.typed = pos > 0;
+	            fn.ns = ns;
+	          });
+
+	          return el;
+	        },
+	        enumerable: false,
+	        writable: false,
+	        configurable: false
+	      },
+
+	      off: {
+	        value: function value(events, fn) {
+	          if (events == '*' && !fn) callbacks = {};else {
+	            onEachEvent(events, function (name, pos, ns) {
+	              if (fn || ns) {
+	                var arr = callbacks[name];
+	                for (var i = 0, cb; cb = arr && arr[i]; ++i) {
+	                  if (cb == fn || ns && cb.ns == ns) arr.splice(i--, 1);
+	                }
+	              } else delete callbacks[name];
+	            });
+	          }
+	          return el;
+	        },
+	        enumerable: false,
+	        writable: false,
+	        configurable: false
+	      },
+
+	      one: {
+	        value: function value(events, fn) {
+	          function on() {
+	            el.off(events, on);
+	            fn.apply(el, arguments);
+	          }
+	          return el.on(events, on);
+	        },
+	        enumerable: false,
+	        writable: false,
+	        configurable: false
+	      },
+
+	      trigger: {
+	        value: function value(events) {
+	          var arglen = arguments.length - 1,
+	              args = new Array(arglen),
+	              fns;
+
+	          for (var i = 0; i < arglen; i++) {
+	            args[i] = arguments[i + 1];
+	          }
+
+	          onEachEvent(events, function (name, pos, ns) {
+
+	            fns = slice.call(callbacks[name] || [], 0);
+
+	            for (var i = 0, fn; fn = fns[i]; ++i) {
+	              if (fn.busy) continue;
+	              fn.busy = 1;
+	              if (!ns || fn.ns == ns) fn.apply(el, fn.typed ? [name].concat(args) : args);
+	              if (fns[i] !== fn) {
+	                i--;
+	              }
+	              fn.busy = 0;
+	            }
+
+	            if (callbacks['*'] && name != '*') el.trigger.apply(el, ['*', name].concat(args));
+	          });
+
+	          return el;
+	        },
+	        enumerable: false,
+	        writable: false,
+	        configurable: false
+	      }
+	    });
+
+	    return el;
+	  };
+
+	  var rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame || function (cb) {
+	    setTimeout(cb, 1000 / 60);
+	  };
+	  var RESIZE_DELAY = 20;
+
+	  var Stage = function () {
+	    function Stage() {
+	      _classCallCheck(this, Stage);
+
+	      observable(this);
+	      this.resizeTimer = null;
+	      this.tick = false;
+	      this.bind();
+	    }
+
+	    _createClass(Stage, [{
+	      key: 'bind',
+	      value: function bind() {
+	        var _this = this;
+
+	        window.addEventListener('scroll', function () {
+	          return _this.scroll();
+	        }, true);
+	        window.addEventListener('mousewheel', function () {
+	          return _this.scroll();
+	        }, true);
+	        window.addEventListener('touchmove', function () {
+	          return _this.scroll();
+	        }, true);
+	        window.addEventListener('resize', function () {
+	          return _this.resize();
+	        }, true);
+	        window.addEventListener('orientationchange', function () {
+	          return _this.resize();
+	        }, true);
+	        window.onload = function () {
+	          return _this.scroll();
+	        };
+
+	        return this;
+	      }
+	    }, {
+	      key: 'scroll',
+	      value: function scroll() {
+	        var _this2 = this;
+
+	        if (this.tick) return this;
+	        this.tick = !this.tick;
+	        rAF(function () {
+	          return _this2.update();
+	        });
+	        return this;
+	      }
+	    }, {
+	      key: 'update',
+	      value: function update() {
+	        this.trigger('scroll', this.scrollTop);
+	        this.tick = !this.tick;
+	        return this;
+	      }
+	    }, {
+	      key: 'resize',
+	      value: function resize() {
+	        var _this3 = this;
+
+	        if (this.resizeTimer) clearTimeout(this.resizeTimer);
+	        this.resizeTimer = setTimeout(function () {
+	          return _this3.trigger('resize', _this3.size);
+	        }, RESIZE_DELAY);
+	        return this;
+	      }
+	    }, {
+	      key: 'scrollTop',
+	      get: function get() {
+	        var top = (window.pageYOffset || document.scrollTop) - (document.clientTop || 0);
+	        return window.isNaN(top) ? 0 : top;
+	      }
+	    }, {
+	      key: 'height',
+	      get: function get() {
+	        return window.innerHeight;
+	      }
+	    }, {
+	      key: 'width',
+	      get: function get() {
+	        return window.innerWidth;
+	      }
+	    }, {
+	      key: 'size',
+	      get: function get() {
+	        return {
+	          width: this.width,
+	          height: this.height
+	        };
+	      }
+	    }]);
+
+	    return Stage;
+	  }();
+
+	  var HAS_TRANSLATE_3D = function (div) {
+	    prefix(div.style, 'transform', 'translate3d(0, 0, 0)');
+	    return (/translate3d/g.test(div.style.cssText)
+	    );
+	  }(document.createElement('div'));
+
+	  var Canvas = function () {
+	    function Canvas(img, opts) {
+	      _classCallCheck(this, Canvas);
+
+	      observable(this);
+	      this.opts = opts;
+	      this.img = img;
+	      this.wrapper = img.parentNode;
+	      this.isLoaded = false;
+	    }
+
+	    _createClass(Canvas, [{
+	      key: 'load',
+	      value: function load() {
+	        var _this4 = this;
+
+	        if (!this.img.width || !this.img.height || !this.img.complete) this.img.onload = function () {
+	          return _this4.onImageLoaded();
+	        };else this.onImageLoaded();
+
+	        return this;
+	      }
+	    }, {
+	      key: 'onImageLoaded',
+	      value: function onImageLoaded() {
+	        this.isLoaded = true;
+	        this.update();
+	        this.trigger('loaded', this.img);
+	        return this;
+	      }
+	    }, {
+	      key: 'update',
+	      value: function update() {
+
+	        var iw = this.img.naturalWidth || this.img.width,
+	            ih = this.img.naturalHeight || this.img.height,
+	            ratio = iw / ih,
+	            size = this.size,
+	            nh,
+	            nw,
+	            offsetTop,
+	            offsetLeft;
+
+	        if (size.width / ratio <= size.height) {
+	          nw = size.height * ratio;
+	          nh = size.height;
+	        } else {
+	          nw = size.width;
+	          nh = size.width / ratio;
+	        }
+
+	        if (nh <= size.height + size.height * this.opts.safeHeight) {
+	          nw += nw * this.opts.safeHeight;
+	          nh += nh * this.opts.safeHeight;
+	        }
+
+	        offsetTop = - ~ ~((nh - size.height) / 2);
+	        offsetLeft = - ~ ~((nw - size.width) / 2);
+
+	        this.img.width = nw;
+	        this.img.height = nh;
+	        this.img.style.top = offsetTop + 'px';
+	        this.img.style.left = offsetLeft + 'px';
+
+	        return this;
+	      }
+	    }, {
+	      key: 'draw',
+	      value: function draw(stage) {
+	        var size = this.size,
+	            perc = (this.offset.top + size.height * this.opts.center + stage.height / 2 - stage.scrollTop) / stage.height - 1;
+
+	        perc *= this.img.height / size.height / 2 * this.opts.intensity;
+
+	        if (HAS_TRANSLATE_3D) prefix(this.img.style, 'transform', 'translate3d(0, ' + -perc + '%, 0)');else prefix(this.img.style, 'transform', 'translate(0, ' + -perc + '%)');
+
+	        return this;
+	      }
+	    }, {
+	      key: 'bounds',
+	      get: function get() {
+	        return this.wrapper.getBoundingClientRect();
+	      }
+	    }, {
+	      key: 'offset',
+	      get: function get() {
+	        return {
+	          top: this.wrapper.offsetTop,
+	          left: this.wrapper.offsetLeft
+	        };
+	      }
+	    }, {
+	      key: 'size',
+	      get: function get() {
+	        var props = this.bounds;
+	        return {
+	          height: props.height | 0,
+	          width: props.width | 0
+	        };
+	      }
+	    }]);
+
+	    return Canvas;
+	  }();
+
+	  var stage;
+
+	  var Parallax = function () {
+	    function Parallax(selector) {
+	      var opts = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+	      _classCallCheck(this, Parallax);
+
+	      observable(this);
+
+	      this.opts = opts;
+	      this.selector = selector;
+	      this.canvases = [];
+	      this.add(selector);
+
+	      if (!stage) stage = new Stage();
+
+	      return this;
+	    }
+
+	    _createClass(Parallax, [{
+	      key: 'init',
+	      value: function init() {
+
+	        if (!this.canvases.length) {
+	          console.warn('No images were found with the selector "' + this.selector + '"');
+	        } else {
+	          this.imagesLoaded = 0;
+	          this.bind();
+	        }
+
+	        return this;
+	      }
+	    }, {
+	      key: 'bind',
+	      value: function bind() {
+	        var _this5 = this;
+
+	        this._onResize = function () {
+	          for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	            args[_key] = arguments[_key];
+	          }
+
+	          return _this5.resize.apply(_this5, args);
+	        };
+	        this._onScroll = function () {
+	          for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	            args[_key2] = arguments[_key2];
+	          }
+
+	          return _this5.scroll.apply(_this5, args);
+	        };
+
+	        stage.on('resize', this._onResize);
+	        stage.on('scroll', this._onScroll);
+
+	        this.canvases.forEach(function (canvas) {
+	          canvas.one('loaded', function () {
+	            return _this5.onCanvasLoaded(canvas);
+	          });
+	          canvas.load();
+	        });
+
+	        return this;
+	      }
+	    }, {
+	      key: 'refresh',
+	      value: function refresh() {
+	        this.onResize(stage.size).onScroll(stage.scrollTop);
+	        return this;
+	      }
+	    }, {
+	      key: 'onCanvasLoaded',
+	      value: function onCanvasLoaded(canvas) {
+	        this.trigger('image:loaded', canvas.img, canvas);
+	        this.imagesLoaded++;
+	        canvas.draw(stage);
+	        if (this.imagesLoaded == this.canvases.length) this.trigger('images:loaded');
+	        return this;
+	      }
+	    }, {
+	      key: 'scroll',
+	      value: function scroll(scrollTop) {
+	        var i = this.canvases.length,
+	            offsetYBounds = this.opts.offsetYBounds,
+	            stageScrollTop = stage.scrollTop;
+
+	        while (i--) {
+
+	          var canvas = this.canvases[i],
+	              canvasHeight = canvas.size.height,
+	              canvasOffset = canvas.offset,
+	              canvasScrollDelta = canvasOffset.top + canvasHeight - stageScrollTop;
+
+	          if (canvas.isLoaded && canvasScrollDelta + offsetYBounds > 0 && canvasScrollDelta - offsetYBounds < stageScrollTop + stage.height) {
+	            canvas.draw(stage);
+	            this.trigger('draw', canvas.img);
+	          }
+	        }
+
+	        this.trigger('update', stageScrollTop);
+
+	        return this;
+	      }
+	    }, {
+	      key: 'add',
+	      value: function add(els) {
+	        this.canvases = this.canvases.concat(this.createCanvases($$(els)));
+	        return this;
+	      }
+	    }, {
+	      key: 'remove',
+	      value: function remove(els) {
+	        var _this6 = this;
+
+	        $$(els).forEach(function (el) {
+	          var i = _this6.canvases.length;
+	          while (i--) {
+	            if (el == _this6.canvases[i].img) {
+	              _this6.canvases.splice(i, 1);
+	              break;
+	            }
+	          }
+	        });
+	        return this;
+	      }
+	    }, {
+	      key: 'destroy',
+	      value: function destroy() {
+	        this.off('*');
+	        this.canvases = [];
+	        stage.off('resize', this._onResize).off('scroll', this._onScroll);
+	        return this;
+	      }
+	    }, {
+	      key: 'resize',
+	      value: function resize(size) {
+	        var i = this.canvases.length;
+	        while (i--) {
+	          var canvas = this.canvases[i];
+	          if (!canvas.isLoaded) return;
+	          canvas.update().draw(stage);
+	        }
+	        this.trigger('resize');
+	        return this;
+	      }
+	    }, {
+	      key: 'createCanvases',
+	      value: function createCanvases(els) {
+	        var _this7 = this;
+
+	        return els.map(function (el) {
+	          var data = elementData(el);
+	          return new Canvas(el, {
+	            intensity: !isUndefined(data.intensity) ? +data.intensity : _this7.opts.intensity,
+	            center: !isUndefined(data.center) ? +data.center : _this7.opts.center,
+	            safeHeight: !isUndefined(data.safeHeight) ? +data.safeHeight : _this7.opts.safeHeight
+	          });
+	        });
+	      }
+	    }, {
+	      key: 'opts',
+	      set: function set(opts) {
+	        this._defaults = {
+	          offsetYBounds: 50,
+	          intensity: 30,
+	          center: 0.5,
+
+	          safeHeight: 0.15 };
+	        extend(this._defaults, opts);
+	      },
+	      get: function get() {
+	        return this._defaults;
+	      }
+	    }]);
+
+	    return Parallax;
+	  }();
+
+	  module.exports = Parallax;
+	});
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var React = __webpack_require__(1);
 	var SmoothScroll = __webpack_require__(181);
 
@@ -23949,7 +24560,7 @@
 	module.exports = HeaderArrow;
 
 /***/ },
-/* 202 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -23965,7 +24576,7 @@
 	module.exports = Footer;
 
 /***/ },
-/* 203 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -23982,7 +24593,7 @@
 	module.exports = Navigation;
 
 /***/ },
-/* 204 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -23998,35 +24609,51 @@
 	module.exports = BaselineFooter;
 
 /***/ },
-/* 205 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var NavBar = __webpack_require__(180);
-	var PanelContainer = __webpack_require__(206);
+	var PanelContainer = __webpack_require__(208);
 	var SmoothScroll = __webpack_require__(181);
+	var Parallax = __webpack_require__(201);
 
 	var Section = React.createClass({
-	    displayName: 'Section',
+	  displayName: 'Section',
 
-	    render: function () {
-	        var sectionContainerStyle = {
-	            backgroundImage: 'url(images/' + this.props.sectionImage + '.jpg)',
-	            backgroundSize: "cover"
-	        };
+	  componentDidMount: function () {
+	    var p = new Parallax('.parallax' + this.props.index, {
+	      offsetYBounds: 50,
+	      intensity: 20,
+	      center: 0.5,
+	      safeHeight: 0.55
+	    }).init();
+	  },
+	  render: function () {
+	    var sectionContainerStyle = {
+	      backgroundColor: '#f0f0f0',
+	      backgroundSize: "cover",
+	      zIndex: this.props.index
+	    };
 
-	        return React.createElement('div', { className: 'SectionContainer', style: sectionContainerStyle, id: this.props.name }, React.createElement('div', { className: 'Section' }, React.createElement('h2', null, this.props.name), React.createElement(PanelContainer, { sectionName: this.props.name, panels: this.props.panels })));
-	    }
+	    // backgroundImage: 'url(images/' + this.props.sectionImage + '.jpg)',
+
+	    var sectionContainerFilter = {
+	      filter: "grayscale(10%) brightness(100%) contrast(90%)"
+	    };
+
+	    return React.createElement('div', { className: 'SectionContainer', style: Object.assign(sectionContainerStyle, sectionContainerFilter), id: this.props.name }, React.createElement('img', { className: 'SectionImage parallax' + this.props.index, src: 'images/' + this.props.sectionImage + '.jpg' }), React.createElement('div', { className: 'Section' }, React.createElement('h2', null, this.props.name), React.createElement(PanelContainer, { sectionName: this.props.name, panels: this.props.panels })));
+	  }
 	});
 
 	module.exports = Section;
 
 /***/ },
-/* 206 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var Panel = __webpack_require__(207);
+	var Panel = __webpack_require__(209);
 
 	var PanelContainer = React.createClass({
 	  displayName: 'PanelContainer',
@@ -24066,7 +24693,7 @@
 	module.exports = PanelContainer;
 
 /***/ },
-/* 207 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -24104,10 +24731,10 @@
 	      console.log(" " + this.props.index + " panel is selected!");
 	      panelStyle = {};
 	      panelButtonStyle = {
-	        left: "0vw",
-	        top: "-15vw",
-	        width: "100vw",
-	        height: "50vw",
+	        left: "5vw",
+	        top: "-20vh",
+	        width: "90vw",
+	        height: "70vh",
 	        paddingRight: "50%",
 	        backgroundColor: panelHoverColor,
 	        zIndex: 999
@@ -24135,7 +24762,7 @@
 	module.exports = Panel;
 
 /***/ },
-/* 208 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -24154,7 +24781,7 @@
 	module.exports = Button;
 
 /***/ },
-/* 209 */
+/* 211 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -24222,16 +24849,16 @@
 	];
 
 /***/ },
-/* 210 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(211);
+	var content = __webpack_require__(213);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(213)(content, {});
+	var update = __webpack_require__(215)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -24248,21 +24875,21 @@
 	}
 
 /***/ },
-/* 211 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(212)();
+	exports = module.exports = __webpack_require__(214)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".BaselineFooter {\n  padding: 0 10px 0 0;\n  height: 8vh;\n  background-color: #af8075; }\n\n.Footer {\n  padding: 0 10px 0 0;\n  height: 25vh;\n  background-color: #b4bbc6; }\n\n.Header {\n  width: 100%;\n  height: auto;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: -1;\n  background-color: #983131; }\n\n.HeaderArrow {\n  position: absolute;\n  width: 20%;\n  left: 40%;\n  transform: translate(0%, -30vw) scale(0.35); }\n  .HeaderArrow h3 {\n    font-size: 10px; }\n  .HeaderArrow button {\n    font: 100% Elsa, sans-serif;\n    width: 100%;\n    border: none;\n    background-color: transparent; }\n  .HeaderArrow button:focus {\n    outline: 0; }\n\n.TopNavbar {\n  position: absolute;\n  top: 10vh;\n  left: 50%; }\n\n.TopNavbar button {\n  background-color: transparent;\n  font: 0.9em Elsa, sans-serif;\n  border: none;\n  padding: 10px;\n  margin-left: 10px;\n  border: 2px solid white;\n  border-radius: 5px;\n  margin-top: 10px;\n  outline: none; }\n\n.TopNavbar button h3 {\n  -webkit-transition: all 0.2s ease-in-out;\n  -moz-transition: all 0.2s ease-in-out;\n  transition: all 0.2s ease-in-out; }\n\n.TopNavbar button h3:hover {\n  color: #878494; }\n\n.BottomNavbar {\n  position: relative;\n  top: 25vh;\n  left: 25%; }\n\n.BottomNavbar button {\n  font: 100% Elsa, sans-serif;\n  border: none;\n  padding: 0;\n  margin-left: 1.25%;\n  margin-right: 1.25%;\n  width: 10%; }\n\n.Navigation {\n  padding: 0 10px 0 0;\n  height: 50vh;\n  margin: 0;\n  background-color: #b4bbc6; }\n\n.SectionContainer {\n  width: 100%;\n  height: 100vh;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: -1;\n  padding-top: 33.33vh;\n  background-color: #261e29;\n  display: inline-block; }\n  .SectionContainer .Section {\n    margin: 0 auto;\n    padding: 0;\n    width: 100%;\n    border: none;\n    height: 33.33vh;\n    display: inline-block;\n    background-color: #141618; }\n    .SectionContainer .Section img {\n      width: 100%;\n      height: 100%;\n      object-fit: cover;\n      display: block; }\n  .SectionContainer h2 {\n    margin: 0;\n    float: left;\n    font-size: 100;\n    margin-left: 10%;\n    margin-top: 12vh;\n    font: 200% Futura, sans-serif;\n    color: white;\n    position: absolute;\n    user-select: none; }\n\n.SliderImage {\n  -webkit-filter: brightness(75%) sepia(10%) hue-rotate(1deg) grayscale(10%) contrast(85%);\n  /* Safari */\n  filter: brightness(75%) sepia(10%) hue-rotate(1deg) grayscale(10%) contrast(85%); }\n\n.PanelContainer {\n  position: absolute;\n  width: 100%;\n  padding-left: 50%;\n  height: 100%;\n  float: left;\n  display: inline-grid; }\n\n.PanelClass {\n  /*@include css-transition(all, .4s ,ease-in-out);*/\n  /*float: left;*/ }\n\n.PanelClass button {\n  position: absolute;\n  font-family: Futura, sans-serif;\n  letter-spacing: 0.2em;\n  background-color: #1c1e22;\n  border: none;\n  margin: 0;\n  margin-left: 1em;\n  margin-top: 1em;\n  width: 9vw;\n  height: 9vw;\n  outline: none;\n  color: white;\n  -webkit-transition: margin-left 0.25s ease-in-out, margin-top 0.25s ease-in-out, height 0.25s ease-in-out, left 0.25s ease-in-out, top 0.25s ease-in-out, width 0.25s ease-in-out 0.25s, padding-right 0.25s ease-in-out 0.25s, background-color 0.25s ease-in-out, color 0.25s ease-in-out 0.25s;\n  -moz-transition: margin-left 0.25s ease-in-out, margin-top 0.25s ease-in-out, height 0.25s ease-in-out, left 0.25s ease-in-out, top 0.25s ease-in-out, width 0.25s ease-in-out 0.25s, padding-right 0.25s ease-in-out 0.25s, background-color 0.25s ease-in-out, color 0.25s ease-in-out 0.25s;\n  transition: margin-left 0.25s ease-in-out, margin-top 0.25s ease-in-out, height 0.25s ease-in-out, left 0.25s ease-in-out, top 0.25s ease-in-out, width 0.25s ease-in-out 0.25s, padding-right 0.25s ease-in-out 0.25s, background-color 0.25s ease-in-out, color 0.25s ease-in-out 0.25s; }\n\n.PanelClass button:hover {\n  background-color: #f25555;\n  color: #f25555; }\n\n/*.PanelClass:hover {\n  position: absolute !important;\n  margin-left: 5% !important;\n  margin-top: 5% !important;\n  height: 50px !important;\n  background-color: green !important;\n  padding: 0 !important;\n  border: none !important;\n}*/\n/*.PanelClass button:hover {\n  transition: all 0.25s ease-in-out;\n  background-color: #696684;\n  position: absolute !important;\n  background-color: red !important;\n  height: 50px;\n  padding: 0 !important;\n  border: none !important;\n  top: 0 !important;\n  left: 0 !important;\n}*/\nbody {\n  margin: 0;\n  overflow-x: hidden; }\n  body h1 {\n    position: absolute;\n    left: 50%;\n    width: 50%;\n    text-align: center;\n    transform: translate(-50%, -75vw) scale(0.5);\n    font: 200% Futura, Helvetica, sans-serif;\n    color: #FFF; }\n  body h3 {\n    margin: 0;\n    color: white; }\n  body p {\n    float: right;\n    font: 100% Elsa, sans-serif;\n    color: #41374c; }\n  body img {\n    width: 100%; }\n  body .slick-dots {\n    width: 5%;\n    margin: 0;\n    float: right;\n    margin-left: 95%;\n    list-style: none;\n    text-align: center;\n    top: 50%; }\n  body .slick-dots li {\n    position: relative;\n    cursor: pointer;\n    float: right;\n    margin: inherit;\n    display: inline-flex;\n    margin-right: 50%; }\n  body .slick-dots li button {\n    display: inline-flex;\n    font-size: 0;\n    line-height: 0;\n    cursor: pointer;\n    color: transparent;\n    list-style-type: none outside none;\n    width: 20px;\n    height: 20px;\n    outline: 0;\n    background: 0 0;\n    padding: 0;\n    margin: 0;\n    transition: all 0.25s ease-in-out;\n    -moz-transition: all 0.25s ease-in-out;\n    -webkit-transition: all 0.25s ease-in-out;\n    border: 3px solid rgba(255, 0, 0, 0);\n    border-radius: 40px; }\n  body .slick-dots li button:focus,\n  body .slick-dots li button:hover {\n    outline: 0;\n    opacity: 1; }\n  body .slick-dots li button:hover {\n    transform: scale3D(0.6, 0.6, 0.6);\n    -moz-transform: scale3D(0.6, 0.6, 0.6);\n    -webkit-transform: scale3D(0.6, 0.6, 0.6);\n    transition: all 0.25s ease-in-out;\n    -moz-transition: all 0.25s ease-in-out;\n    -webkit-transition: all 0.25s ease-in-out;\n    border: 4px solid white;\n    border-radius: 40px;\n    opacity: 1; }\n  body .slick-dots li button:focus:before,\n  body .slick-dots li button:hover:before {\n    opacity: 1; }\n  body .slick-dots li button:before {\n    font-size: 15px;\n    line-height: 0%;\n    position: relative;\n    top: 0%;\n    left: 0%;\n    width: 10px;\n    height: 10px;\n    margin: 0 auto;\n    content: '';\n    border: 2px solid white;\n    background-color: transparent;\n    border-radius: 40px;\n    opacity: 1.0;\n    color: #545454; }\n  body .slick-dots li.slick-active button:before {\n    opacity: 1;\n    color: #FFF;\n    background-color: white;\n    border: 1px solid white;\n    border-color: white; }\n", "", {"version":3,"sources":["/./app/app/scss/components/_BaselineFooter.scss","/./app/app/main.scss","/./app/app/scss/components/_Footer.scss","/./app/app/scss/components/_Header.scss","/./app/app/scss/components/_HeaderArrow.scss","/./app/app/scss/components/_Navbar.scss","/./app/app/scss/components/_Navigation.scss","/./app/app/scss/components/_Section.scss","/./app/app/scss/components/_SliderImage.scss","/./app/app/scss/components/_Panel.scss"],"names":[],"mappings":"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","file":"main.scss","sourcesContent":[".BaselineFooter {\n    padding: 0 10px 0 0;\n    height: 8vh;\n    background-color: $bg-baseline-footer-color;\n}\n","$title-font-stack: Futura, Helvetica, sans-serif;\n$font-stack: Elsa, sans-serif;\n$primary-color: #41374c;\n$bg-p-color: #111;\n$bg-header-color: #983131;\n$bg-section-color: #261e29;\n$bg-footer-color: #b4bbc6;\n$bg-baseline-footer-color: #af8075;\n$h1-color: #FFF;\n$h2-color: #293548;;\n$carousel-dots-width: 4px;\n$carousel-dots-scale: 0.6;\n\n@import './scss/components/BaselineFooter';\n@import './scss/components/Footer';\n@import './scss/components/Header';\n@import './scss/components/HeaderArrow';\n@import './scss/components/Navbar';\n@import './scss/components/Navigation';\n@import './scss/components/Section';\n@import './scss/components/Slider';\n@import './scss/components/SliderImage';\n@import './scss/components/Panel';\n\n@mixin center($horizontal: true, $vertical: true) {\n    position: absolute;\n    @if ($horizontal and $vertical) {\n        top: 50%;\n        left: 50%;\n        transform: translate(-50%, -50%);\n    } @else if ($horizontal) {\n        left: 50%;\n        transform: translate(-50%, 0);\n    } @else if ($vertical) {\n        top: 50%;\n        transform: translate(0, -50%);\n    }\n}\n\nbody {\n    margin: 0;\n    overflow-x: hidden;\n\n    h1 {\n      position: absolute;\n      left: 50%;\n      width: 50%;\n      text-align: center;\n      transform: translate(-50%, -75vw) scale(0.5);\n      font: 200% $title-font-stack;\n      color: $h1-color;\n    }\n\n    h3 {\n        margin: 0;\n        color: white;\n    }\n\n    p {\n        float: right;\n        font: 100% $font-stack;\n        color: $primary-color;\n    }\n\n    img {\n        width: 100%;\n    }\n\n    .slick-dots {\n    width: 5%;\n    margin: 0;\n    float: right;\n    margin-left: 95%;\n    list-style: none;\n    text-align: center;\n    top: 50%;\n    }\n\n    .slick-dots li {\n    position: relative;\n    cursor: pointer;\n    float: right;\n    margin: inherit;\n    display: inline-flex;\n    margin-right: 50%;\n    }\n\n    .slick-dots li button {\n      display: inline-flex;\n      font-size: 0;\n      line-height: 0;\n      cursor: pointer;\n      color: transparent;\n      list-style-type: none outside none;\n      width: 20px;\n      height: 20px;\n      outline: 0;\n      background: 0 0;\n      padding: 0;\n      margin: 0;\n      transition: all 0.25s ease-in-out;\n      -moz-transition: all 0.25s ease-in-out;\n      -webkit-transition: all 0.25s ease-in-out;\n      border: 3px solid rgba(255, 0, 0, 0);\n      border-radius: 40px;\n    }\n\n    .slick-dots li button:focus,\n    .slick-dots li button:hover {\n        outline: 0;\n        opacity: 1;\n    }\n\n    .slick-dots li button:hover {\n        transform: scale3D($carousel-dots-scale, $carousel-dots-scale, $carousel-dots-scale);\n        -moz-transform: scale3D($carousel-dots-scale, $carousel-dots-scale, $carousel-dots-scale);\n        -webkit-transform: scale3D($carousel-dots-scale, $carousel-dots-scale, $carousel-dots-scale);\n        transition: all 0.25s ease-in-out;\n        -moz-transition: all 0.25s ease-in-out;\n        -webkit-transition: all 0.25s ease-in-out;\n        border: $carousel-dots-width solid white;\n        border-radius: 40px;\n        opacity: 1;\n    }\n\n    .slick-dots li button:focus:before,\n    .slick-dots li button:hover:before {\n        opacity: 1;\n    }\n\n    .slick-dots li button:before {\n      font-size: 15px;\n      line-height: 0%;\n      position: relative;\n      top: 0%;\n      left: 0%;\n      width: 10px;\n      height: 10px;\n      margin: 0 auto;\n      content: '';\n      border: 2px solid white;\n      background-color: transparent;\n      border-radius: 40px;\n      opacity: 1.0;\n      color: #545454;\n    }\n\n    .slick-dots li.slick-active button:before {\n        opacity: 1;\n        color: #FFF;\n        background-color: white;\n        border: 1px solid white;\n        border-color: white;\n    }\n}\n",".Footer {\n    padding: 0 10px 0 0;\n    height: 25vh;\n    background-color: $bg-footer-color;\n}\n",".Header {\n  width: 100%;\n  height: auto;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: -1;\n  background-color: $bg-header-color;\n}\n",".HeaderArrow {\n    position: absolute;\n    width: 20%;\n    left: 40%;\n    transform: translate(0%, -30vw) scale(0.35);\n\n    h3 {\n        font-size: 10px;\n    }\n\n    button {\n        font: 100% $font-stack;\n        width: 100%;\n        border: none;\n        background-color: transparent;\n    }\n\n    button:focus {\n        outline: 0;\n    }\n}\n","$navbar-button-hover-color: #878494;\n\n@mixin css-transition($prop, $time, $easing) {\n  -webkit-transition: $prop $time $easing;\n  -moz-transition: $prop $time $easing;\n  transition: $prop $time $easing;\n}\n\n.TopNavbar {\n    position: absolute;\n    top: 10vh;\n    left: 50%;\n}\n\n.TopNavbar button {\n    background-color: transparent;\n    font: 0.9em $font-stack;\n    border: none;\n    padding: 10px;\n    margin-left: 10px;\n    border: 2px solid white;\n    border-radius: 5px;\n    margin-top: 10px;\n    outline: none;\n}\n\n.TopNavbar button h3 {\n    @include css-transition(all, 0.2s, ease-in-out);\n}\n\n.TopNavbar button h3:hover {\n  color: $navbar-button-hover-color;\n}\n\n.BottomNavbar {\n    position: relative;\n    top: 25vh;\n    left: 25%;\n}\n\n.BottomNavbar button {\n    font: 100% $font-stack;\n    border: none;\n    padding: 0;\n    margin-left: 1.25%;\n    margin-right: 1.25%;\n    width: 10%;\n}\n",".Navigation {\n    padding: 0 10px 0 0;\n    height: 50vh;\n    margin: 0;\n    background-color: $bg-footer-color;\n}\n","$section-background-color: #141618;\n\n.SectionContainer {\n    width: 100%;\n    height: 100vh;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: -1;\n    padding-top: 33.33vh;\n    background-color: $bg-section-color;\n    display: inline-block;\n\n    .Section {\n    margin: 0 auto;\n    padding: 0;\n    width: 100%;\n    border: none;\n    height: 33.33vh;\n    display: inline-block;\n    background-color: $section-background-color;\n\n      img {\n        width: 100%;\n        height: 100%;\n        object-fit: cover;\n        display:block;\n      }\n\n    }\n\n    h2 {\n      margin: 0;\n      float: left;\n      font-size: 100;\n      margin-left: 10%;\n      margin-top: 12vh;\n      font: 200% Futura, sans-serif;\n      color: white;\n      position: absolute;\n      user-select: none;\n    }\n}\n",".SliderImage {\n    -webkit-filter: brightness(75%) sepia(10%) hue-rotate(1deg) grayscale(10%) contrast(85%);\n    /* Safari */\n    filter: brightness(75%) sepia(10%) hue-rotate(1deg) grayscale(10%) contrast(85%);\n}\n","$panel-font-stack: Futura, sans-serif;\n$panel-color: #1c1e22;\n$panel-hover-color: #f25555;\n\n@mixin css-transition($prop, $time, $easing) {\n  -webkit-transition: $prop $time $easing;\n  -moz-transition: $prop $time $easing;\n  transition: $prop $time $easing;\n}\n\n@mixin banter-transition($time, $easing) {\n-webkit-transition:  margin-left $time $easing, margin-top $time $easing, height $time $easing, left $time $easing, top $time $easing, width $time $easing $time, padding-right $time $easing $time, background-color $time $easing, color $time $easing $time;\n-moz-transition:  margin-left $time $easing, margin-top $time $easing, height $time $easing, left $time $easing, top $time $easing, width $time $easing $time, padding-right $time $easing $time, background-color $time $easing, color $time $easing $time;\ntransition:  margin-left $time $easing, margin-top $time $easing, height $time $easing, left $time $easing, top $time $easing, width $time $easing $time, padding-right $time $easing $time, background-color $time $easing, color $time $easing $time;\n}\n\n@mixin css-transition-banter($time, $easing) {\n  -webkit-transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing $time;\n  -moz-transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing $time;\n  transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing $time;\n}\n\n@mixin css-transition-backwards($time, $easing) {\n  -webkit-transition: height $time $easing .25s, margin-left $time $easing .25s, margin-top $time $easing .25s, background-color $time $easing .25s, width $time $easing;\n  -moz-transition: height $time $easing .25s, margin-left $time $easing .25s, margin-top $time $easing .25s, background-color $time $easing .25s, width $time $easing;\n  transition: height $time $easing .25s, margin-left $time $easing .25s, margin-top $time $easing .25s, background-color $time $easing .25s, width $time $easing;\n}\n\n.PanelContainer {\n  position: absolute;\n  width: 100%;\n  padding-left: 50%;\n  height: 100%;\n  float:left;\n  display: inline-grid;\n\n}\n\n.PanelClass {\n  /*@include css-transition(all, .4s ,ease-in-out);*/\n  /*float: left;*/\n}\n\n.PanelClass button {\n  position: absolute;\n  font-family: $panel-font-stack;\n  letter-spacing: 0.2em;\n  background-color: $panel-color;\n  border: none;\n  margin: 0;\n  margin-left: 1em;\n  margin-top: 1em;\n  width: 9vw;\n  height: 9vw;\n  outline: none;\n  color: white;\n  @include banter-transition(.25s ,ease-in-out);\n\n}\n\n.PanelClass button:hover {\n  background-color: $panel-hover-color;\n  color: $panel-hover-color;\n}\n\n.PanelClass button:active {\n\n}\n\n\n/*.PanelClass:hover {\n  position: absolute !important;\n  margin-left: 5% !important;\n  margin-top: 5% !important;\n  height: 50px !important;\n  background-color: green !important;\n  padding: 0 !important;\n  border: none !important;\n}*/\n\n/*.PanelClass button:hover {\n  transition: all 0.25s ease-in-out;\n  background-color: #696684;\n  position: absolute !important;\n  background-color: red !important;\n  height: 50px;\n  padding: 0 !important;\n  border: none !important;\n  top: 0 !important;\n  left: 0 !important;\n}*/\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, ".BaselineFooter {\n  padding: 0 10px 0 0;\n  height: 8vh;\n  background-color: #af8075; }\n\n.Footer {\n  padding: 0 10px 0 0;\n  height: 25vh;\n  background-color: #b4bbc6; }\n\n.Header {\n  width: 100%;\n  height: auto;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: -1;\n  background-color: #983131;\n  display: inline-block; }\n\n.HeaderArrow {\n  position: absolute;\n  width: 20%;\n  left: 40%;\n  transform: translate(0%, -30vw) scale(0.35); }\n  .HeaderArrow h3 {\n    font-size: 10px; }\n  .HeaderArrow button {\n    font: 100% Elsa, sans-serif;\n    width: 100%;\n    border: none;\n    background-color: transparent; }\n  .HeaderArrow button:focus {\n    outline: 0; }\n\n.TopNavbar {\n  position: absolute;\n  top: 5vh;\n  right: 5vh; }\n\n.TopNavbar button {\n  background-color: transparent;\n  font: 0.9em Elsa, sans-serif;\n  border: none;\n  padding: 10px;\n  margin-left: 10px;\n  border: 2px solid white;\n  border-radius: 5px;\n  margin-top: 10px;\n  outline: none; }\n\n.TopNavbar button h3 {\n  -webkit-transition: all 0.2s ease-in-out;\n  -moz-transition: all 0.2s ease-in-out;\n  transition: all 0.2s ease-in-out; }\n\n.TopNavbar button h3:hover {\n  color: #878494; }\n\n.BottomNavbar {\n  position: relative;\n  top: 25vh;\n  left: 25%; }\n\n.BottomNavbar button {\n  font: 100% Elsa, sans-serif;\n  border: none;\n  padding: 0;\n  margin-left: 1.25%;\n  margin-right: 1.25%;\n  width: 10%; }\n\n.Navigation {\n  padding: 0 10px 0 0;\n  height: 50vh;\n  margin: 0;\n  background-color: #b4bbc6; }\n\n.SectionContainer {\n  width: 100%;\n  height: 100vh;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: -1;\n  padding: 0;\n  background-color: #261e29;\n  display: inline-block; }\n  .SectionContainer .Section {\n    position: absolute;\n    left: 0;\n    z-index: 999;\n    margin: 0 auto;\n    margin-top: 33.33vh;\n    padding: 0;\n    width: 100%;\n    border: none;\n    height: 33.33vh;\n    display: inline-block;\n    background-color: #141618; }\n  .SectionContainer h2 {\n    margin: 0;\n    float: left;\n    font-size: 100;\n    margin-left: 10%;\n    margin-top: 12vh;\n    font: 200% Futura, sans-serif;\n    color: white;\n    position: absolute;\n    user-select: none; }\n  .SectionContainer .SectionImage {\n    object-fit: cover;\n    height: 100vh; }\n\n.SliderImage {\n  height: 100vh;\n  z-index: 999;\n  display: inline-block;\n  -webkit-filter: brightness(75%) sepia(10%) hue-rotate(1deg) grayscale(10%) contrast(85%);\n  /* Safari */\n  filter: brightness(75%) sepia(10%) hue-rotate(1deg) grayscale(10%) contrast(85%); }\n\n.PanelContainer {\n  position: absolute;\n  width: 100%;\n  padding-left: 50%;\n  height: 33vh;\n  float: left;\n  display: inline-grid; }\n\n.PanelClass {\n  /*@include css-transition(all, .4s ,ease-in-out);*/\n  /*float: left;*/ }\n\n.PanelClass button {\n  position: absolute;\n  font-family: Futura, sans-serif;\n  letter-spacing: 0.2em;\n  background-color: #1c1e22;\n  border: none;\n  margin: 0;\n  width: 9vw;\n  height: 9vw;\n  outline: none;\n  color: white;\n  -webkit-transition: margin-left 0.25s ease-in-out, margin-top 0.25s ease-in-out, height 0.25s ease-in-out, left 0.25s ease-in-out, top 0.25s ease-in-out, width 0.25s ease-in-out 0.25s, padding-right 0.25s ease-in-out 0.25s, background-color 0.25s ease-in-out, color 0.25s ease-in-out 0.25s;\n  -moz-transition: margin-left 0.25s ease-in-out, margin-top 0.25s ease-in-out, height 0.25s ease-in-out, left 0.25s ease-in-out, top 0.25s ease-in-out, width 0.25s ease-in-out 0.25s, padding-right 0.25s ease-in-out 0.25s, background-color 0.25s ease-in-out, color 0.25s ease-in-out 0.25s;\n  transition: margin-left 0.25s ease-in-out, margin-top 0.25s ease-in-out, height 0.25s ease-in-out, left 0.25s ease-in-out, top 0.25s ease-in-out, width 0.25s ease-in-out 0.25s, padding-right 0.25s ease-in-out 0.25s, background-color 0.25s ease-in-out, color 0.25s ease-in-out 0.25s; }\n\n.PanelClass button:hover {\n  background-color: #f25555;\n  color: #f25555; }\n\n/*.PanelClass:hover {\n  position: absolute !important;\n  margin-left: 5% !important;\n  margin-top: 5% !important;\n  height: 50px !important;\n  background-color: green !important;\n  padding: 0 !important;\n  border: none !important;\n}*/\n/*.PanelClass button:hover {\n  transition: all 0.25s ease-in-out;\n  background-color: #696684;\n  position: absolute !important;\n  background-color: red !important;\n  height: 50px;\n  padding: 0 !important;\n  border: none !important;\n  top: 0 !important;\n  left: 0 !important;\n}*/\nbody {\n  margin: 0;\n  overflow-x: hidden; }\n  body h1 {\n    position: absolute;\n    left: 50%;\n    width: 50%;\n    text-align: center;\n    transform: translate(-50%, -66.66vw) scale(0.5);\n    font: 200% Didot-italic, sans-serif;\n    color: #FFF; }\n  body h3 {\n    margin: 0;\n    color: white; }\n  body p {\n    float: right;\n    font: 100% Elsa, sans-serif;\n    color: #41374c; }\n  body img {\n    width: 100%; }\n  body .slick-dots {\n    width: 5%;\n    margin: 0;\n    float: right;\n    margin-left: 95%;\n    list-style: none;\n    text-align: center;\n    top: 50%; }\n  body .slick-dots li {\n    position: relative;\n    cursor: pointer;\n    float: right;\n    margin: inherit;\n    display: inline-flex;\n    margin-right: 50%; }\n  body .slick-dots li button {\n    display: inline-flex;\n    font-size: 0;\n    line-height: 0;\n    cursor: pointer;\n    color: transparent;\n    list-style-type: none outside none;\n    width: 20px;\n    height: 20px;\n    outline: 0;\n    background: 0 0;\n    padding: 0;\n    margin: 0;\n    transition: all 0.25s ease-in-out;\n    -moz-transition: all 0.25s ease-in-out;\n    -webkit-transition: all 0.25s ease-in-out;\n    border: 3px solid rgba(255, 0, 0, 0);\n    border-radius: 40px; }\n  body .slick-dots li button:focus,\n  body .slick-dots li button:hover {\n    outline: 0;\n    opacity: 1; }\n  body .slick-dots li button:hover {\n    transform: scale3D(0.6, 0.6, 0.6);\n    -moz-transform: scale3D(0.6, 0.6, 0.6);\n    -webkit-transform: scale3D(0.6, 0.6, 0.6);\n    transition: all 0.25s ease-in-out;\n    -moz-transition: all 0.25s ease-in-out;\n    -webkit-transition: all 0.25s ease-in-out;\n    border: 4px solid white;\n    border-radius: 40px;\n    opacity: 1; }\n  body .slick-dots li button:focus:before,\n  body .slick-dots li button:hover:before {\n    opacity: 1; }\n  body .slick-dots li button:before {\n    font-size: 15px;\n    line-height: 0%;\n    position: relative;\n    top: 0%;\n    left: 0%;\n    width: 10px;\n    height: 10px;\n    margin: 0 auto;\n    content: '';\n    border: 2px solid white;\n    background-color: transparent;\n    border-radius: 40px;\n    opacity: 1.0;\n    color: #545454; }\n  body .slick-dots li.slick-active button:before {\n    opacity: 1;\n    color: #FFF;\n    background-color: white;\n    border: 1px solid white;\n    border-color: white; }\n", "", {"version":3,"sources":["/./app/app/scss/components/_BaselineFooter.scss","/./app/app/main.scss","/./app/app/scss/components/_Footer.scss","/./app/app/scss/components/_Header.scss","/./app/app/scss/components/_HeaderArrow.scss","/./app/app/scss/components/_Navbar.scss","/./app/app/scss/components/_Navigation.scss","/./app/app/scss/components/_Section.scss","/./app/app/scss/components/_SliderImage.scss","/./app/app/scss/components/_Panel.scss"],"names":[],"mappings":"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","file":"main.scss","sourcesContent":[".BaselineFooter {\n    padding: 0 10px 0 0;\n    height: 8vh;\n    background-color: $bg-baseline-footer-color;\n}\n","$title-font-stack: Futura, Helvetica, sans-serif;\n$font-stack: Elsa, sans-serif;\n$primary-color: #41374c;\n$bg-p-color: #111;\n$bg-header-color: #983131;\n$bg-section-color: #261e29;\n$bg-footer-color: #b4bbc6;\n$bg-baseline-footer-color: #af8075;\n$h1-color: #FFF;\n$h2-color: #293548;;\n$carousel-dots-width: 4px;\n$carousel-dots-scale: 0.6;\n\n@import './scss/components/BaselineFooter';\n@import './scss/components/Footer';\n@import './scss/components/Header';\n@import './scss/components/HeaderArrow';\n@import './scss/components/Navbar';\n@import './scss/components/Navigation';\n@import './scss/components/Section';\n@import './scss/components/Slider';\n@import './scss/components/SliderImage';\n@import './scss/components/Panel';\n\n@mixin center($horizontal: true, $vertical: true) {\n    position: absolute;\n    @if ($horizontal and $vertical) {\n        top: 50%;\n        left: 50%;\n        transform: translate(-50%, -50%);\n    } @else if ($horizontal) {\n        left: 50%;\n        transform: translate(-50%, 0);\n    } @else if ($vertical) {\n        top: 50%;\n        transform: translate(0, -50%);\n    }\n}\n\nbody {\n    margin: 0;\n    overflow-x: hidden;\n\n    h1 {\n      position: absolute;\n      left: 50%;\n      width: 50%;\n      text-align: center;\n      transform: translate(-50%, -66.66vw) scale(0.5);\n      font: 200% Didot-italic, sans-serif;\n      color: #FFF;\n    }\n\n    h3 {\n        margin: 0;\n        color: white;\n    }\n\n    p {\n        float: right;\n        font: 100% $font-stack;\n        color: $primary-color;\n    }\n\n    img {\n        width: 100%;\n    }\n\n    .slick-dots {\n    width: 5%;\n    margin: 0;\n    float: right;\n    margin-left: 95%;\n    list-style: none;\n    text-align: center;\n    top: 50%;\n    }\n\n    .slick-dots li {\n    position: relative;\n    cursor: pointer;\n    float: right;\n    margin: inherit;\n    display: inline-flex;\n    margin-right: 50%;\n    }\n\n    .slick-dots li button {\n      display: inline-flex;\n      font-size: 0;\n      line-height: 0;\n      cursor: pointer;\n      color: transparent;\n      list-style-type: none outside none;\n      width: 20px;\n      height: 20px;\n      outline: 0;\n      background: 0 0;\n      padding: 0;\n      margin: 0;\n      transition: all 0.25s ease-in-out;\n      -moz-transition: all 0.25s ease-in-out;\n      -webkit-transition: all 0.25s ease-in-out;\n      border: 3px solid rgba(255, 0, 0, 0);\n      border-radius: 40px;\n    }\n\n    .slick-dots li button:focus,\n    .slick-dots li button:hover {\n        outline: 0;\n        opacity: 1;\n    }\n\n    .slick-dots li button:hover {\n        transform: scale3D($carousel-dots-scale, $carousel-dots-scale, $carousel-dots-scale);\n        -moz-transform: scale3D($carousel-dots-scale, $carousel-dots-scale, $carousel-dots-scale);\n        -webkit-transform: scale3D($carousel-dots-scale, $carousel-dots-scale, $carousel-dots-scale);\n        transition: all 0.25s ease-in-out;\n        -moz-transition: all 0.25s ease-in-out;\n        -webkit-transition: all 0.25s ease-in-out;\n        border: $carousel-dots-width solid white;\n        border-radius: 40px;\n        opacity: 1;\n    }\n\n    .slick-dots li button:focus:before,\n    .slick-dots li button:hover:before {\n        opacity: 1;\n    }\n\n    .slick-dots li button:before {\n      font-size: 15px;\n      line-height: 0%;\n      position: relative;\n      top: 0%;\n      left: 0%;\n      width: 10px;\n      height: 10px;\n      margin: 0 auto;\n      content: '';\n      border: 2px solid white;\n      background-color: transparent;\n      border-radius: 40px;\n      opacity: 1.0;\n      color: #545454;\n    }\n\n    .slick-dots li.slick-active button:before {\n        opacity: 1;\n        color: #FFF;\n        background-color: white;\n        border: 1px solid white;\n        border-color: white;\n    }\n}\n",".Footer {\n    padding: 0 10px 0 0;\n    height: 25vh;\n    background-color: $bg-footer-color;\n}\n",".Header {\n  width: 100%;\n  height: auto;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: -1;\n  background-color: $bg-header-color;\n  display: inline-block;\n}\n",".HeaderArrow {\n    position: absolute;\n    width: 20%;\n    left: 40%;\n    transform: translate(0%, -30vw) scale(0.35);\n\n    h3 {\n        font-size: 10px;\n    }\n\n    button {\n        font: 100% $font-stack;\n        width: 100%;\n        border: none;\n        background-color: transparent;\n    }\n\n    button:focus {\n        outline: 0;\n    }\n}\n","$navbar-button-hover-color: #878494;\n\n@mixin css-transition($prop, $time, $easing) {\n  -webkit-transition: $prop $time $easing;\n  -moz-transition: $prop $time $easing;\n  transition: $prop $time $easing;\n}\n\n.TopNavbar {\n    position: absolute;\n    top: 5vh;\n    right: 5vh;\n}\n\n.TopNavbar button {\n    background-color: transparent;\n    font: 0.9em $font-stack;\n    border: none;\n    padding: 10px;\n    margin-left: 10px;\n    border: 2px solid white;\n    border-radius: 5px;\n    margin-top: 10px;\n    outline: none;\n}\n\n.TopNavbar button h3 {\n    @include css-transition(all, 0.2s, ease-in-out);\n}\n\n.TopNavbar button h3:hover {\n  color: $navbar-button-hover-color;\n}\n\n.BottomNavbar {\n    position: relative;\n    top: 25vh;\n    left: 25%;\n}\n\n.BottomNavbar button {\n    font: 100% $font-stack;\n    border: none;\n    padding: 0;\n    margin-left: 1.25%;\n    margin-right: 1.25%;\n    width: 10%;\n}\n",".Navigation {\n    padding: 0 10px 0 0;\n    height: 50vh;\n    margin: 0;\n    background-color: $bg-footer-color;\n}\n","$section-background-color: #141618;\n\n.SectionContainer {\n    width: 100%;\n    height: 100vh;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    z-index: -1;\n    padding: 0;\n    background-color: $bg-section-color;\n    display: inline-block;\n\n    .Section {\n    position: absolute;\n    left: 0;\n    z-index: 999;\n    margin: 0 auto;\n    margin-top: 33.33vh;\n    padding: 0;\n    width: 100%;\n    border: none;\n    height: 33.33vh;\n    display: inline-block;\n    background-color: $section-background-color;\n\n    }\n\n    h2 {\n      margin: 0;\n      float: left;\n      font-size: 100;\n      margin-left: 10%;\n      margin-top: 12vh;\n      font: 200% Futura, sans-serif;\n      color: white;\n      position: absolute;\n      user-select: none;\n    }\n\n    .SectionImage {\n      object-fit: cover;\n      height: 100vh;\n    }\n}\n",".SliderImage {\n    height: 100vh;\n    z-index:999;\n    display: inline-block;\n    -webkit-filter: brightness(75%) sepia(10%) hue-rotate(1deg) grayscale(10%) contrast(85%);\n    /* Safari */\n    filter: brightness(75%) sepia(10%) hue-rotate(1deg) grayscale(10%) contrast(85%);\n}\n","$panel-font-stack: Futura, sans-serif;\n$panel-color: #1c1e22;\n$panel-hover-color: #f25555;\n\n@mixin css-transition($prop, $time, $easing) {\n  -webkit-transition: $prop $time $easing;\n  -moz-transition: $prop $time $easing;\n  transition: $prop $time $easing;\n}\n\n@mixin banter-transition($time, $easing) {\n-webkit-transition:  margin-left $time $easing, margin-top $time $easing, height $time $easing, left $time $easing, top $time $easing, width $time $easing $time, padding-right $time $easing $time, background-color $time $easing, color $time $easing $time;\n-moz-transition:  margin-left $time $easing, margin-top $time $easing, height $time $easing, left $time $easing, top $time $easing, width $time $easing $time, padding-right $time $easing $time, background-color $time $easing, color $time $easing $time;\ntransition:  margin-left $time $easing, margin-top $time $easing, height $time $easing, left $time $easing, top $time $easing, width $time $easing $time, padding-right $time $easing $time, background-color $time $easing, color $time $easing $time;\n}\n\n@mixin css-transition-banter($time, $easing) {\n  -webkit-transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing $time;\n  -moz-transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing $time;\n  transition: height $time $easing, margin-left $time $easing, margin-top $time $easing, background-color $time $easing, width $time $easing $time;\n}\n\n@mixin css-transition-backwards($time, $easing) {\n  -webkit-transition: height $time $easing .25s, margin-left $time $easing .25s, margin-top $time $easing .25s, background-color $time $easing .25s, width $time $easing;\n  -moz-transition: height $time $easing .25s, margin-left $time $easing .25s, margin-top $time $easing .25s, background-color $time $easing .25s, width $time $easing;\n  transition: height $time $easing .25s, margin-left $time $easing .25s, margin-top $time $easing .25s, background-color $time $easing .25s, width $time $easing;\n}\n\n.PanelContainer {\n  position: absolute;\n  width: 100%;\n  padding-left: 50%;\n  height: 33vh;\n  float:left;\n  display: inline-grid;\n\n}\n\n.PanelClass {\n  /*@include css-transition(all, .4s ,ease-in-out);*/\n  /*float: left;*/\n}\n\n.PanelClass button {\n  position: absolute;\n  font-family: $panel-font-stack;\n  letter-spacing: 0.2em;\n  background-color: $panel-color;\n  border: none;\n  margin: 0;\n  width: 9vw;\n  height: 9vw;\n  outline: none;\n  color: white;\n  @include banter-transition(.25s ,ease-in-out);\n\n}\n\n.PanelClass button:hover {\n  background-color: $panel-hover-color;\n  color: $panel-hover-color;\n}\n\n.PanelClass button:active {\n\n}\n\n\n/*.PanelClass:hover {\n  position: absolute !important;\n  margin-left: 5% !important;\n  margin-top: 5% !important;\n  height: 50px !important;\n  background-color: green !important;\n  padding: 0 !important;\n  border: none !important;\n}*/\n\n/*.PanelClass button:hover {\n  transition: all 0.25s ease-in-out;\n  background-color: #696684;\n  position: absolute !important;\n  background-color: red !important;\n  height: 50px;\n  padding: 0 !important;\n  border: none !important;\n  top: 0 !important;\n  left: 0 !important;\n}*/\n"],"sourceRoot":"webpack://"}]);
 
 	// exports
 
 
 /***/ },
-/* 212 */
+/* 214 */
 /***/ function(module, exports) {
 
 	/*
@@ -24318,7 +24945,7 @@
 
 
 /***/ },
-/* 213 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
