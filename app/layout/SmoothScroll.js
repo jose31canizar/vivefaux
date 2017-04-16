@@ -73,19 +73,21 @@ var smoothScroll = {
 };
 
 var SmoothScroll = React.createClass({
-
     render: function () {
-        //<div className="smooth-scroll--spacer" />
         return (
             <div className="smooth-scroll">
-                {React.Children.map(this.props.children, (child, i) => (
-                    <button style={this.props.style} id={"panel" + child} onClick={this.handleSectionClick.bind(null, i)}>{child}</button>))}
+              <div className={this.props.className} style={this.props.style} onMouseDown={this.handleSectionClick}>
+                  <h2>
+                    {this.props.children}
+                  </h2>
+              </div>
             </div>
         );
     },
 
-    handleSectionClick: function (i) {
-        smoothScroll.scrollTo(this.props.Array[i]);
+    handleSectionClick: function () {
+        console.log('going to ' + this.props.section);
+        smoothScroll.scrollTo(this.props.section);
     }
 });
 

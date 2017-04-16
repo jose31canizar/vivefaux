@@ -1,48 +1,33 @@
+$font-stack: Futura, Helvetica, sans-serif;
 $navbar-button-hover-color: #878494;
+$transition-prop: all;
+$transition-time: 0.2s;
+$transition-easing: ease-in-out;
 
-@mixin css-transition($prop, $time, $easing) {
-  -webkit-transition: $prop $time $easing;
-  -moz-transition: $prop $time $easing;
-  transition: $prop $time $easing;
-}
+.NavBar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 20px;
 
-.TopNavbar {
-    position: absolute;
-    top: 5vh;
-    right: 5vh;
-}
+  h3 {
+    color: black;
+  }
 
-.TopNavbar button {
-    background-color: transparent;
-    font: 0.9em $font-stack;
-    border: none;
-    padding: 10px;
-    margin-left: 10px;
-    border: 2px solid white;
-    border-radius: 5px;
-    margin-top: 10px;
-    outline: none;
-}
-
-.TopNavbar button h3 {
-    @include css-transition(all, 0.2s, ease-in-out);
-}
-
-.TopNavbar button h3:hover {
-  color: $navbar-button-hover-color;
-}
-
-.BottomNavbar {
-    position: relative;
-    top: 25vh;
-    left: 25%;
-}
-
-.BottomNavbar button {
+  .NavBarItem {
+    @include css-transition(all, 0.5s, ease-in-out);
+    @include css-user-select(none);
+    cursor: pointer;
     font: 100% $font-stack;
-    border: none;
-    padding: 0;
-    margin-left: 1.25%;
-    margin-right: 1.25%;
-    width: 10%;
+    color: white;
+    width:  100%;
+    height: 10vh;
+    z-index: 9999;
+    margin: 10px;
+    text-align: center;
+  }
+
+  .NavBarItem:hover {
+    color: black;
+  }
 }

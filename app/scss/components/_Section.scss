@@ -10,33 +10,26 @@ $section-background-color: #141618;
     z-index: -1;
     padding: 0;
     background-color: $bg-section-color;
-    display: inline-block;
+    display: block;
 
     .Section {
-    position: absolute;
-    left: 0;
-    z-index: 999;
-    margin: 0 auto;
-    margin-top: 33.33vh;
-    padding: 0;
-    width: 100%;
-    border: none;
-    height: 33.33vh;
-    display: inline-block;
-    background-color: $section-background-color;
+      left: 0;
+      z-index: 999;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      border: none;
+      height: 100%;
+      display: inline-block;
+      background-color: $section-background-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
     }
 
-    h2 {
-      margin: 0;
-      float: left;
-      font-size: 100;
-      margin-left: 10%;
-      margin-top: 12vh;
-      font: 200% Futura, sans-serif;
-      color: white;
-      position: absolute;
-      user-select: none;
+    .LeftSection {
+      width: 50vw;
     }
 
     .SectionImage {

@@ -1,0 +1,10 @@
+@mixin css-user-select($n){
+  -webkit-touch-callout: $n; /* iOS Safari */
+  -webkit-user-select: $n; /* Safari */
+   -khtml-user-select: $n; /* Konqueror HTML */
+     -moz-user-select: $n; /* Firefox */
+      -ms-user-select: $n; /* Internet Explorer/Edge */
+          user-select: $n; /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}

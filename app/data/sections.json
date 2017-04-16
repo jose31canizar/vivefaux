@@ -3,61 +3,68 @@
     "color": "#F2DEDA",
     "ID": "0",
     "title": "Kamakura",
+    "description":"A music collection.",
     "subtitle": "Kamakura Record Label",
     "publisher": "Thomas Canizares",
     "backgroundImage": "2",
     "panels": [
-      "Artists",
-      "Streams",
-      "Releases",
-      "Merchandise",
-      "Collaborators",
-      "Media",
-      "Network"
+      "A",
+      "S",
+      "R",
+      "M",
+      "C",
+      "M"
     ]
 },
 {
     "color": "#596982",
     "ID": "0",
     "title": "Black Label",
+    "description":"A record label that seeks to blend hip hop, rap, electronica, and R&B.",
     "subtitle": "Black Label",
     "publisher": "Thomas Canizares",
     "backgroundImage": "1",
     "panels": [
-      "Art",
-      "Bands",
-      "Spotify",
-      "Pandora"
+      "A",
+      "S",
+      "R",
+      "M",
+      "C",
+      "M"
     ]
 },
 {
     "color": "#727ead",
     "ID": "0",
     "title": "Soken Costa",
+    "description":"A music & media platform for experimental creatives.",
     "subtitle": "Soken Costa Record Label",
     "publisher": "Thomas Canizares",
     "backgroundImage": "3",
     "panels": [
-      "Vagabond",
-      "Fashion",
-      "Interviews",
-      "Poetry"
+      "A",
+      "S",
+      "R",
+      "M",
+      "C",
+      "M"
     ]
 },
 {
     "color": "#c6834b",
     "ID": "0",
     "title": "Collaborators",
+    "description":"Music would be nothing without teamwork.",
     "subtitle": "Artists we work with",
     "publisher": "Thomas Canizares",
     "backgroundImage": "4",
     "panels": [
-      "Artworks",
-      "Canvases",
-      "Mugs",
-      "Rags",
-      "Cloths",
-      "Muk"
+      "A",
+      "S",
+      "R",
+      "M",
+      "C",
+      "M"
     ]
 }
 ]

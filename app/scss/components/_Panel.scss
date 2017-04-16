@@ -1,6 +1,15 @@
 $panel-font-stack: Futura, sans-serif;
 $panel-color: #1c1e22;
 $panel-hover-color: #f25555;
+$open-panel-width: 10.3;
+$open-panel-height: 7;
+$open-panel-x: -60vw;
+$open-panel-y: -20vw;
+
+
+$prop: all;
+$time: 0.5s;
+$easing: ease-in-out;
 
 @mixin css-transition($prop, $time, $easing) {
   -webkit-transition: $prop $time $easing;
@@ -27,22 +36,29 @@ transition:  margin-left $time $easing, margin-top $time $easing, height $time $
 }
 
 .PanelContainer {
-  position: absolute;
-  width: 100%;
-  padding-left: 50%;
-  height: 33vh;
-  float:left;
-  display: inline-grid;
-
+  display: block;
+  justify-content: space-around;
+  max-width: 25%;
 }
 
-.PanelClass {
-  /*@include css-transition(all, .4s ,ease-in-out);*/
-  /*float: left;*/
+.topRowGroup {
+display: inline-flex;
 }
 
-.PanelClass button {
-  position: absolute;
+.bottomRowGroup {
+display: inline-flex;
+}
+
+.topRowItem {
+  margin: 1vw;
+}
+
+.bottomRowItem {
+  margin: 1vw;
+}
+
+.Panel div {
+  position: relative;
   font-family: $panel-font-stack;
   letter-spacing: 0.2em;
   background-color: $panel-color;
@@ -52,38 +68,100 @@ transition:  margin-left $time $easing, margin-top $time $easing, height $time $
   height: 9vw;
   outline: none;
   color: white;
-  @include banter-transition(.25s ,ease-in-out);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*@include banter-transition($time, $easing);*/
+  /*@include css-transition(all, 0.5s, ease-in-out);*/
+  /*@include css-transform-translate-x(0vw);*/
+
+
+
 
 }
 
-.PanelClass button:hover {
+@mixin animationBanter($x) {
+  @keyframes banter {
+
+  0% {
+    transform-origin: origin;
+    -webkit-transform: translateX(0vw) translateY(0vw) scaleX(1) scaleY(1);
+  }
+
+  50% {
+    transform-origin: origin;
+    -webkit-transform: translateX($x) translateY($open-panel-y) scaleX(1) scaleY($open-panel-height);
+  }
+
+  100% {
+    transform-origin: top left;
+    -webkit-transform: translateX($x) translateY($open-panel-y) scaleX($open-panel-width) scaleY($open-panel-height) ;
+  }
+  }
+}
+
+
+.clicked1 {
+
+  h2 {
+      opacity: 0.0;
+      transition: none;
+  }
+
+  @include css-transition($prop, $time, $easing);
+  animation-name: banter;
+  @include animationBanter($open-panel-x);
+  animation-duration: 1.2s;
+  -webkit-animation-duration: 1.2s;
+
+  transform-origin: top left;
+  transform: translateX($open-panel-x) translateY($open-panel-y) scaleX($open-panel-width) scaleY($open-panel-height);
+  /*animation: banter 1.0s forwards;*/
+  div {
+    background-color: $panel-hover-color;
+  }
+}
+
+.clicked4 {
+  @include css-transition($prop, $time, $easing);
+  @include banterify(-60vw);
+}
+
+.clicked2 {
+  @include css-transition($prop, $time, $easing);
+  @include banterify(-71vw);
+}
+
+.clicked5 {
+  @include css-transition($prop, $time, $easing);
+  @include banterify(-71vw);
+}
+
+.clicked3 {
+  @include css-transition($prop, $time, $easing);
+  @include banterify(-82vw);
+}
+
+.clicked6 {
+  @include css-transition(all, $time, ease-in-out);
+  @include banterify(-82vw);
+}
+
+
+.unclicked {
+  @include css-transition(all, $time, ease-in-out);
+  h2 {
+      opacity: 1.0;
+      @include css-transition(all, 0.8s, cubic-bezier(1.000, -0.600, 1.000, 0.250));
+  }
+}
+
+
+
+
+
+.Panel div:hover {
+  @include css-transition(all, $time, ease-in-out);
   background-color: $panel-hover-color;
   color: $panel-hover-color;
 }
-
-.PanelClass button:active {
-
-}
-
-
-/*.PanelClass:hover {
-  position: absolute !important;
-  margin-left: 5% !important;
-  margin-top: 5% !important;
-  height: 50px !important;
-  background-color: green !important;
-  padding: 0 !important;
-  border: none !important;
-}*/
-
-/*.PanelClass button:hover {
-  transition: all 0.25s ease-in-out;
-  background-color: #696684;
-  position: absolute !important;
-  background-color: red !important;
-  height: 50px;
-  padding: 0 !important;
-  border: none !important;
-  top: 0 !important;
-  left: 0 !important;
-}*/

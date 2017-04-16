@@ -1,0 +1,77 @@
+$title-font-stack: Futura, Helvetica, sans-serif;
+$font-stack: 'Open Sans', Futura, Helvetica, sans-serif;
+$primary-color: #41374c;
+$bg-p-color: #111;
+$bg-header-color: #983131;
+$bg-section-color: #261e29;
+$bg-footer-color: #b4bbc6;
+$bg-baseline-footer-color: #af8075;
+$h1-color: #FFF;
+$h2-color: #293548;;
+$carousel-dots-width: 4px;
+$carousel-dots-scale: 0.6;
+
+@import './helpers/Animation_Mixins';
+@import './helpers/Display';
+@import './helpers/Transform_Mixins';
+@import './helpers/User_Events';
+
+@import './components/BaselineFooter';
+@import './components/Footer';
+@import './components/Header';
+@import './components/HeaderArrow';
+@import './components/NavBar';
+@import './components/Section';
+@import './components/Slider';
+@import './components/Panel';
+@import './components/ImageSection';
+
+@mixin center($horizontal: true, $vertical: true) {
+    position: absolute;
+    @if ($horizontal and $vertical) {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    } @else if ($horizontal) {
+        left: 50%;
+        transform: translate(-50%, 0);
+    } @else if ($vertical) {
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+
+    h1 {
+      position: absolute;
+      left: 50%;
+      width: 50%;
+      text-align: center;
+      transform: translate(-50%, -66.66vw) scale(0.5);
+      font: 200% $font-stack;
+      color: #FFF;
+    }
+
+    h2 {
+      font: 200% $font-stack;
+      color: white;
+    }
+
+    h3 {
+        margin: 0;
+        color: white;
+    }
+
+    p {
+        float: right;
+        font: 100% $font-stack;
+        color: $primary-color;
+    }
+
+    img {
+        width: 100%;
+    }
+}
