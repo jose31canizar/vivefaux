@@ -1,0 +1,29 @@
+.section {
+  width: 100%;
+  background: #141618;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .section-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .panel {
+    background: #1c1e22;
+    width: 10vh;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+  }
+
+  .panel:hover {
+    background: #f25555;
+  }
+}

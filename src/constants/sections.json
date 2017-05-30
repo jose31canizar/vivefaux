@@ -1,14 +1,14 @@
 [
   {
-    "sectionTitle":"Kamakura",
-    "panelText":"A"
+    "title":"Kamakura",
+    "panel":"A"
   },
   {
-    "sectionTitle":"Black",
-    "panelText":"B"
+    "title":"Black",
+    "panel":"B"
   },
   {
-    "sectionTitle":"Soken",
-    "panelText":"C"
-  },
+    "title":"Soken",
+    "panel":"C"
+  }
 ]
