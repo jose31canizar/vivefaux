@@ -4,19 +4,14 @@
     transform: translateX(0vw) translateY(0vw) scaleX(1) scaleY(1);
     font-size: 1em;
   }
-  10% {
-    transform-origin: origin;
-    transform: translateX(0vw) translateY(0vw) scaleX(1) scaleY(1);
-    font-size: 1em;
-  }
   50% {
     transform-origin: origin;
-    transform: translateX(-60vw) translateY(-33vh) scaleX(1) scaleY(7);
+    transform: translateX(-75vw) translateY(-33vh) scaleX(1) scaleY(7.5);
     font-size: 0em;
   }
   100% {
     transform-origin: top left;
-    transform: translateX(-60vw) translateY(-33vh) scaleX(16) scaleY(7);
+    transform: translateX(-75vw) translateY(-33vh) scaleX(40) scaleY(7.5);
     font-size: 0em;
   }
 }
@@ -24,12 +19,12 @@
 @keyframes unreveal {
   0% {
     transform-origin: top left;
-    transform: translateX(-60vw) translateY(-33vh) scaleX(16) scaleY(7);
+    transform: translateX(-75vw) translateY(-33vh) scaleX(40) scaleY(7.5);
     font-size: 0em;
   }
   50% {
     transform-origin: origin;
-    transform: translateX(-60vw) translateY(-33vh) scaleX(1) scaleY(7);
+    transform: translateX(-75vw) translateY(-33vh) scaleX(1) scaleY(7.5);
     font-size: 0em;
   }
   100% {
@@ -37,8 +32,6 @@
     transform: translateX(0vw) translateY(0vw) scaleX(1) scaleY(1);
     font-size: 1em;
   }
-
-
 }
 
 
