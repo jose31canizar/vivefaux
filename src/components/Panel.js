@@ -23,11 +23,19 @@ class Panel extends Component {
     });
   }
   render() {
+    var content;
+    if(this.state.panelStyle === 'panel open') {
+      content = <div className='panel-content'>
+        <div className='left-content' />
+        <div className='right-content' />
+      </div>
+    }
     return (
       <div className={this.state.panelStyle} onMouseDown={this.togglePanel}>
         <h3>
         {this.props.children}
         </h3>
+        {content}
       </div>
     );
   }

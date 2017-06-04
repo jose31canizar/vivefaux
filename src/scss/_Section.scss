@@ -1,6 +1,6 @@
 .section {
   width: 100%;
-  background: #141618;
+  background: $section-color;
   height: 100vh;
   display: flex;
   justify-content: space-around;
@@ -10,38 +10,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .panel {
-    background: #1c1e22;
-    width: 10vh;
-    height: 10vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s ease-in-out;
-    cursor: pointer;
-
-    h3 {
-      transform: translate3d(0,0,0);
-    }
-  }
-
-  .panel:hover {
-    background: #f25555;
-  }
-
-  .open {
-    animation: reveal 1s;
-    transform-origin: top left;
-    transform: translateX(-75vw) translateY(-33vh) scaleX(40) scaleY(7.5);
-    font-size: 0em;
-  }
-
-  .closed {
-    animation: unreveal 1s;
-    transform-origin: top left;
-    transform: translateX(0vw) translateY(0vw) scaleX(1) scaleY(1);
-    font-size: 1em;
   }
 }

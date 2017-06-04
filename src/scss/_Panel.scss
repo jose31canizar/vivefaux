@@ -1,0 +1,53 @@
+.panel {
+  background: #1c1e22;
+  width: 10vh;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+
+  h3 {
+    cursor: pointer;
+    color: $section-color;
+    transform: translate3d(0,0,0);
+  }
+
+  .panel-content {
+    width: 100%;
+    height: 100vh;
+    background: blue;
+    display: flex;
+    opacity: 0.5;
+
+    .left-content {
+      width: 50px;
+      height: 100vh;
+      background: green;
+    }
+    .right-content {
+      width: 50px;
+      height: 100vh;
+      background: red;
+    }
+  }
+}
+
+.panel:hover {
+  background: #f25555;
+}
+
+.open {
+  animation: reveal 1s;
+  transform-origin: top left;
+  transform: translateX(-66.66vw) translateY(-33vh) scaleX(40) scaleY(7.5);
+  font-size: 0em;
+}
+
+.closed {
+  animation: unreveal 1s;
+  transform-origin: top left;
+  transform: translateX(0vw) translateY(0vw) scaleX(1) scaleY(1);
+  font-size: 1em;
+}

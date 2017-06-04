@@ -1,18 +1,57 @@
+@import './variables.scss';
+@import './helpers/transition.scss';
+
+@import './Panel.scss';
+@import './NavBar.scss';
 @import './Animations.scss';
 @import './Section.scss';
+@import './Home.scss';
 
 body {
   margin: 0;
   padding: 0;
 
-  h1, h2, h3, h4, h5, h6, p {
+  .left-frame {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 12vh;
+    background: $section-color;
+    Z-index: 1;
+  }
+  .right-frame {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 12vh;
+    background: $section-color;
+    Z-index: 1;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, li, ul {
     font-family: Futura, sans-serif;
     font-weight: 100;
-    color: #f1f1f1;
     margin: 0;
+    padding: 0;
+    user-select: none;
+  }
+
+  li {
+    list-style: none;
   }
 
   h3 {
     font-size: 1em;
+  }
+
+  .text-container {
+    height: 100vh;
+    background: $section-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }
