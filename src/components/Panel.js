@@ -26,17 +26,26 @@ class Panel extends Component {
     var content;
     if(this.state.panelStyle === 'panel open') {
       content = <div className='panel-content'>
-        <div className='left-content' />
-        <div className='right-content' />
+        <div className='left-content'>
+          <h1>Kamakura</h1>
+          <p>Artist Collective & Record Label</p>
+        </div>
+        <div className='right-content'>
+          <h1>pre-release</h1>
+          <p>Kamakura's latest project.</p>
+        </div>
       </div>
     }
     return (
-      <div className={this.state.panelStyle} onMouseDown={this.togglePanel}>
-        <h3>
-        {this.props.children}
-        </h3>
+      <div>
         {content}
+        <div className={this.state.panelStyle} onMouseDown={this.togglePanel}>
+          <h3>
+          {this.props.children}
+          </h3>
+        </div>
       </div>
+
     );
   }
 }
