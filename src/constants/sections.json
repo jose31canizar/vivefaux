@@ -1,14 +1,20 @@
 [
   {
     "title":"Kamakura",
-    "panel":"A"
+    "panel":"A",
+    "releases":"kamakura-releases",
+    "artists":"kamakura-artists"
   },
   {
     "title":"Black",
-    "panel":"B"
+    "panel":"B",
+    "releases":"black-releases",
+    "artists":"black-artists"
   },
   {
     "title":"Soken",
-    "panel":"C"
+    "panel":"C",
+    "releases":"soken-releases",
+    "artists":"soken-artists"
   }
 ]

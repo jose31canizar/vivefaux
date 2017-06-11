@@ -1,3 +1,8 @@
+$panel-height: 74.5vh;
+
+.panel-container {
+}
+
 .panel {
   background: #1c1e22;
   width: 10vh;
@@ -5,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.25s ease-in-out;
   cursor: pointer;
 
   h3 {
@@ -15,49 +20,64 @@
   }
 }
 
-.panel:hover {
+.closed > .panel:hover {
   background: #f25555;
 }
 
-.open {
+.open > .panel {
   animation: reveal 1s;
   transform-origin: top left;
   transform: translateX(-66.66vw) translateY(-33vh) scaleX(40) scaleY(7.5);
   font-size: 0em;
+  background: #f25555;
+  transition: background-color 0.25s ease 0.5s;
+  background-color: #1c1e22;;
 }
 
-.panel-content {
+.open ~ .split-pane {
+  .left-pane {
+    width: 50vw;
+  }
+  .right-pane {
+    width: 50vw;
+  }
+}
+
+.split-pane {
+  @include slidein(0.9s);
   width: 87vw;
-  height: 76vh;
-  background: blue;
+  height: $panel-height;
   display: flex;
-  opacity: 0.5;
   position: absolute;
-  transform: translateY(-33.33vh) translateX(-66.66vw);
-  z-index: 1;
+  transform: translate3d(-66.66vw, -42.9vh,0);
+  background: #1c1e22;
   pointer-events: none;
+
 
   h1, p {
     color: white;
+    white-space: nowrap;
   }
 
-  .left-content {
-    width: 50%;
-    height: 76vh;
+  .left-pane {
+    transition: width 0.25s ease 0.5s;
+    width: 0vw;
+    height: $panel-height;
     background: #f25555;
-    padding: 10%;
+    padding: 10vw;
     box-sizing: border-box;
   }
-  .right-content {
-    width: 50%;
-    height: 76vh;
+  .right-pane {
+    transition: width 0.25s ease 0.5s;
+    width: 50vw;
+    height: $panel-height;
     background: #1c1e22;
-    padding: 0 10%;
+    padding: 0 10vw;
     box-sizing: border-box;
   }
 }
 
-.closed {
+.closed > .panel {
   animation: unreveal 1s;
   transform-origin: top left;
   transform: translateX(0vw) translateY(0vw) scaleX(1) scaleY(1);

@@ -4,7 +4,7 @@ class Panel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      panelStyle: 'panel closed'
+      panelStyle: 'closed'
     }
 
     this.togglePanel = this.togglePanel.bind(this);
@@ -12,10 +12,10 @@ class Panel extends Component {
   togglePanel() {
     this.setState((prevState, props) => {
       var newPanelStyle;
-      if(prevState.panelStyle === 'panel closed') {
-        newPanelStyle = 'panel open';
-      } else if(prevState.panelStyle === 'panel open') {
-        newPanelStyle = 'panel closed';
+      if(prevState.panelStyle === 'closed') {
+        newPanelStyle = 'open';
+      } else if(prevState.panelStyle === 'open') {
+        newPanelStyle = 'closed';
       }
       return {
         panelStyle: newPanelStyle
@@ -24,26 +24,31 @@ class Panel extends Component {
   }
   render() {
     var content;
-    if(this.state.panelStyle === 'panel open') {
-      content = <div className='panel-content'>
-        <div className='left-content'>
+    if (this.state.panelStyle === 'open') {
+      content = <div className='split-pane'>
+        <div className='left-pane'>
           <h1>Kamakura</h1>
           <p>Artist Collective & Record Label</p>
         </div>
-        <div className='right-content'>
+        <div className='right-pane'>
           <h1>pre-release</h1>
           <p>Kamakura's latest project.</p>
+          {this.props.releases.map((release, i) => (
+            <div>
+              <h2>{release.title}</h2>
+              <p>{release.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     }
     return (
       <div>
-        {content}
-        <div className={this.state.panelStyle} onMouseDown={this.togglePanel}>
-          <h3>
-          {this.props.children}
-          </h3>
+        <div className={'panel-container ' + this.state.panelStyle}>
+          <div className='panel' onMouseDown={this.togglePanel}/>
+
         </div>
+        {content}
       </div>
 
     );

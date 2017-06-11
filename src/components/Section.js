@@ -10,7 +10,7 @@ class Section extends Component {
             {this.props.title}
           </h1>
         </div>
-        <Panel>
+        <Panel releases={require('../constants/' + this.props.releases + '.json')}>
             {this.props.panel}
         </Panel>
       </div>

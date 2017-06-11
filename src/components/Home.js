@@ -18,6 +18,8 @@ class Home extends Component {
         <Section
           title={block.title}
           panel={block.panel}
+          releases={block.releases}
+          artists={block.artists}
           />
       ))}
       </div>
