@@ -30,15 +30,10 @@ $panel-height: 74.5vh;
   transform: translateX(-66.66vw) translateY(-33vh) scaleX(40) scaleY(7.5);
   font-size: 0em;
   background: #f25555;
-  transition: background-color 0.25s ease 0.5s;
-  background-color: #1c1e22;;
 }
 
 .open ~ .split-pane {
   .left-pane {
-    width: 50vw;
-  }
-  .right-pane {
     width: 50vw;
   }
 }
@@ -53,22 +48,19 @@ $panel-height: 74.5vh;
   background: #1c1e22;
   pointer-events: none;
 
-
   h1, p {
     color: white;
     white-space: nowrap;
   }
 
   .left-pane {
-    transition: width 0.25s ease 0.5s;
-    width: 0vw;
+    width: 100vw;
     height: $panel-height;
     background: #f25555;
     padding: 10vw;
     box-sizing: border-box;
   }
   .right-pane {
-    transition: width 0.25s ease 0.5s;
     width: 50vw;
     height: $panel-height;
     background: #1c1e22;

@@ -1,7 +1,7 @@
 .home-page {
   .logo {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     color: white;
     cursor: default;
   }
@@ -18,6 +18,6 @@
     filter: brightness(110%) saturate(120%);
     object-fit: cover;
     object-position: 70% 0%;
-    z-index: 1;
+    z-index: 2;
   }
 }

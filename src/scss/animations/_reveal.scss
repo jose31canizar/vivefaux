@@ -12,16 +12,25 @@
     transform-origin: origin;
     transform: translateX(0vw) translateY(0vw) scaleX(1) scaleY(1);
     font-size: 1em;
+    background: #f25555;
   }
   50% {
     transform-origin: origin;
     transform: translateX(-66.66vw) translateY(-33vh) scaleX(1) scaleY(7.5);
     font-size: 0em;
+    background: #f25555;
+  }
+  55% {
+    transform-origin: origin;
+    transform: translateX(-66.66vw) translateY(-33vh) scaleX(1) scaleY(7.5);
+    font-size: 0em;
+    background:  #1c1e22;
   }
   100% {
     transform-origin: top left;
     transform: translateX(-66.66vw) translateY(-33vh) scaleX(40) scaleY(7.5);
     font-size: 0em;
+    background-color: #1c1e22;
   }
 }
 
