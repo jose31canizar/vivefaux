@@ -39,16 +39,17 @@ $panel-height: 74.5vh;
 }
 
 .split-pane {
-  @include slidein(0.9s);
-  width: 87vw;
+  @include slidein(0.75s);
+  width: 100vw;
   height: $panel-height;
   display: flex;
   position: absolute;
-  transform: translate3d(-66.66vw, -42.9vh,0);
+  left: 0;
+  transform: translateY(-42.9vh);
   background: #1c1e22;
   pointer-events: none;
 
-  h1, p {
+  h1, h2, p {
     color: white;
     white-space: nowrap;
   }
