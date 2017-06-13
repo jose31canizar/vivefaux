@@ -8,12 +8,33 @@
 
 @keyframes slidein {
   0% {
-    transform: translate3d(-100vw, -42.9vh,0);
+    transform: translate3d(-100vw, -43vh,0);
   }
-  30% {
-    transform: translate3d(-100vw, -42.9vh,0);
+  70% {
+    transform: translate3d(-100vw, -43vh,0);
   }
   100% {
-    transform: translate3d(0, -42.9vh,0);
+    transform: translate3d(0, -43vh,0);
+  }
+}
+
+
+@mixin left-pane-slidein($t) {
+-webkit-animation: left-pane-slidein $t; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: left-pane-slidein $t; /* Firefox < 16 */
+    -ms-animation: left-pane-slidein $t; /* Internet Explorer */
+     -o-animation: left-pane-slidein $t; /* Opera < 12.1 */
+        animation: left-pane-slidein $t;
+}
+
+@keyframes left-pane-slidein {
+  0% {
+    transform: translate3d(-10vw, 0vh,0);
+  }
+  40% {
+    transform: translate3d(-10vw, 0vh,0);
+  }
+  100% {
+    transform: translate3d(0, 0vh,0);
   }
 }

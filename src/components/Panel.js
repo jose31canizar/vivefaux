@@ -24,15 +24,14 @@ class Panel extends Component {
   }
   render() {
     var content;
+    var self = this;
     if (this.state.panelStyle === 'open') {
       content = <div className='split-pane'>
         <div className='left-pane'>
-          <h1>Kamakura</h1>
+          <h1>{self.props.title}</h1>
           <p>Artist Collective & Record Label</p>
         </div>
         <div className='right-pane'>
-          <h1>pre-release</h1>
-          <p>Kamakura's latest project.</p>
           {this.props.releases.map((release, i) => (
             <div>
               <h2>{release.title}</h2>
