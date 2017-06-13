@@ -1,4 +1,4 @@
-$panel-height: 75.1vh;
+$panel-height: 75.5vh;
 
 .panel-container {
 }
@@ -47,13 +47,14 @@ $panel-height: 75.1vh;
   display: flex;
   position: absolute;
   left: 0;
-  transform: translateY(-42.9vh);
+  transform: translateY(-43.1vh);
   background: transparent;
   pointer-events: none;
 
   h1, h2, p {
-    color: white;
+
     white-space: nowrap;
+    //-webkit-font-smoothing: antialiased;
   }
 
   .left-pane {
@@ -62,15 +63,22 @@ $panel-height: 75.1vh;
     background: #f25555;
     padding: 10vw;
     box-sizing: border-box;
+
+    h1, h2, p {
+      color: #582d2d;
+    }
   }
   .right-pane {
     @include left-pane-slidein(1.5s);
-    transform: translate3d(0vw, 0vh,0);
     width: 50vw;
     height: $panel-height;
     background: #1c1e22;
     padding: 25px 40px;
     box-sizing: border-box;
+
+    h1, h2, p {
+      color: #f1f1f1;
+    }
   }
 }
 
