@@ -138,6 +138,7 @@ module.exports = {
           /\.(js|jsx)$/,
           /\.css$/,
           /\.scss$/,
+          /\.md$/,
           /\.json$/,
           /\.bmp$/,
           /\.gif$/,
@@ -180,6 +181,14 @@ module.exports = {
           'style-loader',
           'css-loader',
           { loader: 'sass-loader', options: { sourceMap: true }}
+        ]
+      },
+      {
+        test: /\.md$/,
+        include: paths.appSrc,
+        use: [
+          'html-loader',
+          'markdown-loader'
         ]
       },
       // "postcss" loader applies autoprefixer to our CSS.

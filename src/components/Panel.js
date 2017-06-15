@@ -31,13 +31,7 @@ class Panel extends Component {
           <h1>{self.props.title}</h1>
           <p>Artist Collective & Record Label</p>
         </div>
-        <div className='right-pane'>
-          {this.props.releases.map((release, i) => (
-            <div>
-              <h2>{release.title}</h2>
-              <p>{release.description}</p>
-            </div>
-          ))}
+        <div className='right-pane' dangerouslySetInnerHTML={{__html: this.props.releases}}>
         </div>
       </div>
     }

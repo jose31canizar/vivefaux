@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Panel from './Panel';
 
+
 class Section extends Component {
   render() {
     return (
@@ -11,8 +12,8 @@ class Section extends Component {
           </h1>
         </div>
         <Panel
-          releases={require('../constants/' + this.props.releases + '.json')}
-          title={this.props.title}>
+          title={this.props.title}
+          releases={require(`../constants/${this.props.title.toLowerCase()}-releases.md`)}>
             {this.props.panel}
         </Panel>
       </div>
