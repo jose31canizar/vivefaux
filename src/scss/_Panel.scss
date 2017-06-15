@@ -52,8 +52,7 @@ $panel-height: 75.5vh;
   pointer-events: none;
 
   h1, h2, p {
-
-    white-space: nowrap;
+    // white-space: nowrap;
     //-webkit-font-smoothing: antialiased;
   }
 
@@ -74,10 +73,18 @@ $panel-height: 75.5vh;
     height: $panel-height;
     background: #1c1e22;
     padding: 25px 40px;
+    padding-right: 10vw;
     box-sizing: border-box;
+    overflow-y: scroll;
 
     h1, h2, p {
       color: #f1f1f1;
+    }
+
+    p {
+      color: #515152;
+      width: 60%;
+      // -webkit-font-smoothing: antialiased;
     }
   }
 }
