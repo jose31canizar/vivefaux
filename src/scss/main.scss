@@ -59,6 +59,17 @@ body {
     flex-direction: column;
   }
 
+  .text-block {
+    background: white;
+    width: 50%;
+    padding: 15px 50px;
+    margin: 10vh 0;
+
+    h3, p {
+      margin: 20px 0px;
+    }
+  }
+
   .news-feed {
     background: $section-color;
     display: flex;
@@ -66,15 +77,8 @@ body {
     align-items: center;
     flex-direction: column;
 
-    .text-block {
-      background: white;
-      width: 50%;
-      padding: 15px 50px;
-      margin: 10vh;
-    }
 
-    h3, p {
-      margin: 20px 0px;
-    }
+
+
   }
 }

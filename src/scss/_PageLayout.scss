@@ -17,7 +17,7 @@
     width: 100vw;
     filter: brightness(110%) saturate(120%);
     object-fit: cover;
-    object-position: 70% 0%;
+    object-position: 50% 0%;
     z-index: 2;
     @include user-select(none);
     @include user-drag(none);
