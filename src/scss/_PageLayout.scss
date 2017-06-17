@@ -1,4 +1,4 @@
-.home-page {
+.page-layout {
   .logo {
     position: absolute;
     z-index: 3;
@@ -19,5 +19,7 @@
     object-fit: cover;
     object-position: 70% 0%;
     z-index: 2;
+    @include user-select(none);
+    @include user-drag(none);
   }
 }

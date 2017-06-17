@@ -13,8 +13,8 @@ class Section extends Component {
         </div>
         <Panel
           title={this.props.title}
+          letter={this.props.letter}
           releases={require(`../constants/${this.props.title.toLowerCase()}-releases.md`)}>
-            {this.props.panel}
         </Panel>
       </div>
     );

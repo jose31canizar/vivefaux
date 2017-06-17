@@ -1,27 +1,28 @@
-import React, { Component } from 'react';
-import data from '../constants/sections';
-import Section from './Section';
+import React, { Component } from 'react'
+import data from '../constants/sections'
+import Section from './Section'
+import Labels from './Labels'
 
 class Home extends Component {
   render() {
     return (
       <div className='home-page'>
-        <div className='left-frame'/>
-        <div className='right-frame'/>
-        <div className='banner-container'>
-          <div className='logo'>
-          <h1>Vivefaux</h1>
-          </div>
-          <img className='banner' src={require('../img/0.jpg')}/>
+      <div className='news-feed'>
+        <div className='text-block'>
+        <h3>Origin</h3>
+        <p>Vivefaux announces the release of Origin, a collaborative project stringing together various sounds from the Vivefaux collective.</p>
         </div>
-      {data.map((block, i) => (
-        <Section
-          title={block.title}
-          panel={block.panel}
-          releases={block.releases}
-          artists={block.artists}
-          />
-      ))}
+        <div className='text-block'>
+        <h3>Origin</h3>
+        <p>Vivefaux announces the release of Origin, a collaborative project stringing together various sounds from the Vivefaux collective.</p>
+        </div>
+        <div className='text-block'>
+        <h3>Origin</h3>
+        <p>Vivefaux announces the release of Origin, a collaborative project stringing together various sounds from the Vivefaux collective.</p>
+        </div>
+        <p></p>
+      </div>
+      <Labels/>
       </div>
     );
   }

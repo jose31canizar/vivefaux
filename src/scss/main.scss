@@ -1,16 +1,19 @@
 @import './variables.scss';
 @import './helpers/transition.scss';
+@import './helpers/user_select.scss';
+@import './helpers/user_drag.scss';
 @import './Animations.scss';
 
 @import './Panel.scss';
+@import './Contact.scss';
 @import './NavBar.scss';
 @import './Section.scss';
-@import './Home.scss';
+@import './PageLayout.scss';
 
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 
   .left-frame {
     position: fixed;
@@ -44,7 +47,7 @@ body {
   }
 
   h3 {
-    font-size: 1em;
+    font-size: 2em;
   }
 
   .text-container {
@@ -54,5 +57,24 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+
+  .news-feed {
+    background: $section-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .text-block {
+      background: white;
+      width: 50%;
+      padding: 15px 50px;
+      margin: 10vh;
+    }
+
+    h3, p {
+      margin: 20px 0px;
+    }
   }
 }

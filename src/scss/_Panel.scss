@@ -14,8 +14,9 @@ $panel-height: 75.5vh;
   cursor: pointer;
 
   h3 {
+    font-size: 2em;
     cursor: pointer;
-    color: $section-color;
+    color: white;
     transform: translate3d(0,0,0);
   }
 }
@@ -35,8 +36,7 @@ $panel-height: 75.5vh;
 .open ~ .split-pane {
   .left-pane {
     width: 50vw;
-  }
-  .right-pane {
+
   }
 }
 
@@ -49,22 +49,23 @@ $panel-height: 75.5vh;
   left: 0;
   transform: translateY(-43.1vh);
   background: transparent;
-  pointer-events: none;
 
   h1, h2, p {
     // white-space: nowrap;
     //-webkit-font-smoothing: antialiased;
+    cursor: default;
   }
 
   .left-pane {
     width: 100vw;
     height: $panel-height;
-    background: #f25555;
+    background: #cc5454;
     padding: 10vw;
     box-sizing: border-box;
 
     h1, h2, p {
-      color: #582d2d;
+      // color: #582d2d;
+      color: #f1f1f1;
     }
   }
   .right-pane {
@@ -76,6 +77,7 @@ $panel-height: 75.5vh;
     padding-right: 10vw;
     box-sizing: border-box;
     overflow-y: scroll;
+    box-shadow: inset 1px 3px 20px 2px #101010;
 
     h1, h2, p {
       color: #f1f1f1;
