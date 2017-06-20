@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import Cross from './Cross'
 
 class Panel extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Panel extends Component {
       } else if(prevState.panelStyle === 'open') {
         newPanelStyle = 'closed';
       }
+      // console.log(newPanelStyle);
       return {
         panelStyle: newPanelStyle
       }
@@ -37,6 +39,9 @@ class Panel extends Component {
     }
     return (
       <div>
+        <Cross
+        panelStyle={this.state.panelStyle}
+        togglePanel={this.togglePanel} />
         <div className={'panel-container ' + this.state.panelStyle}>
           <div className='panel' onMouseDown={this.togglePanel}>
           <h3>{this.props.letter}</h3>

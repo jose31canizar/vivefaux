@@ -1,6 +1,7 @@
 {
   "name": "vivefaux",
   "version": "0.1.0",
+  "homepage":"http://13.58.139.60/faux",
   "private": true,
   "dependencies": {
     "react": "^15.5.4",

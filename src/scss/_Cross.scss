@@ -1,0 +1,39 @@
+.cross {
+  @include bounceIn(0.5s);
+  padding: 30px;
+  left: 0;
+  top: 50px;
+  position: fixed;
+  height: 40px;
+  width: 40px;
+  z-index: 9;
+  cursor: pointer;
+
+  .left-bar {
+      background: #b9b9b9;
+      height: 5px;
+      transform: translateY(15px) rotate(45deg);
+      transition: transform 0.5s ease;
+  }
+  .right-bar {
+      background: #b9b9b9;
+      height: 5px;
+      transform: translateY(10px) rotate(-45deg);
+  }
+}
+
+.cross:hover > .left-bar {
+  background: black;
+}
+
+.cross:hover > .right-bar {
+  background: black;
+}
+
+.not-shown {
+  display: none;
+}
+
+.shown {
+  display: block;
+}

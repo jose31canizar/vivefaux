@@ -10,7 +10,7 @@ class PageLayout extends Component {
         <div className='right-frame'/>
         <div className='banner-container'>
           <div className='logo'>
-          <h1>Vivefaux</h1>
+          <img src={require('../img/kamakura_vivefaux.svg')}/>
           </div>
           <img className='banner' src={require('../img/0.jpg')}/>
         </div>
