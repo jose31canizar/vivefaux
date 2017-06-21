@@ -31,7 +31,7 @@ class Panel extends Component {
       content = <div className='split-pane'>
         <div className='left-pane'>
           <h1>{self.props.title}</h1>
-          <p>Artist Collective & Record Label</p>
+          <p>{self.props.description}</p>
         </div>
         <div className='right-pane' dangerouslySetInnerHTML={{__html: this.props.releases}}>
         </div>

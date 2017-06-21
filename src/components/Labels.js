@@ -9,6 +9,7 @@ class Labels extends Component {
       {data.map((block, i) => (
         <Section
           title={block.title}
+          description={block.description}
           letter={block.letter}
           releases={block.releases}
           artists={block.artists}

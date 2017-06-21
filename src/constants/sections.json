@@ -1,20 +1,30 @@
 [
   {
     "title":"Kamakura",
+    "description":"Artist Collective & Record Label",
     "letter":"K",
     "releases":"kamakura-releases",
     "artists":"kamakura-artists"
   },
   {
     "title":"Blacq",
+    "description":"Record Label",
     "letter":"B",
     "releases":"blacq-releases",
     "artists":"blacq-artists"
   },
   {
     "title":"Soken",
+    "description":"Multimedia Platform",
     "letter":"S",
     "releases":"soken-releases",
     "artists":"soken-artists"
+  },
+  {
+    "title":"IVF",
+    "description":"Multimedia Channel",
+    "letter":"I",
+    "releases":"ivf-releases",
+    "artists":"ivf-artists"
   }
 ]
