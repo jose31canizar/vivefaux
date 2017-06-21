@@ -22,13 +22,13 @@ $panel-height: 75.5vh;
 }
 
 .closed > .panel:hover {
-  background: #f25555;
+  color: #582d2d;
 }
 
 .open > .panel {
-  animation: reveal 1s;
+  animation: reveal 1.2s;
   transform-origin: top left;
-  transform: translateX(-66.66vw) translateY(-33vh) scaleX(40) scaleY(7.5);
+  transform: translateX(-66.66vw) translateY(-33vh) scaleX(40) scaleY(7.55);
   font-size: 0em;
   background: #1c1e22;
 }
@@ -41,14 +41,14 @@ $panel-height: 75.5vh;
 }
 
 .split-pane {
-  @include slidein(0.8s);
+  @include slidein(1.5s);
   width: 100vw;
-  height: $panel-height;
   display: flex;
   position: absolute;
   left: 0;
   transform: translateY(-43.1vh);
   background: transparent;
+  box-shadow: inset 1px 3px 20px 2px #101010;
 
   h1, h2, p {
     // white-space: nowrap;
@@ -56,28 +56,31 @@ $panel-height: 75.5vh;
     cursor: default;
   }
 
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   .left-pane {
     width: 100vw;
     height: $panel-height;
     background: #cc5454;
-    padding: 10vw;
+    padding: 120px;
+    padding-left: 10vw;
     box-sizing: border-box;
 
     h1, h2, p {
-      // color: #582d2d;
-      color: #f1f1f1;
+      color: #582d2d;
     }
   }
   .right-pane {
-    @include left-pane-slidein(1.5s);
     width: 50vw;
     height: $panel-height;
-    background: #1c1e22;
+    background: transparent;
     padding: 25px 40px;
     padding-right: 10vw;
     box-sizing: border-box;
     overflow-y: scroll;
-    box-shadow: inset 1px 3px 20px 2px #101010;
+
 
     h1, h2, p {
       color: #f1f1f1;
