@@ -5,22 +5,12 @@
     color: white;
     cursor: default;
     transform: scale(0.5);
+    transform-origin: center;
   }
-  .banner-container {
-    height: 100vh;
-    width: 100vw;
+  .header {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .banner {
-    height: 100vh;
-    width: 100vw;
-    filter: brightness(110%) saturate(120%);
-    object-fit: cover;
-    object-position: 50% 0%;
-    z-index: 2;
-    @include user-select(none);
-    @include user-drag(none);
   }
 }

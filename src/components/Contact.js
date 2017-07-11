@@ -8,7 +8,7 @@ class Contact extends Component {
       <div className='contact-page'>
         <div className='section'>
           <div className='section-title'>
-            <h1>About</h1>
+            <h1>{this.props.match.path.replace(/\//g, '')}</h1>
           </div>
           <div className='contact-form'>
             <h4>Subject</h4>

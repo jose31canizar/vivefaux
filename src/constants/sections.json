@@ -1,6 +1,7 @@
 [
   {
     "title":"Kamakura",
+    "name":"kamakura",
     "description":"Artist Collective & Record Label",
     "letter":"K",
     "releases":"kamakura-releases",
@@ -8,13 +9,15 @@
   },
   {
     "title":"Blacq",
+    "name":"blacq",
     "description":"Record Label",
     "letter":"B",
     "releases":"blacq-releases",
     "artists":"blacq-artists"
   },
   {
-    "title":"Soken",
+    "title":"Sōken Costa",
+    "name":"soken",
     "description":"Multimedia Platform",
     "letter":"S",
     "releases":"soken-releases",
@@ -22,6 +25,7 @@
   },
   {
     "title":"IVF",
+    "name":"ivf",
     "description":"Multimedia Channel",
     "letter":"I",
     "releases":"ivf-releases",

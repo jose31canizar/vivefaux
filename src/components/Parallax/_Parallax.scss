@@ -1,0 +1,15 @@
+$bg-color: white;
+
+.parallax {
+  height: 80vh;
+  width: 100vw;
+  background: $bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  @include user-select(none);
+  @include user-drag(none);
+  filter: brightness(50%) saturate(120%) sepia(100%);
+  z-index: 2;
+}

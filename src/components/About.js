@@ -8,7 +8,7 @@ class About extends Component {
       <div className='about-page'>
         <div className='section'>
           <div className='section-title'>
-            <h1>About</h1>
+            <h1>{this.props.match.path.replace(/\//g, '')}</h1>
           </div>
           <div className='text-block'>
             <h3>A collaborative project based out of Boulder, Colorado.</h3>

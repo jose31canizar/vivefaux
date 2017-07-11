@@ -1,4 +1,4 @@
-$panel-height: 75.5vh;
+$panel-height: 77vh;
 
 .panel-container {
 }
@@ -12,6 +12,7 @@ $panel-height: 75.5vh;
   align-items: center;
   transition: all 0.25s ease-in-out;
   cursor: pointer;
+  box-shadow: inset 0px 0px 10px #101010;
 
   h3 {
     font-size: 2em;
@@ -28,7 +29,7 @@ $panel-height: 75.5vh;
 .open > .panel {
   animation: reveal 1.2s;
   transform-origin: top left;
-  transform: translateX(-66.66vw) translateY(-33vh) scaleX(40) scaleY(7.55);
+  transform: translateX(-66.66vw) translateY(-33.1vh) scaleX(40) scaleY(7.69);
   font-size: 0em;
   background: #1c1e22;
 }
@@ -36,7 +37,6 @@ $panel-height: 75.5vh;
 .open ~ .split-pane {
   .left-pane {
     width: 50vw;
-
   }
 }
 
@@ -48,7 +48,6 @@ $panel-height: 75.5vh;
   left: 0;
   transform: translateY(-43.1vh);
   background: transparent;
-  box-shadow: inset 1px 3px 20px 2px #101010;
 
   h1, h2, p {
     // white-space: nowrap;
@@ -75,21 +74,29 @@ $panel-height: 75.5vh;
   .right-pane {
     width: 50vw;
     height: $panel-height;
-    background: transparent;
+    background: #1c1e22;
     padding: 25px 40px;
     padding-right: 10vw;
     box-sizing: border-box;
     overflow-y: scroll;
 
-
     h1, h2, p {
       color: #f1f1f1;
+    }
+
+    iframe {
+      @media all and (max-width: 800px) {
+        width: 50vw;
+      }
     }
 
     p {
       color: #515152;
       width: 60%;
-      // -webkit-font-smoothing: antialiased;
+      @media all and (max-width: 800px) {
+        width: 40vw;
+      }
+      -webkit-font-smoothing: antialiased;
     }
   }
 }

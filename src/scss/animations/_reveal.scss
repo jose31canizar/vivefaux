@@ -15,12 +15,12 @@
   }
   60% {
     transform-origin: origin;
-    transform: translateX(-66.66vw) translateY(-33vh) scaleX(1) scaleY(7.5);
+    transform: translateX(-66.66vw) translateY(-33.1vh) scaleX(1) scaleY(7.69);
     font-size: 0em;
   }
   100% {
     transform-origin: top left;
-    transform: translateX(-66.66vw) translateY(-33vh) scaleX(40) scaleY(7.55);
+    transform: translateX(-66.66vw) translateY(-33.1vh) scaleX(40) scaleY(7.69);
     font-size: 0em;
   }
 }
@@ -28,12 +28,12 @@
 @keyframes unreveal {
   0% {
     transform-origin: top left;
-    transform: translateX(-66.66vw) translateY(-33vh) scaleX(40) scaleY(7.5);
+    transform: translateX(-66.66vw) translateY(-33.1vh) scaleX(40) scaleY(7.69);
     font-size: 0em;
   }
   60% {
     transform-origin: origin;
-    transform: translateX(-66.66vw) translateY(-33vh) scaleX(1) scaleY(7.5);
+    transform: translateX(-66.66vw) translateY(-33.1vh) scaleX(1) scaleY(7.69);
     font-size: 0em;
   }
   100% {

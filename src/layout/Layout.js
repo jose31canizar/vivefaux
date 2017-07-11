@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NavBar from '../components/NavBar'
 import PageLayout from './PageLayout'
+import Footer from '../components/Footer'
 
 class Layout extends Component {
   render() {
@@ -10,6 +11,7 @@ class Layout extends Component {
         <PageLayout>
           {this.props.children}
         </PageLayout>
+        <Footer/>
       </div>
     );
   }

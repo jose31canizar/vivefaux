@@ -2,8 +2,8 @@
   @include bounceIn(0.5s);
   padding: 30px;
   left: 0;
-  top: 50px;
-  position: fixed;
+  margin-top: -40vh;
+  position: absolute;
   height: 40px;
   width: 40px;
   z-index: 9;

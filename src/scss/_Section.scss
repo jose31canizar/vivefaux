@@ -6,6 +6,10 @@
   justify-content: space-around;
   align-items: center;
 
+  @media all and (max-width: 800px) {
+    flex-direction: column;
+  }
+
   .section-title {
     display: flex;
     justify-content: center;
