@@ -13,8 +13,6 @@ class Parallax extends Component {
     window.addEventListener('scroll', this.update)
   }
   update() {
-    console.log(document.body.scrollTop);
-
     this.setState((prevState, props) => {
       return {
         distance: document.body.scrollTop/15
@@ -31,7 +29,7 @@ class Parallax extends Component {
             backgroundAttachment: "relative",
             backgroundPosition: "50% " + this.state.distance + "%",
             backgroundRepeat: "no-repeat",
-            backgroundSize: "500%"
+            backgroundSize: "300%"
       };
     } else {
       styles = {
