@@ -12,6 +12,9 @@ class Home extends Component {
           <h3>Origin</h3>
           <p>Vivefaux announces the release of <a href='https://soundcloud.com/'>Origin</a>, a collaborative project stringing together various sounds from the Vivefaux collective.</p>
           <p><a href='https://open.spotify.com/album/7zUX1w4MfJdLWFhUv0JpDY'>Spotify</a></p>
+          <div class="tidal-embed" data-type="a" data-id="73741169"></div>
+          <div class="tidal-embed" data-type="a" data-id="19646520"></div>
+          <div class="tidal-embed" data-type="v" data-id="63464514"></div>
           <p>
           <iframe
             src="https://open.spotify.com/embed/album/7zUX1w4MfJdLWFhUv0JpDY"
@@ -36,7 +39,6 @@ class Home extends Component {
             frameborder="no"
             src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/313841302&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true">
             </iframe>
-            <div class="tidal-embed" data-type="a" data-id="72020749"></div>
           </p>
           </div>
           <div className='text-block'>
