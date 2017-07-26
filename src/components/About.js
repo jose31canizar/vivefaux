@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import data from '../constants/sections';
 import Section from './Section';
+import Header from './Header/Header';
+import Parallax from './Parallax/Parallax'
 
 class About extends Component {
   render() {
     return (
       <div className='about-page'>
+        <Header>
+          <Parallax src={require('../img/parallax/5.jpg')}/>
+        </Header>
         <div className='section'>
           <div className='section-title'>
             <h1>{this.props.match.path.replace(/\//g, '')}</h1>

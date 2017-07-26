@@ -2,10 +2,8 @@ $bg-color: white;
 
 .parallax {
   height: 80vh;
-  transition: all 0.25s ease;
   @media all and(max-width: $mobile-width) {
     height: 100vh;
-    background-size: 900% !important;
   }
   width: 100vw;
   background: $bg-color;

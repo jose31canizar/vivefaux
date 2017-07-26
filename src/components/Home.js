@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import data from '../constants/sections'
 import Section from './Section'
 import Labels from './Labels'
+import Header from './Header/Header';
+import Parallax from './Parallax/Parallax'
 
 class Home extends Component {
   render() {
     return (
       <div className='home-page'>
+      <Header>
+        <Parallax src={require('../img/parallax/1.jpg')} yPosition="100"/>
+      </Header>
         <div className='news-feed'>
           <div className='text-block'>
           <h3>Origin</h3>

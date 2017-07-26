@@ -5,6 +5,7 @@
 @import './Animations.scss';
 
 @import '../components/Parallax/Parallax.scss';
+@import '../components/Header/Header.scss';
 
 @import './Cross.scss';
 @import './Panel.scss';
@@ -72,10 +73,12 @@ body {
     margin: 0;
     padding: 0;
     user-select: none;
+    color: #555056;
   }
 
   li {
     list-style: none;
+    color: #555056;
   }
 
   a {
