@@ -13,6 +13,5 @@ $bg-color: white;
   overflow: hidden;
   @include user-select(none);
   @include user-drag(none);
-  filter: brightness(70%) saturate(120%) sepia(100%);
   z-index: 2;
 }

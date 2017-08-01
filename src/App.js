@@ -15,7 +15,7 @@ class App extends Component {
             <Switch>
               <Route path='/home' component={Home}/>
               <Route path='/about' component={About}/>
-              <Route path='/labels' component={Labels}/>
+              <Route path='/labels' component={() => (<Labels header={true} />)}/>
               <Route path='/contact' component={Contact}/>
               <Route path='*' component={Home}/>
             </Switch>

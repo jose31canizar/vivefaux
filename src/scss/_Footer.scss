@@ -9,4 +9,10 @@
   align-items: center;
   color: white;
   position: absolute;
+  z-index: 2;
+  p {
+    @user-select(none);
+    cursor: default;
+    color: #f1f1f1;
+  }
 }

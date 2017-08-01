@@ -62,7 +62,7 @@ class Home extends Component {
           </div>
           <p></p>
         </div>
-        <Labels/>
+        <Labels header={false}/>
       </div>
     );
   }

@@ -8,9 +8,9 @@ class Labels extends Component {
   render() {
     return (
       <div className='labels-page'>
-      <Header>
+      {this.props.header ? <Header>
         <Parallax src={require('../img/parallax/8.jpg')} yPosition="50"/>
-      </Header>
+      </Header> : '' }
       {data.map((block, i) => (
         <Section
           title={block.title}

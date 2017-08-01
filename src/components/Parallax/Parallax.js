@@ -10,14 +10,13 @@ class Parallax extends Component {
     }
     this.update = this.update.bind(this)
   }
-  componentDidMount() {
-    window.addEventListener('scroll', this.update)
+  componentWillMount() {
+    document.addEventListener('scroll', this.update)
   }
   update() {
     this.setState((prevState, props) => {
       const newDistance = document.body.scrollTop
       const oldDistance = prevState.currentScrollTop
-      console.log(oldDistance - newDistance);
       if(oldDistance > newDistance) {
         return {
           distance: oldDistance + 1
@@ -47,7 +46,7 @@ class Parallax extends Component {
             backgroundPosition: "50% " + this.props.yPosition + "%",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-            transform: "translate(0px, " + (0.3*this.state.distance) + "px)"
+            transform: "translate3d(0px, " + (0.2*this.state.distance) + "px, 0px)"
       };
     } else {
       styles = {
