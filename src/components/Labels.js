@@ -16,6 +16,7 @@ class Labels extends Component {
           title={block.title}
           name={block.name}
           description={block.description}
+          soundcloud={block.soundcloud}
           letter={block.letter}
           releases={block.releases}
           artists={block.artists}

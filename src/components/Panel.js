@@ -32,6 +32,9 @@ class Panel extends Component {
         <div className='left-pane'>
           <h1>{self.props.title}</h1>
           <p>{self.props.description}</p>
+          <div>
+            <iframe width="100%" height="450" scrolling="no" frameborder="no" src={self.props.soundcloud}></iframe>
+          </div>
         </div>
         <div className='right-pane' dangerouslySetInnerHTML={{__html: this.props.releases}}>
         </div>

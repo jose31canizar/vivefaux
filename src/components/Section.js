@@ -14,6 +14,7 @@ class Section extends Component {
         <Panel
           title={this.props.title}
           description={this.props.description}
+          soundcloud={this.props.soundcloud}
           letter={this.props.letter}
           releases={require(`../constants/${this.props.name}-releases.md`)}>
         </Panel>
