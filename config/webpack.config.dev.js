@@ -144,6 +144,7 @@ module.exports = {
           /\.gif$/,
           /\.jpe?g$/,
           /\.png$/,
+          /\.styl$/,
         ],
         loader: require.resolve('file-loader'),
         options: {
@@ -189,6 +190,16 @@ module.exports = {
         use: [
           'html-loader',
           'markdown-loader'
+        ]
+      },
+      {
+        test: /\.styl$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'stylus-loader'
+          },
         ]
       },
       // "postcss" loader applies autoprefixer to our CSS.

@@ -3,12 +3,15 @@ import data from '../constants/sections';
 import Section from '../components/Section';
 
 class PageLayout extends Component {
+  componentDidMount() {
+    window.scrollTo(0,0)
+  }
   render() {
     console.log(this.props.location);
     return (
       <div className='page-layout'>
-        <div className='left-frame'/>
-        <div className='right-frame'/>
+        <div className='left-border'/>
+        <div className='right-border'/>
         {this.props.children}
       </div>
     );

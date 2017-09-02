@@ -6,9 +6,9 @@ Faux’s sophomore album “Sonho Santo” is the first concept album from the p
 </br>
 </br>
 </br>
-<p>
+<div className='iframe-container'>
   <iframe src="https://open.spotify.com/embed/album/58A8LBbGnGfOo9PhUENxvc" width="100%" height="580" frameborder="0" allowtransparency="true"></iframe>
-<p>
+</div>
 <div class="tidal-embed" data-type="a" data-id="63927767"></div>
 </br>
 </br>
@@ -22,9 +22,9 @@ The first EP release from Saffron brings the artist’s sound into the public. W
 </br>
 </br>
 </br>
-<p>
+<div className='iframe-container'>
   <iframe src="https://open.spotify.com/embed/album/1QXFaPDRTOb85iVR9PX0ky" width="100%" height="280" frameborder="0" allowtransparency="true"></iframe>
-</p>
+</div>
 <div class="tidal-embed" data-type="a" data-id="67642982"></div>
 </br>
 </br>
@@ -38,9 +38,9 @@ To finish Kamakura Record’s first season, we have released the compilation alb
 </br>
 </br>
 </br>
-<p>
+<div className='iframe-container'>
   <iframe src="https://open.spotify.com/embed/album/7zUX1w4MfJdLWFhUv0JpDY" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-</p>
+</div>
 <div class="tidal-embed" data-type="a" data-id="73741169"></div>
 </br>
 </br>

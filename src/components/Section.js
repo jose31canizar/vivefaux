@@ -4,6 +4,7 @@ import Panel from './Panel';
 
 class Section extends Component {
   render() {
+    console.log(this.props.wallpaper);
     return (
       <div className='section'>
         <div className='section-title'>
@@ -16,7 +17,9 @@ class Section extends Component {
           description={this.props.description}
           soundcloud={this.props.soundcloud}
           letter={this.props.letter}
-          releases={require(`../constants/${this.props.name}-releases.md`)}>
+          releases={require(`../constants/${this.props.name}-releases.md`)}
+          wallpaper={this.props.wallpaper}
+          >
         </Panel>
       </div>
     );

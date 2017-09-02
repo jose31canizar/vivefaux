@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Cross from './Cross'
+import Parallax from './Parallax/Parallax'
 
 class Panel extends Component {
   constructor(props) {
@@ -27,35 +28,33 @@ class Panel extends Component {
   render() {
     var content;
     var self = this;
+    console.log(this.props.wallpaper);
     if (this.state.panelStyle === 'open') {
-      content = <div className='split-pane'>
-        <div className='left-pane'>
-          <h1>{self.props.title}</h1>
-          <p>{self.props.description}</p>
-          <div>
-            <iframe width="100%" height="450" scrolling="no" frameborder="no" src={self.props.soundcloud}></iframe>
-          </div>
-        </div>
-        <div className='right-pane' dangerouslySetInnerHTML={{__html: this.props.releases}}>
-        </div>
+      content = <div className='panel' >
+
       </div>
     }
     return (
-      <div>
-        <div className={'panel-container ' + this.state.panelStyle}>
-          <Cross
-          panelStyle={this.state.panelStyle}
-          togglePanel={this.togglePanel}
-          />
-          <div className='panel' onMouseDown={this.togglePanel}>
-          <h3>{this.props.letter}</h3>
-          </div>
-        </div>
-        {content}
-      </div>
+      <div className={`panel ${this.state.panelStyle}`} onMouseDown={this.togglePanel}>
+        <Cross panelStyle={this.state.panelStyle} togglePanel={this.togglePanel}/>
 
+        <h3>{this.props.letter}</h3>
+      </div>
     );
   }
 }
 
 export default Panel;
+
+
+// <div className='left-pane'>
+//     <img src={require(`./../img/wallpaper/${self.props.wallpaper}.jpg`)} className='wallpaper'/>
+//     <h1>{self.props.title}</h1>
+//     <p>{self.props.description}</p>
+//     <div className='iframe-container'>
+//       <iframe width="100%" height="450" scrolling="no" frameborder="no" src={self.props.soundcloud}>
+//       </iframe>
+//     </div>
+// </div>
+// <div className='right-pane' dangerouslySetInnerHTML={{__html: this.props.releases}}>
+//</div>

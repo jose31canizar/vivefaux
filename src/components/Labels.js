@@ -6,6 +6,7 @@ import Parallax from './Parallax/Parallax'
 
 class Labels extends Component {
   render() {
+    console.log(data[0].wallpaper);
     return (
       <div className='labels-page'>
       {this.props.header ? <Header>
@@ -20,6 +21,7 @@ class Labels extends Component {
           letter={block.letter}
           releases={block.releases}
           artists={block.artists}
+          wallpaper={block.wallpaper}
           />
       ))}
       </div>

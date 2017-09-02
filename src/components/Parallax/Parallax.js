@@ -10,7 +10,7 @@ class Parallax extends Component {
     }
     this.update = this.update.bind(this)
   }
-  componentWillMount() {
+  componentDidMount() {
     document.addEventListener('scroll', this.update)
   }
   update() {
@@ -54,7 +54,7 @@ class Parallax extends Component {
       };
     }
     return (
-      <div className="parallax" style={styles}>
+      <div className={"parallax " + this.props.className} style={styles}>
       </div>
     );
   }

@@ -1,0 +1,137 @@
+@import './variables.styl'
+@import './helpers/transition.styl'
+@import './helpers/user_select.styl'
+@import './helpers/user_drag.styl'
+@import './Animations.styl'
+
+@import '../components/Parallax/Parallax.styl'
+@import '../components/Header/Header.styl'
+
+@import './Cross.styl'
+@import './Panel.styl'
+@import './Contact.styl'
+@import './NavBar.styl'
+@import './Section.styl'
+@import './PageLayout.styl'
+@import './Footer.styl'
+
+@font-face {
+  font-family Gotham
+  font-style normal
+  font-weight 400
+  src url('../fonts/Gotham.eot') /* IE9 Compat Modes */
+  src local('Gotham') local('Gotham')
+  url('../fonts/gotham.woff2') format('woff2') /* Super Modern Browsers */
+  url('../fonts/gotham.otf') format('otf') /* Super Modern Browsers */
+  url('../fonts/Gotham.ttf') format('ttf') /* Super Modern Browsers */
+  url('../fonts/gotham.woff') format('woff') /* Super Modern Browsers */
+}
+
+html
+  overflow-x: hidden
+  width: 100%
+  position: absolute
+
+body
+  margin: 0
+  padding: 0
+  overflow-x: hidden
+  position: absolute
+  -webkit-tap-highlight-color: rgba(0 0 0 0)
+
+  #root
+    width: 100vw
+
+  .App
+    width: 100%
+    overflow-x: hidden
+    background: section-color
+    .layout
+      width: 100%
+
+  .left-border
+  .right-border
+    position: fixed
+    top: 0
+    height: 100vh
+    width: 5vw
+    background: section-color
+    z-index: 2
+
+    @media all and (max-width: 800px)
+      width: 0
+
+  .left-border
+    left: 0
+  .right-border
+    right: 0
+
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+  p
+  li
+  ul
+  button
+    font-family: 'Gotham' sans-serif
+    font-weight: 100
+    margin: 0
+    padding: 0
+    user-select: none
+    color: #555056
+
+  li
+    list-style: none
+    color: #555056
+
+
+  a
+    color: #9090cc
+    text-decoration: none
+
+  h1
+    font-size: 3em
+
+  h2
+    font-size: 1.8em
+
+  h3
+    font-size: 2em
+    color: #e0ad9c
+
+  p
+    font-family: Futura Helvetica sans-serif
+    font-size: 1.3em
+    color: #4e3c61
+
+
+  .text-container
+    height: 100vh
+    background: section-color
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+
+  .text-block
+    background: post-color
+    width: 50%
+    padding: 15px 50px
+    margin: 10vh 0
+
+    h3
+    p
+      margin: 20px 0px
+
+
+
+  .news-feed
+    background: section-color
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column

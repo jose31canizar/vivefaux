@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import data from '../constants/sections';
-import Section from './Section';
-import Header from './Header/Header';
+import React, { Component } from 'react'
+import data from '../constants/sections'
+import Section from './Section'
+import Header from './Header/Header'
 import Parallax from './Parallax/Parallax'
 
 class Contact extends Component {
@@ -17,21 +17,13 @@ class Contact extends Component {
           </div>
           <div className='contact-form'>
             <h4>Subject</h4>
-            <span className='wide'>
-              <input />
-            </span>
-            <span>
+            <input />
             <h4 className='name-label'>First Name</h4>
+            <input />
             <h4 className='name-label'>Last Name</h4>
-            </span>
-            <span className='name'>
-              <input />
-              <input />
-            </span>
+            <input />
             <h4>Email Address</h4>
-            <span className='wide'>
-              <input />
-            </span>
+            <input />
             <h4>Message</h4>
             <textarea rows="10" cols="50"/>
             <button type="submit" form="form1" value="Submit">Submit</button>
