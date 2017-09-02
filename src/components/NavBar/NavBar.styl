@@ -1,40 +1,59 @@
+nav-bar-height = 100px
+
+.flip
+  transform: rotate3d(1, 0, 0, -90deg)
+
+.nav-bar-wrapper
+  perspective: 100vw
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  z-index: 9
+
 .nav-bar
-  background: section-color
-  // box-shadow: 0px 0px 10px 1px rgba(191  184  184  0.5)
-  box-shadow: 0px 0px 10px 1px black
+  background: #131417
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5)
   position: fixed
   top: 0
   left: 0
   z-index: 99
   width: 100%
+  white-space: nowrap
+  display: flex
+  align-items: center
+  justify-content: center
+  transform-origin: top
+  transition: transform 0.5s ease
+  -webkit-font-smoothing: antialiased
+  padding: 0 24px
+  box-sizing: border-box
+  h1
+    padding: 0px 15px
 
   ul
     width: 100%
     display: flex
     justify-content: flex-end
     align-items: center
-    height: 50px
+    height: nav-bar-height
 
     .nav-link:hover > .nav-item-above
         transform: rotate3d(1 0 0 0)
 
-
     .nav-link > .nav-item-above
-      @include transition(all  0.25s  ease-in-out)
+      @include transition(all 0.25s ease-in-out)
       transform: rotate3d(1 0 0 -90deg)
       transform-origin: center top 8px
       height: 0vh
 
-
     .nav-link:hover > .nav-item
         transform: rotate3d(1 0 0 90deg)
 
-
     .nav-link > .nav-item
-      @include transition(all  0.25s  ease-in-out)
+      @include transition(all  0.25s ease-in-out)
       transform: rotate3d(1 0 0 0)
       transform-origin: center bottom 8px
-
 
     .nav-link
       text-decoration: none
@@ -42,11 +61,9 @@
       font-weight: 100
       z-index: 9
 
-
     li
       list-style-type: none
       padding: 0px 10px
-
 
     .selected-page
       color: #dea1a1

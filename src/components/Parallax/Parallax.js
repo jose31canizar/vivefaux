@@ -46,7 +46,7 @@ class Parallax extends Component {
             backgroundPosition: "50% " + this.props.yPosition + "%",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-            transform: "translate3d(0px, " + (0.2*this.state.distance) + "px, 0px)"
+            transform: "translate3d(0px, " + (0.3*this.state.distance) + "px, 0px)"
       };
     } else {
       styles = {

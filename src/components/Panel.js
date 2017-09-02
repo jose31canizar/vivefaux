@@ -37,7 +37,6 @@ class Panel extends Component {
     return (
       <div className={`panel ${this.state.panelStyle}`} onMouseDown={this.togglePanel}>
         <Cross panelStyle={this.state.panelStyle} togglePanel={this.togglePanel}/>
-
         <h3>{this.props.letter}</h3>
       </div>
     );

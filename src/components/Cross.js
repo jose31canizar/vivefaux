@@ -20,7 +20,7 @@ class Cross extends Component {
   }
   render() {
     return (
-      <div className={'cross ' + this.state.crossStyle} onMouseDown={this.props.togglePanel}>
+      <div className={`cross ${this.state.crossStyle}`} onClick={this.props.togglePanel}>
         <div className='left-bar'/>
         <div className='right-bar'/>
       </div>

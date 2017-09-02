@@ -1,21 +1,21 @@
-left-translate = -65.66vw
+left-translate = -64vw
 
 .panel
   background: white
   width: 10vw
   height: 10vw
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex
+  justify-content: center
+  align-items: center
 .panel.open
   animation: reveal 1s
   transform-origin: center left
-  transform: translate3d(left-translate, 0, 0) scaleY(4) scaleX(4)
+  transform: translateX(left-translate) scaleY(4) scaleX(4)
   font-size: 0em
 .panel.closed
   animation: unreveal 1s
   transform-origin: origin
-  transform: translate3d(0, 0, 0) scaleY(1)
+  transform: translateX(0) scaleY(1)
   font-size: 1em
 .left-pane
   width: 40vw
