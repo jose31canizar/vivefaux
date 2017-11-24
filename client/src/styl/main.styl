@@ -1,0 +1,143 @@
+@import './variables.styl'
+@import './helpers/transition.styl'
+@import './helpers/user_select.styl'
+@import './helpers/user_drag.styl'
+@import './Animations.styl'
+
+@import '../components/Parallax/Parallax.styl'
+@import '../components/Header/Header.styl'
+
+@import './Cross.styl'
+@import './PageLayout.styl'
+@import './Footer.styl'
+
+@font-face {
+  font-family: 'Gotham';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Gotham.eot');
+  src: local('Gotham'),
+    url('../fonts/gotham.woff2') format('woff2'),
+    url('../fonts/gotham.otf') format('otf'),
+    url('../fonts/Gotham.ttf') format('ttf'),
+    url('../fonts/gotham.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'Avenir';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/Avenir.eot');
+  src: local('Avenir'),
+    url('../fonts/avenir.woff2') format('woff2'),
+    url('../fonts/Avenir.otf') format('otf'),
+    url('../fonts/avenir.ttf') format('ttf'),
+    url('../fonts/avenir.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'Ano';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/AnoRegular-Regular.eot');
+  src: local('Ano'),
+    url('../fonts/AnoRegular-Regular.woff2') format('woff2'),
+    url('../fonts/AnoRegular-Regular.otf') format('otf'),
+    url('../fonts/AnoRegular-Regular.ttf') format('ttf'),
+    url('../fonts/AnoRegular-Regular.woff') format('woff')
+}
+
+html
+  overflow-x: hidden
+  width: 100%
+  position: absolute
+
+body
+  margin: 0
+  padding: 0
+  overflow-x: hidden
+  position: absolute
+  -webkit-tap-highlight-color: rgba(0 0 0 0)
+
+  #root
+    width: 100vw
+
+  .App
+    width: 100%
+    overflow-x: hidden
+    background: section-color
+    .layout
+      width: 100%
+
+  .left-border
+  .right-border
+    position: fixed
+    top: 0
+    height: 100vh
+    width: 5vw
+    background: section-color
+    z-index: 2
+
+    @media all and (max-width: 800px)
+      width: 0
+
+  .left-border
+    left: 0
+  .right-border
+    right: 0
+
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+  p
+  li
+  ul
+  button
+    font-family: 'Avenir'
+    font-weight: 100
+    margin: 0
+    padding: 0
+    user-select: none
+    color: #555056
+
+  li
+    list-style: none
+    color: #555056
+
+
+  a
+    color: #9090cc
+    text-decoration: none
+
+  h1
+    font-size: 3em
+    color: #f1f1f1
+
+  h2
+    font-size: 1.8em
+
+  h3
+    font-size: 2em
+    color: #e0ad9c
+
+  p
+    font-family: 'Avenir'
+    font-size: 1.2em
+    color: #f1f1f1
+
+  .text-block
+    background: post-color
+    width: 33.33%
+    padding: 50px
+    border-radius: 20px
+    margin: 40px 0px
+    @media all and (max-width: 1200px)
+      background: #231f24
+      width: 75%
+      padding: 50px
+      border-radius: 0
+      margin: 20px 0px
+      border-top: 1px solid white

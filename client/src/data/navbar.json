@@ -1,0 +1,18 @@
+[
+  {
+    "title":"Home",
+    "route":"home"
+  },
+  {
+    "title":"About",
+    "route":"about"
+  },
+  {
+    "title":"Labels",
+    "route":"labels"
+  },
+  {
+    "title":"Contact",
+    "route":"contact"
+  }
+]

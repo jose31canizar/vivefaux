@@ -1,0 +1,63 @@
+.contact-page
+  h4
+    margin: 4px 0
+    padding: 5px 2px
+  input[type=submit]
+    padding: 20px 0
+    background: #de5e5e
+    color: white
+    text-align: center
+    width: 100%
+    font-size: 1.2em
+    justify-content: center
+    border: none
+    transition: 0.15s ease
+  input[type=submit]:hover
+    background: white
+    color: black
+    cursor: pointer
+
+  .thank-you
+    padding: 20px 0
+
+
+  .section
+    .contact-form
+      display: grid
+      margin-right: 5vw
+      @media all and (max-width: 800px)
+        width: 75%
+        margin-right: 0vw
+
+      input[type=email]
+      input[type=text]
+        display: flex
+        border: none
+        font-size: 1.2em
+        margin: 0
+        padding: 10px
+        box-sizing: border-box
+        @media all and (max-width: mobile-width)
+          flex-direction: column
+          align-items: center
+          margin: 20px 0
+          width: 100%
+
+
+      textarea
+          font-size: 1.2em
+          margin: 0
+          padding: 5px
+          resize: none
+          margin-bottom: 20px
+
+      button
+        border: none
+        width: 20%
+        background: #87bb6f
+        padding: 10px
+        font-size: 1.2em
+        color: white
+        @media all and (max-width: mobile-width)
+          margin: 50px 0
+          width: auto

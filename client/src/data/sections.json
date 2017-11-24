@@ -1,0 +1,42 @@
+[
+  {
+    "title":"Kamakura",
+    "name":"kamakura",
+    "description":"Artist Collective & Record Label",
+    "soundcloud":"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/180047651&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true",
+    "letter":"K",
+    "releases":"kamakura-releases",
+    "artists":"kamakura-artists",
+    "wallpaper":"0"
+  },
+  {
+    "title":"Blacq",
+    "name":"blacq",
+    "description":"Record Label",
+    "soundcloud":"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/294337820&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true",
+    "letter":"B",
+    "releases":"blacq-releases",
+    "artists":"blacq-artists",
+    "wallpaper":"1"
+  },
+  {
+    "title":"Sōken Costa",
+    "name":"soken",
+    "description":"Multimedia Platform",
+    "soundcloud":"",
+    "letter":"S",
+    "releases":"soken-releases",
+    "artists":"soken-artists",
+    "wallpaper":"2"
+  },
+  {
+    "title":"IVF",
+    "name":"ivf",
+    "description":"Multimedia Channel",
+    "soundcloud":"",
+    "letter":"I",
+    "releases":"ivf-releases",
+    "artists":"ivf-artists",
+    "wallpaper":"3"
+  }
+]
