@@ -1,1 +1,0 @@
-Kamakura Artists

@@ -5,9 +5,13 @@ import Labels from '../Labels/Labels'
 import Header from '../Header/Header';
 import Parallax from '../Parallax/Parallax'
 import NewsFeed from '../../data/news-feed.json'
+import FullHeightIframe from './FullHeightIframe'
 import './Home.styl'
 
 class Home extends Component {
+  resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
   render() {
     return (
       <div className='home-page'>
@@ -28,13 +32,7 @@ class Home extends Component {
             {item.links.map((link, i) => (
               <p><a href={link.link}>{link.name}</a></p>
             ))}
-            <iframe
-              width="100%"
-              height="450"
-              scrolling="no"
-              frameBorder="no"
-              src={item.iframe}>
-            </iframe>
+            <FullHeightIframe iframe={item.iframe}/>
           </div>
         ))}
         </div>

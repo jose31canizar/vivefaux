@@ -12,8 +12,14 @@ class Panel extends Component {
     }
 
     this.togglePanel = this.togglePanel.bind(this);
+    this.togglePanelFromClick = this.togglePanelFromClick.bind(this)
+  }
+  togglePanelFromClick() {
+    this.props.closeOtherPanels(this.props.index);
+    this.togglePanel();
   }
   togglePanel() {
+    console.log('closing panel inside ' + this.props.index);
     this.setState((prevState, props) => {
       var newPanelStyle;
       if(prevState.panelStyle === 'closed') {
@@ -27,6 +33,16 @@ class Panel extends Component {
       }
     });
   }
+  componentWillReceiveProps(props) {
+    if (props.closePanel) {
+      if(this.state.panelStyle == 'open') {
+        console.log('closing panel ' + this.props.index);
+        console.log(props.closePanel);
+        console.log(this.state.panelStyle);
+        this.togglePanel();
+      }
+    }
+  }
   render() {
     var content;
     var self = this;
@@ -35,10 +51,9 @@ class Panel extends Component {
 
       </div>
     }
-    console.log(this.state.panelStyle);
     return (
-        <div className={`panel`}>
-          <div className={`left-panel ${this.state.panelStyle}`} onMouseDown={this.togglePanel}>
+        <SmoothScroll className={`panel`} to={this.props.title.toLowerCase()}>
+          <div className={`left-panel ${this.state.panelStyle}`} onMouseDown={this.togglePanelFromClick}>
             <Cross panelStyle={this.state.panelStyle} togglePanel={this.togglePanel}/>
             <h3>{this.props.letter}</h3>
           </div>
@@ -52,7 +67,7 @@ class Panel extends Component {
           </div>
           <div className={`right-panel-text ${this.state.panelStyle}`} dangerouslySetInnerHTML={{__html: this.props.releases}}>
           </div>
-        </div>
+        </SmoothScroll>
     );
   }
 }

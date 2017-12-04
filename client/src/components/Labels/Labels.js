@@ -3,10 +3,25 @@ import data from '../../data/sections';
 import Section from '../Section/Section';
 import Header from '../Header/Header';
 import Parallax from '../Parallax/Parallax'
+import './Labels.styl'
 
 class Labels extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      openLabels: data.map((block, i) => (false))
+    }
+    this.closeOtherPanels = this.closeOtherPanels.bind(this)
+  }
+  closeOtherPanels(i) {
+    this.setState((prevState, props) => {
+      const newState = prevState.openLabels.map((openLabel, index) => true ? i == index : false);
+      return {
+        openLabels: newState
+      }
+    })
+  }
   render() {
-    console.log(data[0].wallpaper);
     return (
       <div className='labels-page'>
       {this.props.header ? <Header>
@@ -15,6 +30,7 @@ class Labels extends Component {
       {data.map((block, i) => (
         <Section
           key={i}
+          index={i}
           title={block.title}
           name={block.name}
           description={block.description}
@@ -23,6 +39,8 @@ class Labels extends Component {
           releases={block.releases}
           artists={block.artists}
           wallpaper={block.wallpaper}
+          closeOtherPanels={this.closeOtherPanels}
+          closePanel={!this.state.openLabels[i]}
           />
       ))}
       </div>

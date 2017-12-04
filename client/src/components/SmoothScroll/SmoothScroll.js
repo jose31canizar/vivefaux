@@ -1,29 +1,51 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 class SmoothScroll extends Component {
     constructor(props) {
       super(props);
       this.state = {
         negativeOffset: 0,
-        timer: null
+        timer: null,
+        panelHeight: 0,
+        height: 0
       }
       this.handleSectionClick = this.handleSectionClick.bind(this);
       this.stop = this.stop.bind(this);
       this.scrollTo = this.scrollTo.bind(this);
     }
+    componentDidMount() {
+      var rect = ReactDOM.findDOMNode(this).getBoundingClientRect()
+      console.log(rect);
+      this.setState({
+        panelHeight: rect.height
+      })
+      const h = Math.max(document.body.clientHeight, window.innerHeight || 0)
+      window.addEventListener('resize', () => {
+        const h = Math.max(document.body.clientHeight, window.innerHeight || 0)
+        this.setState({
+          height: h
+        })
+      })
+      this.setState({
+        height: h
+      })
+    }
     render() {
         return (
           <div
             className={this.props.className}
-            onClick={this.handleSectionClick}>
+            onMouseDown={this.handleSectionClick}>
             {this.props.children}
           </div>
         );
     }
 
     handleSectionClick() {
-        this.props.onMouseDown()
+        // this.props.onMouseDown()
+        // window.scrollTo(0, this.state.offset);
         this.scrollTo(this.props.to);
+
     }
 
     stop() {
@@ -97,7 +119,9 @@ class SmoothScroll extends Component {
             }
         }
 
-        this.state.timer = setTimeout(step.bind(this), 10);
+        this.setState({
+          timer: setTimeout(step.bind(this), 10)
+        })
     }
 }
 

@@ -28,7 +28,12 @@ class NavBar extends Component {
     this.setState((prevState, props) => {
       const newDistance = document.body.scrollTop
       const oldDistance = prevState.currentScrollTop
-      if(oldDistance > newDistance) {
+      if(newDistance < 50) {
+        return {
+          flip: false
+        }
+      }
+      else if(oldDistance > newDistance) {
         return {
           distance: oldDistance + 1,
           flip: false

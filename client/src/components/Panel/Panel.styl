@@ -22,7 +22,7 @@ left-translate = 5vw
     width: 90vw
     height: 10vw
     position: absolute
-    transform: translateX(5vw) scaleY(4) scaleX(4)
+    transform: translateX(5vw) translateY(-33vw) scaleY(4) scaleX(4)
     background: #131417
     z-index: 1
     animation: fadein 1s
@@ -43,10 +43,11 @@ left-translate = 5vw
     @media all and (max-width: 1200px)
       width: 33.33vw
       height: 33.33vw
+      position: absolute
     display: flex
     justify-content: center
     align-items: center
-    position: absolute
+    position: relative
     z-index: 2
   .left-panel.open
     cursor: default
@@ -64,14 +65,15 @@ left-translate = 5vw
     transform: translateX(right-translate) scaleY(1)
     @media all and (max-width: 1200px)
       animation: unreveal-mobile 1s
-      transform: translateX(0) scaleY(1)
+      transform: translateX(0) translateY(0vw) scaleY(1) scaleX(1)
     font-size: 1em
   .left-panel-text
     width: 10vw
     height: 10vw
     display: flex
     justify-content: center
-    align-items: center
+    // align-items: center
+    padding-left: 10px
     flex-direction: column
     position: absolute
     z-index: 3
@@ -92,25 +94,27 @@ left-translate = 5vw
       padding-left: 5px
       height: 30vw
     transform-origin: center left
-    transform: translateX(left-translate) scaleY(4) scaleX(4)
+    transform: translateX(10vw) translateY(-20vw) scaleY(4) scaleX(4)
     p
-      font-size: 5em
-      width: 50%
+      font-size: 0.5em
+      width: 100%
       @media all and (max-width: 1200px)
-        color: black
         width: auto
         font-size: 1em
     h1
-      font-size: 2em
+      font-size: 1em
       color: white
       z-index: 1
       width: 50%
+      transition: all 0.5s
       @media all and (max-width: 1200px)
-        color: black
+        font-size: 1.5em
     p
     h1
       backface-visibility: hidden
       transform: translateZ(0)
+      color #534265
+      font-weight: 900
       -webkit-font-smoothing: subpixel-antialiased
     img.wallpaper
       position: absolute
@@ -141,6 +145,9 @@ left-translate = 5vw
   .right-panel-text.closed
     opacity: 0
   .right-panel-text.open
+    iframe
+      width: 50%
+    transform: translateY(-20vw)
     animation: fadein 1s linear 1s
     animation-fill-mode: forwards
     width: 45vw
@@ -148,10 +155,11 @@ left-translate = 5vw
     top: 5vw
     margin-left: 45vw
     @media all and (max-width: 1200px)
+      transform: translateY(0vw)
       margin: 0
       padding: 0
       padding-left: 20px
-      width: 100%
+      width: 90vw
       height: 80vw
 
     padding-left: 2.5vw
@@ -160,6 +168,7 @@ left-translate = 5vw
     height: 40vw
     box-sizing: border-box
     overflow-y: scroll
+    -webkit-overflow-scrolling: touch
     overflow-x: hidden
     p
       @media all and (max-width: 1200px)
