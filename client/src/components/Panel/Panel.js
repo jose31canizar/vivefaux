@@ -3,6 +3,7 @@ import Cross from '../Cross'
 import Parallax from '../Parallax/Parallax'
 import './Panel.styl'
 import SmoothScroll from '../SmoothScroll/SmoothScroll'
+import Audio from '../Audio/Audio'
 
 class Panel extends Component {
   constructor(props) {
@@ -60,10 +61,7 @@ class Panel extends Component {
           <div className={`left-panel-text ${this.state.panelStyle}`}>
             <h1>{self.props.title}</h1>
             <p>{self.props.description}</p>
-            <div className='iframe-container'>
-              <iframe width="100%" height="450" scrolling="no" frameBorder="no" src={self.props.soundcloud}>
-              </iframe>
-            </div>
+            <Audio/>
           </div>
           <div className={`right-panel-text ${this.state.panelStyle}`} dangerouslySetInnerHTML={{__html: this.props.releases}}>
           </div>

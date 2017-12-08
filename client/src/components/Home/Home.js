@@ -32,7 +32,11 @@ class Home extends Component {
             {item.links.map((link, i) => (
               <p><a href={link.link}>{link.name}</a></p>
             ))}
-            <FullHeightIframe iframe={item.iframe}/>
+            {item.iframes.map((iframe, i) => (
+              <div className='iframes-container'>
+              <FullHeightIframe iframe={iframe}/>
+              </div>
+            ))}
           </div>
         ))}
         </div>

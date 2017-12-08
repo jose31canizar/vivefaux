@@ -1,11 +1,35 @@
 [
   {
+    "title":"Kamakura Records Season Two",
+    "date":"12 - 3 - 17",
+    "description": "New music just for you. Kamakura has released three new songs on Soundcloud, featuring GOLDIILOXX and Boy of Destiny. Sway will literally make you sway with its aura of the theatrical and imaginative. Middle is a refreshing blend of acoustic and trap rhythms to say the least. Kamakura brings back the so-called Dream Team with 'Old Times' featuring Llano, Santyago, and Kid Royal.",
+    "links": [
+      {
+        "name":"Sway - GOLDIILOXX X Boy of Destiny X Faux",
+        "link":"https://soundcloud.com/kamakurarecords/sway-demo"
+      },
+      {
+        "name":"Middle - GOLDIILOXX x Boy of Destiny x Faux",
+        "link":"https://soundcloud.com/kamakurarecords/goldiiloxx-x-boy-of-destiny-x-faux-middle"
+      },
+      {
+        "name":"Old Times - Llano, Santyago & Kid Royal",
+        "link":"https://soundcloud.com/kamakurarecords/llano-santyago-kid-royal-old-times-dream-team-prod-faux"
+      }
+    ],
+    "iframes":[
+      "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/363798404&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false&amp;visual=true",
+      "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/361910075&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false&amp;visual=true",
+      "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335093133&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false&amp;visual=true"
+    ]
+  },
+  {
     "title":"Nimbus",
     "date":"8 - 22 - 17",
     "description": "The Blacq Label releases Wabaki's 'Nimbus' on soundcloud. The album features reflective symphonies such as 'Passive Thoughts' and dance anthems such as 'Danny Phantom' and 'I Need You.' Featured artists include Rainfish and Jeux. Nimbus is the second album released by the Blacq label.",
     "links": [
       {
-        "name":"soundcloud",
+        "name":"Soundcloud",
         "link":"https://soundcloud.com/blacqlabel/sets/wabakis-nimbus"
       },
       {
@@ -13,7 +37,7 @@
         "link":"https://www.toneden.io/wabaki303/post/nimbus"
       }
     ],
-    "iframe":"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/347203262&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
+    "iframes":["https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/347203262&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"]
   },
   {
     "title":"Origin",
@@ -25,7 +49,7 @@
         "link":"https://open.spotify.com/album/7zUX1w4MfJdLWFhUv0JpDY"
       }
     ],
-    "iframe":"https://open.spotify.com/embed/album/7zUX1w4MfJdLWFhUv0JpDY"
+    "iframes":["https://open.spotify.com/embed/album/7zUX1w4MfJdLWFhUv0JpDY"]
   },
   {
     "title":"Kuro",
@@ -41,7 +65,7 @@
         "link":"https://soundcloud.com/blacqlabel/sets/fauxs-kuro"
       }
     ],
-    "iframe":"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/313841302&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
+    "iframes":["https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/313841302&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"]
   },
   {
     "title":"Passionfruit",
@@ -53,6 +77,6 @@
         "link":"https://soundcloud.com/kamakurarecords/wabaki-passionfruit-prod-faux"
       }
     ],
-    "iframe":"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/321485477&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
+    "iframes":["https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/321485477&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"]
   }
 ]

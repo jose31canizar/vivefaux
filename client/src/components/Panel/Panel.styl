@@ -47,7 +47,7 @@ left-translate = 5vw
     display: flex
     justify-content: center
     align-items: center
-    position: relative
+    position: absolute
     z-index: 2
   .left-panel.open
     cursor: default
@@ -72,32 +72,33 @@ left-translate = 5vw
     height: 10vw
     display: flex
     justify-content: center
-    // align-items: center
-    padding-left: 10px
+    align-items: center
     flex-direction: column
-    position: absolute
+    transform-origin: center left
+    transform: translateX(5vw) translateY(0) scaleY(4) scaleX(4)
+    background: transparent
+    position: relative
+    left: 0
     z-index: 3
     overflow: hidden
+    opacity: 0
     @media all and (max-width: 1200px)
       opacity: 0
   .left-panel-text.open
     cursor: default
-    animation: reveal 1s
+    animation: fadein 0.3s linear 1s
+    animation-fill-mode: forwards
+    backface-visibility: hidden
+    -webkit-font-smoothing: subpixel-antialiased
     @media all and (max-width: 1200px)
-      animation: fadein 2s linear 1s
-      animation-fill-mode: forwards
-      backface-visibility: hidden
       transform: translate3d(20px, -20vw, 0)
-      -webkit-font-smoothing: subpixel-antialiased
       width: 100%
       align-items: flex-start
-      padding-left: 5px
+      padding-left: 10vw
       height: 30vw
     transform-origin: center left
-    transform: translateX(10vw) translateY(-20vw) scaleY(4) scaleX(4)
     p
       font-size: 0.5em
-      width: 100%
       @media all and (max-width: 1200px)
         width: auto
         font-size: 1em
@@ -105,7 +106,6 @@ left-translate = 5vw
       font-size: 1em
       color: white
       z-index: 1
-      width: 50%
       transition: all 0.5s
       @media all and (max-width: 1200px)
         font-size: 1.5em
@@ -115,6 +115,7 @@ left-translate = 5vw
       transform: translateZ(0)
       color #534265
       font-weight: 900
+      white-space: nowrap
       -webkit-font-smoothing: subpixel-antialiased
     img.wallpaper
       position: absolute
@@ -131,6 +132,7 @@ left-translate = 5vw
   .left-panel-text.closed
     cursor: pointer
     animation: unreveal 1s
+    pointer-events: none
     @media all and (max-width: 1200px)
       opacity: 0
     transform-origin: origin
@@ -148,7 +150,7 @@ left-translate = 5vw
     iframe
       width: 50%
     transform: translateY(-20vw)
-    animation: fadein 1s linear 1s
+    animation: fadein 0.5s linear 1.5s
     animation-fill-mode: forwards
     width: 45vw
     position: absolute
@@ -158,8 +160,13 @@ left-translate = 5vw
       transform: translateY(0vw)
       margin: 0
       padding: 0
-      padding-left: 20px
-      width: 90vw
+      width: 100%
+      height: 80vw
+    @media all and (max-width: 800px)
+      transform: translateY(0vw)
+      margin: 0
+      padding: 0 20px
+      width: auto
       height: 80vw
 
     padding-left: 2.5vw
