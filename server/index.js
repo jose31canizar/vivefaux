@@ -5,8 +5,11 @@ const bodyParser = require('body-parser')
 require('dotenv').config();
 var mc_api_key = process.env.MAILCHIMP_API_KEY;
 var list_id = process.env.MAILING_LIST_ID;
+// var mcache = require('memory-cache');
 
 const app = express();
+
+// app.set('view engine', 'jade');
 
 const mailchimp = new Mailchimp(mc_api_key);
 
@@ -55,6 +58,30 @@ app.post('/api/addMember', (req, res) => {
     res.send(err);
   });
 });
+
+// app.get('/', cache(10), (req, res) => {
+//   setTimeout(() => {
+//     res.render('index', { title: 'Hey', message: 'Hello there', date: new Date()})
+//   }, 5000) //setTimeout was used to simulate a slow processing request
+// })
+
+// var cache = (duration) => {
+//   return (req, res, next) => {
+//     let key = '__express__' + req.originalUrl || req.url
+//     let cachedBody = mcache.get(key)
+//     if (cachedBody) {
+//       res.send(cachedBody)
+//       return
+//     } else {
+//       res.sendResponse = res.send
+//       res.send = (body) => {
+//         mcache.put(key, body, duration * 1000);
+//         res.sendResponse(body)
+//       }
+//       next()
+//     }
+//   }
+// }
 
 //catch all handler
 app.get('*', (req, res) => {

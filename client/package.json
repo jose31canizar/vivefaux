@@ -4,6 +4,8 @@
   "homepage": "http://13.58.139.60/",
   "private": true,
   "dependencies": {
+    "preact": "^8.2.7",
+    "preact-compat": "^3.17.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },

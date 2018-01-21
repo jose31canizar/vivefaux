@@ -14,9 +14,12 @@ const firstChild = props => {
 };
 
 class App extends Component {
+  onScroll(e) {
+    e.stopPropagation()
+  }
   render() {
     return (
-      <div className="App">
+      <div className="App" onScroll={this.onScroll}>
         <BrowserRouter>
           <Route
             render={({ location }) => (

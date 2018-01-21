@@ -1,5 +1,73 @@
 [
   {
+    "title":"Faux - Dieu Avec Nous",
+    "date":"1 - 21 - 18",
+    "description": "Another Flume-esque work illustrating how dynamic Faux's work can get. Another song to add to your collection of trap-infused, slow jams.",
+    "links": [
+      {
+        "name":"Faux - Dieu Avec Nous (神様と一緒に) [feat. Santyago & Kara Garrett]",
+        "link":"https://soundcloud.com/theofficialfaux/faux-dieu-avec-nous-feat-santyago-kara-garrett"
+      }
+    ],
+    "iframes":[
+      "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/384786764&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"
+    ]
+  },
+  {
+    "title":"The Juan & Carlos Cooking Show",
+    "date":"12 - 27 - 17",
+    "description": "Infinite Vivacity films releases a cooking show audio sketch for your entertainment.",
+    "links": [
+      {
+        "name":"The Juan & Carlos Cooking Show",
+        "link":"https://www.youtube.com/watch?v=FbGvxE3g6AQ"
+      }
+    ],
+    "iframes":[
+      "https://www.youtube.com/embed/FbGvxE3g6AQ"
+    ]
+  },
+  {
+    "title":"Nimbus Short Film",
+    "date":"12 - 27 - 17",
+    "description": "Sōken Costa releases the short film for Wabaki's latest album: Nimbus.",
+    "links": [
+      {
+        "name":"Wabaki & Faux - Nimbus Short Film",
+        "link":"https://www.youtube.com/watch?v=wWUDMxkOE48&t=0s"
+      }
+    ],
+    "iframes":[
+      "https://www.youtube.com/embed/wWUDMxkOE48"
+    ]
+  },
+  {
+    "title":"Untitled Debut EP",
+    "date":"12 - 19 - 17",
+    "description": "Kamakura previews their upcoming debut EP on soundcloud.",
+    "links": [
+      {
+        "name":"Middle - xVivAxWaveSx",
+        "link":"https://soundcloud.com/kamakurarecords/goldiiloxx-x-boy-of-destiny-x-faux-middle"
+      },
+      {
+        "name":"Sway - xVivAxWaveSx",
+        "link":"https://soundcloud.com/kamakurarecords/sway-demo"
+      },
+      {
+        "name":"Breathe - xVivAxWaveSx",
+        "link":"https://soundcloud.com/kamakurarecords/xvivaxwavesx-breathe"
+      },
+      {
+        "name":"Gray - xVivAxWaveSx",
+        "link":"https://soundcloud.com/kamakurarecords/xvivaxwavesx-gray"
+      }
+    ],
+    "iframes":[
+      "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/402188249&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"
+    ]
+  },
+  {
     "title":"Kamakura Records Season Two",
     "date":"12 - 3 - 17",
     "description": "New music just for you. Kamakura has released three new songs on Soundcloud, featuring GOLDIILOXX and Boy of Destiny. Sway will literally make you sway with its aura of the theatrical and imaginative. Middle is a refreshing blend of acoustic and trap rhythms to say the least. Kamakura brings back the so-called Dream Team with 'Old Times' featuring Llano, Santyago, and Kid Royal.",
@@ -15,12 +83,17 @@
       {
         "name":"Old Times - Llano, Santyago & Kid Royal",
         "link":"https://soundcloud.com/kamakurarecords/llano-santyago-kid-royal-old-times-dream-team-prod-faux"
+      },
+      {
+        "name":"Boy of Destiny - Flyboy (feat. GOLDIILOXX & Jess Gomes)",
+        "link":"https://soundcloud.com/kamakurarecords/boy-of-destiny-flyboy-feat-goldiiloxx-jess-gomes"
       }
     ],
     "iframes":[
       "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/363798404&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false&amp;visual=true",
       "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/361910075&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false&amp;visual=true",
-      "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335093133&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false&amp;visual=true"
+      "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335093133&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=false&amp;visual=true",
+      "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/371999207&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"
     ]
   },
   {
