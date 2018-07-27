@@ -37,7 +37,7 @@ left-translate = 5vw
   .right-panel.closed
     display: none
   .left-panel
-    background: white
+    background: black
     width: 10vw
     height: 10vw
     @media all and (max-width: 1200px)
@@ -90,13 +90,14 @@ left-translate = 5vw
     animation-fill-mode: forwards
     backface-visibility: hidden
     -webkit-font-smoothing: subpixel-antialiased
+    transform-origin: center left
     @media all and (max-width: 1200px)
       transform: translate3d(20px, -20vw, 0)
       width: 100%
       align-items: flex-start
       padding-left: 10vw
       height: 30vw
-    transform-origin: center left
+
     p
       font-size: 0.5em
       @media all and (max-width: 1200px)
@@ -104,19 +105,43 @@ left-translate = 5vw
         font-size: 1em
     h1
       font-size: 1em
-      color: white
       z-index: 1
       transition: all 0.5s
       @media all and (max-width: 1200px)
         font-size: 1.5em
-    p
-    h1
+    .label-title
+    .label-description
+      color: #a6d1ff
+      letter-spacing: 2px
+      text-shadow: 0 0 20px #ff005b
+      transition: 0.5s ease-in-out
       backface-visibility: hidden
-      transform: translateZ(0)
-      color #534265
-      font-weight: 900
       white-space: nowrap
+      transform: translateZ(0)
+      font-weight: 900
       -webkit-font-smoothing: subpixel-antialiased
+    .label-description:after
+    .label-title:after
+      content: attr(data-text)
+      position: absolute
+      top: 0
+      padding: 0 10px
+      z-index: -1
+      color: #ff005b
+      left: -10px
+    .label-description:before
+    .label-title:before
+      position: absolute
+      top: 0
+      left: 0
+      content: ''
+      z-index: -2
+      opacity: 0.4
+      background: red
+      width: 100%
+      height: 100%
+      filter: blur(8px)
+
     img.wallpaper
       position: absolute
       top: 0
@@ -148,7 +173,7 @@ left-translate = 5vw
     opacity: 0
   .right-panel-text.open
     iframe
-      width: 50%
+      width: 100%
     transform: translateY(-20vw)
     animation: fadein 0.5s linear 1.5s
     animation-fill-mode: forwards

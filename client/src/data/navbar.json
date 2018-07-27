@@ -4,6 +4,10 @@
     "route":"home"
   },
   {
+    "title":"Featured",
+    "route":"featured"
+  },
+  {
     "title":"About",
     "route":"about"
   },
