@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Kamakura",
+    "name": "kamakura",
+    "description": "Artist Collective",
+    "soundcloud": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/180047651&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
+  },
+  {
+    "title": "Blacq",
+    "name": "blacq",
+    "description": "Record Label",
+    "soundcloud": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/294337820&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"
+  },
+  {
+    "title": "Sōken Costa",
+    "name": "soken",
+    "description": "Multimedia Platform",
+    "soundcloud": ""
+  },
+  {
+    "title": "IVF",
+    "name": "ivf",
+    "description": "Multimedia Channel",
+    "soundcloud": ""
+  }
+]

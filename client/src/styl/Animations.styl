@@ -1,6 +1,27 @@
-@import './animations/bouncein.styl'
-@import './animations/fadein.styl'
-@import './animations/reveal.styl'
-@import './animations/unreveal.styl'
-@import './animations/slidein.styl'
-@import './animations/slidefromtop.styl'
+@keyframes slide-in
+  from
+    transform translate3d(-100vw, 0, 0)
+
+  to
+    transform translate3d(0, 0, 0)
+
+@keyframes slide-over
+  from
+    transform translate3d(0, 0, 0)
+
+  to
+    transform translate3d(100vw, 0, 0)
+
+@keyframes disappear
+  from
+    transform scale(1)
+
+  to
+    transform scale(0)
+
+@keyframes appear
+  from
+    transform scale(0)
+
+  to
+    transform scale(1)

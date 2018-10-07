@@ -1,136 +1,105 @@
 import React, { Component } from "react";
-import data from "../../data/sections";
-import Section from "../Section/Section";
-import Header from "../Header/Header";
-import Parallax from "../Parallax/Parallax";
+import InputField from "../../items/input-field/InputField";
+import InputArea from "../../items/input-area/InputArea";
+import Button from "../../items/button/Button";
+import { IP } from "../../api";
 import "./Contact.styl";
 
-class Contact extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      message: "",
-      subject: "",
-      thankyou: ""
-    };
-    this.handleFirstName = this.handleFirstName.bind(this);
-    this.handleLastName = this.handleLastName.bind(this);
-    this.handleEmail = this.handleEmail.bind(this);
-    this.handleMessage = this.handleMessage.bind(this);
-    this.handleSubject = this.handleSubject.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+export default class Contact extends Component {
+  state = {
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    messageStatus: ""
+  };
+  onEnter = e => {
+    const { name, email, subject, message } = this.state;
+    const isInvalid = !name || !email || !subject || !message;
+    if (e.keyCode === 13 && !isInvalid) {
+      this.sendMessage();
+    }
+  };
+  componentDidMount() {
+    window.addEventListener("keypress", this.onEnter);
   }
-  handleFirstName(event) {
-    this.setState({ firstName: event.target.value });
+  componentWillUnmount() {
+    window.removeEventListener("keypress", this.onEnter);
   }
-  handleLastName(event) {
-    this.setState({ lastName: event.target.value });
-  }
-  handleEmail(event) {
-    this.setState({ email: event.target.value });
-  }
-  handleMessage(event) {
-    this.setState({ message: event.target.value });
-  }
-  handleSubject(event) {
-    this.setState({ subject: event.target.value });
-  }
-  handleSubmit(event) {
-    console.log(
-      "A name was submitted: " +
-        this.state.email +
-        this.state.firstName +
-        this.state.lastName +
-        this.state.message +
-        this.state.subject
-    );
-    this.addMember();
-    event.preventDefault();
-    // window.location.href = 'https://www.truewarrior.fm/congratulations/'
-    this.setState({ thankyou: "Your message has been sent to Vivefaux." });
-    return false;
-  }
-  addMember = () => {
-    fetch("/api/addMember", {
-      method: "POST",
+  sendMessage = () => {
+    const { name, email, subject, message } = this.state;
+    console.log(this.state);
+    return fetch(`http://${IP}:9010/v1/sendEmail`, {
+      method: "post",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email_address: this.state.email,
-        status: "subscribed",
-        merge_fields: {
-          firstName: this.state.firstName,
-          lastName: this.state.firstName,
-          message: this.state.message,
-          subject: this.state.subject
-        }
+        name,
+        email,
+        subject,
+        message
       })
     })
-      .then(function(res) {
-        console.log(res);
-      })
-      .catch(function(res) {
-        console.log(res);
-      });
+      .then(() => this.setState({ messageStatus: "success" }))
+      .catch(() => this.setState({ messageStatus: "failed" }));
   };
+
   render() {
+    const { name, email, subject, message, messageStatus } = this.state;
+    const { sendMessage } = this;
+
+    const isInvalid = !name || !email || !subject || !message;
+
     return (
-      <div className="contact-page">
-        <Header title="Contact">
-          <Parallax src={require("../../img/parallax/7.jpg")} yPosition="100" />
-        </Header>
-        <div className="section">
-          <div className="section-title">
-            <h1>{this.props.match.path.replace(/\//g, "")}</h1>
-          </div>
-          <form className="contact-form" onSubmit={this.handleSubmit}>
-            <h4>Subject</h4>
-            <input
-              placeholder="subject"
-              type="text"
-              value={this.state.subject}
-              onChange={this.handleSubject}
-            />
-            <h4 className="name-label">First Name</h4>
-            <input
-              placeholder="first name"
-              type="text"
-              value={this.state.firstName}
-              onChange={this.handleFirstName}
-            />
-            <h4 className="name-label">Last Name</h4>
-            <input
-              placeholder="last name"
-              type="text"
-              value={this.state.lastName}
-              onChange={this.handleLastName}
-            />
-            <h4>Email Address</h4>
-            <input
-              placeholder="email"
-              type="email"
-              value={this.state.email}
-              onChange={this.handleEmail}
-            />
-            <h4>Message</h4>
-            <textarea
-              rows="10"
-              cols="50"
-              value={this.state.message}
-              onChange={this.handleMessage}
-            />
-            <input type="submit" value="Submit" />
-            <h2 className="thank-you">{this.state.thankyou}</h2>
-          </form>
-        </div>
+      <div>
+        <h1>Contact</h1>
+        <p>
+          {messageStatus === "failed"
+            ? "failed to send"
+            : messageStatus === "success"
+              ? "success!"
+              : ""}
+        </p>
+        <InputField
+          value={name}
+          field="name"
+          label="Your Name"
+          type="text"
+          placeholder="Enter your name"
+          setState={obj => this.setState(obj)}
+        />
+        <InputField
+          value={email}
+          field="email"
+          label="Your Email"
+          type="text"
+          placeholder="Enter your email"
+          setState={obj => this.setState(obj)}
+        />
+        <InputField
+          value={subject}
+          field="subject"
+          label="Subject"
+          type="text"
+          placeholder="Enter the subject"
+          setState={obj => this.setState(obj)}
+        />
+        <InputArea
+          value={message}
+          field="message"
+          label="Your Message"
+          type="text"
+          placeholder="Enter your message"
+          setState={obj => this.setState(obj)}
+        />
+        <Button
+          disabled={isInvalid}
+          action={e => sendMessage(e)}
+          label="Send Message"
+        />
       </div>
     );
   }
 }
-
-export default Contact;

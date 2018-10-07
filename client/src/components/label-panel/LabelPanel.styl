@@ -1,0 +1,36 @@
+.label-panel
+  animation fade-in 0.5s
+  position fixed
+  z-index 1
+  top 0
+  left 0
+  width 100%
+  height 100%
+  display flex
+  flex-direction row
+
+  @media all and (max-width: 64rem)
+    flex-direction column
+
+  .left-side
+    padding 10rem 5rem
+    width 50%
+    background rgba(27, 27, 27, 0.5)
+
+    @media all and (max-width: 64rem)
+      width 100%
+      padding 5rem 2rem 2rem
+
+  .right-side
+    padding 10rem 5rem
+    width 50%
+    overflow-y scroll
+
+    iframe
+      width 100%
+
+    @media all and (max-width: 64rem)
+      width 100%
+
+  h1, p, a
+    color white

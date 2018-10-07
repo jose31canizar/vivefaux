@@ -1,0 +1,18 @@
+[
+  {
+    "path": "about",
+    "title": "About"
+  },
+  {
+    "path": "video-distribution",
+    "title": "Video Distribution"
+  },
+  {
+    "path": "recording-studio",
+    "title": "Recording Studio"
+  },
+  {
+    "path": "beat-store",
+    "title": "Beat Store"
+  }
+]

@@ -1,80 +1,153 @@
-import React, { Component } from 'react'
-import data from '../../data/navbar.json'
-import { Link } from 'react-router-dom'
-import SmoothScroll from '../SmoothScroll/SmoothScroll'
-import './NavBar.styl'
+import React, { Component } from "react";
+import "./Navbar.styl";
+import InputField from "../../items/input-field/InputField";
+import NavbarIcon from "./NavbarIcon";
+import { NavLink, Link, withRouter } from "react-router-dom";
+import Pages from "../../pages/Pages";
+import NavPages from "../../pages/NavPages";
+import SignOutButton from "../signout/SignOutButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AuthUserContext from "../AuthUserContext";
+import * as routes from "../../constants/routes";
 
-class NavBar extends Component {
+class Navbar extends Component {
   constructor(props) {
-    super(props)
+    var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName("body")[0];
+    const width = w.innerWidth || e.clientWidth || g.clientWidth;
+    super(props);
     this.state = {
-      selected: "Home",
-      distance: 0,
-      flip: false,
-      currentScrollTop: document.body.scrollTop
-    }
-    this.setSelected = this.setSelected.bind(this)
-    this.flip = this.flip.bind(this)
+      width: width,
+      panelState: this.props.panelState,
+      query: "",
+      dropdown: false
+    };
+    this.handleResize = this.handleResize.bind(this);
   }
-  componentWillMount() {
-    document.addEventListener('scroll', this.flip)
-  }
-  setSelected(title) {
-    this.setState({
-      selected: title
-    })
-  }
-  flip() {
-    this.setState((prevState, props) => {
-      const newDistance = document.body.scrollTop
-      const oldDistance = prevState.currentScrollTop
-      if(newDistance < 50) {
-        return {
-          flip: false
-        }
-      }
-      else if(oldDistance > newDistance) {
-        return {
-          distance: oldDistance + 1,
-          flip: false
-        }
-      } else if(oldDistance === newDistance) {
-        return {
-          distance: oldDistance
-        }
-      } else {
-        return {
-          distance: oldDistance - 1,
-          flip: true
-        }
-      }
+  handleResize() {
+    var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName("body")[0];
+    const width = w.innerWidth || e.clientWidth || g.clientWidth;
 
-    })
-    this.setState({
-      currentScrollTop: document.body.scrollTop
-    })
+    this.setState({ width });
   }
+  onEnter = e => {
+    const { history } = this.props;
+    const { query, focused } = this.state;
+
+    if (e.keyCode === 13 && focused) {
+      history.push(query);
+    }
+  };
+  componentDidMount() {
+    this.handleResize();
+
+    window.addEventListener("resize", this.handleResize);
+    window.addEventListener("keypress", this.onEnter);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("keypress", this.onEnter);
+  }
+
   render() {
-    return (
-      <div className='nav-bar-wrapper'>
-        <div className={'nav-bar' + (this.state.flip ? ' flip' : '')}>
-          <h1>vivefaux</h1>
-          <ul>
-            {data.map((item, i) => (
-              <Link className="nav-link" to={`/${item.route}`} onMouseDown={this.setSelected.bind(this, item.title)}>
-                <li className={"nav-item-above "  + (item.title === this.state.selected ? "selected-page" : "")}>
-                  {item.title}
-                </li>
-                <li className={"nav-item " + (item.title === this.state.selected ? "selected-page" : "")} onMouseDown={this.setSelected.bind(this, item.title)}>
-                  {item.title}
-                </li>
+    const { width, dropdown } = this.state;
+    const { authUser, history } = this.props;
+    if (width > 800) {
+      return (
+        <AuthUserContext.Consumer>
+          {authUser => (
+            <div class="nav-bar">
+              <Link to={routes.HOME} tabIndex="-1">
+                <h2 class="nav-bar-title">vivefaux</h2>
               </Link>
-            ))}
-          </ul>
+              <NavLink to={routes.CONTACT} tabIndex="-1" class="navbar-item">
+                <label>Contact</label>
+              </NavLink>
+              <div
+                class="dropdown-trigger"
+                onMouseOver={() => this.setState({ dropdown: true })}
+                onMouseLeave={() => this.setState({ dropdown: false })}
+              >
+                <label class="dropdown-trigger-label">Music</label>
+                {dropdown && (
+                  <div class="dropdown-items">
+                    {NavPages.map(({ path, title }, i) => (
+                      <NavLink to={path} tabIndex="-1" class="navbar-item">
+                        <label>{title}</label>
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {authUser ? (
+                <div class="navbar-logged-in-items">
+                  <InputField
+                    onFocus={() => this.setState({ focused: true })}
+                    onBlur={() => this.setState({ focused: false })}
+                    placeholder="search"
+                    label="filter"
+                    field="query"
+                    text="search your dashboard..."
+                    setState={obj => this.setState(obj)}
+                    datalistName="sections"
+                    onClick={this.focusTextInput}
+                    onTouchStart={this.focusTextInput}
+                    datalist={
+                      <datalist id="sections">
+                        {Pages.map((page, i) => (
+                          <option key={"option-" + i} value={page.path} />
+                        ))}
+                      </datalist>
+                    }
+                  />
+
+                  <NavLink
+                    to={routes.DASHBOARD}
+                    tabIndex="-1"
+                    class="navbar-logged-in-item"
+                  >
+                    <FontAwesomeIcon icon="th" color="black" />
+                  </NavLink>
+                  <SignOutButton className="navbar-logged-in-item" />
+                  <NavLink
+                    to="/account"
+                    tabIndex="-1"
+                    class="navbar-logged-in-item"
+                  >
+                    <label>Account</label>
+                  </NavLink>
+                </div>
+              ) : null}
+            </div>
+          )}
+        </AuthUserContext.Consumer>
+      );
+    } else {
+      return (
+        <div class="nav-bar-mobile">
+          <Link to="/" tabIndex="-1">
+            <h2
+              class={
+                this.props.panelState === "closed" ? "" : "hide-nav-bar-title"
+              }
+            >
+              vivefaux
+            </h2>
+          </Link>
+          <NavbarIcon
+            togglePanel={this.props.togglePanel}
+            panelState={this.props.panelState}
+          />
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
-export default NavBar;
+export default withRouter(Navbar);

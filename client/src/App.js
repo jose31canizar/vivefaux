@@ -1,65 +1,192 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, matchPath } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Featured from "./components/Featured/Featured";
-import Labels from "./components/Labels/Labels";
-import About from "./components/About/About";
-import Contact from "./components/Contact/Contact";
+import history from "./history";
+import { Router, Switch, Route } from "react-router-dom";
+import Dashboard from "./components/dashboard/Dashboard";
+import Home from "./components/home/Home";
+import Login from "./components/login/Login";
+import Signup from "./components/signup/Signup";
+import Contact from "./components/contact/Contact";
+import PasswordForget from "./components/password-forget/PasswordForget";
+import Account from "./components/account/Account";
 import Layout from "./layout/Layout";
-import TransitionGroup from "react-transition-group/TransitionGroup";
-import AnimatedSwitch from "./animated_switch";
+import Pages from "./pages/Pages";
+import NavPages from "./pages/NavPages";
+import Article from "./pages/template/ArticleTemplate";
+import CustomPage from "./pages/template/CustomTemplate";
+import EditablePage from "./pages/template/EditableTemplate";
+import DisplayTemplate from "./pages/template/DisplayTemplate";
+import * as routes from "./constants/routes";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import withAuthentication from "./components/withAuthentication";
 
-const firstChild = props => {
-  const childrenArray = React.Children.toArray(props.children);
-  return childrenArray[0] || null;
+const timeout = 1000;
+
+const findTransition = route => {
+  switch (route) {
+    case "/dashboard-container":
+      return {
+        classNames: findTransitionName(route),
+        timeout: timeout
+      };
+    default:
+      return {
+        classNames: findTransitionName(route),
+        timeout: timeout
+      };
+  }
+};
+
+const findTransitionName = route => {
+  switch (route) {
+    case routes.DASHBOARD:
+      return "dashboard-container";
+    default:
+      return "transition";
+  }
 };
 
 class App extends Component {
-  onScroll(e) {
-    e.stopPropagation();
+  state = {
+    panelState: "closed",
+    currentRoute: history.location.pathname,
+    currentTransitionType: findTransition("/dashboard"),
+    notification: null
+  };
+  componentDidMount() {
+    history.listen(location => {
+      this.setState({
+        currentRoute: location.pathname,
+        currentTransitionType: findTransition(location.pathname)
+      });
+    });
   }
+  togglePanel = () => {
+    this.setState((prevState, props) => ({
+      panelState: prevState.panelState === "closed" ? "open" : "closed"
+    }));
+  };
+
+  notify = t => {
+    this.setState({ notification: t === "save" ? "saved file" : null });
+    setTimeout(() => {
+      this.setState({ notification: null });
+    }, 1000);
+  };
+
   render() {
+    const { authenticate, togglePanel, notify } = this;
+    const {
+      panelState,
+      currentRoute,
+      currentTransitionType,
+      notification
+    } = this.state;
+
     return (
-      <div className="App" onScroll={this.onScroll}>
-        <BrowserRouter>
+      <Router history={history}>
+        <Layout
+          panelState={panelState}
+          togglePanel={togglePanel}
+          notification={notification}
+        >
           <Route
             render={({ location }) => (
-              <TransitionGroup component={Layout}>
-                <AnimatedSwitch key={location.key} location={location}>
-                  <Route
-                    exact
-                    path="/home"
-                    render={props => <Home {...props} />}
-                  />
-                  <Route
-                    exact
-                    path="/featured"
-                    render={props => <Featured {...props} />}
-                  />
-                  <Route
-                    exact
-                    path="/about"
-                    render={props => <About {...props} />}
-                  />
-                  <Route
-                    exact
-                    path="/labels"
-                    render={() => <Labels header={true} />}
-                  />
-                  <Route
-                    exact
-                    path="/contact"
-                    render={props => <Contact {...props} />}
-                  />
-                  <Route exact path="*" render={props => <Home {...props} />} />
-                </AnimatedSwitch>
+              <TransitionGroup
+                childFactory={child =>
+                  React.cloneElement(child, currentTransitionType)
+                }
+              >
+                <CSSTransition
+                  timeout={timeout}
+                  classNames={currentTransitionType}
+                  key={location.pathname}
+                >
+                  <Switch location={location}>
+                    {Pages.map((page, i) => (
+                      <Route
+                        key={i}
+                        exact
+                        path={`/${page.path}`}
+                        panelState={this.state.panelState}
+                        render={() =>
+                          page.type === "markdown" ? (
+                            <Article path={page.path} className={page.path} />
+                          ) : page.type === "editable" ? (
+                            <EditablePage
+                              editing={page.editing}
+                              path={page.path}
+                              className={page.path}
+                              notify={notify}
+                            />
+                          ) : (
+                            <CustomPage
+                              path={page.path}
+                              className={page.path}
+                            />
+                          )
+                        }
+                      />
+                    ))}
+                    {NavPages.map(({ path, title }, i) => (
+                      <Route
+                        exact
+                        path={`/${path}`}
+                        panelState={panelState}
+                        render={() => (
+                          <DisplayTemplate path={path} title={title} />
+                        )}
+                      />
+                    ))}
+                    <Route
+                      exact
+                      path={routes.DASHBOARD}
+                      panelState={panelState}
+                      render={() => <Dashboard />}
+                    />
+                    <Route
+                      exact
+                      path={routes.LOG_IN}
+                      panelState={panelState}
+                      render={() => <Login />}
+                    />
+                    <Route
+                      exact
+                      path={routes.SIGN_UP}
+                      panelState={panelState}
+                      render={() => <Signup />}
+                    />
+                    <Route
+                      exact
+                      path={routes.PASSWORD_FORGET}
+                      panelState={panelState}
+                      render={() => <PasswordForget />}
+                    />
+                    <Route
+                      exact
+                      path={routes.ACCOUNT}
+                      panelState={panelState}
+                      render={() => <Account />}
+                    />
+                    <Route
+                      exact
+                      path={routes.CONTACT}
+                      panelState={panelState}
+                      render={() => <Contact />}
+                    />
+                    <Route
+                      path="*"
+                      panelState={panelState}
+                      render={() => <Home />}
+                    />
+                  </Switch>
+                </CSSTransition>
               </TransitionGroup>
             )}
           />
-        </BrowserRouter>
-      </div>
+        </Layout>
+      </Router>
     );
   }
 }
 
-export default App;
+export default withAuthentication(App);

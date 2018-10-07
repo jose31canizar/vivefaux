@@ -1,0 +1,130 @@
+@import './animations.styl'
+@import './page-transitions.styl'
+
+@font-face
+  font-family 'Electroharmonix'
+  font-style normal
+  font-weight 400
+  src url('../fonts/electroharmonix.ttf')
+  src local('electroharmonix') url('../fonts/electroharmonix.ttf') format('ttf')
+
+*
+  box-sizing border-box
+
+html
+  width 100%
+  position absolute
+  overflow-x hidden
+  overflow-y scroll
+  -webkit-overflow-scrolling auto
+  background background-color
+
+body
+  margin 0
+  padding 0
+  overflow-x hidden
+  overflow-y scroll
+  -webkit-overflow-scrolling auto
+  position absolute
+  -webkit-tap-highlight-color rgba(0 0 0 0)
+  background #f2f2f2
+
+  video
+    object-position 50% 50%
+    width 100vw
+    height 75vh
+    object-fit cover
+    overflow hidden
+    pointer-events none
+
+    @media all and (max-width: 1200px)
+      margin-left 0
+
+  #root
+    width 100vw
+    height 100vh
+
+  h1, h2, h3, h4, h5, h6, ul, button, b, label, time, a
+    font-family 'Electroharmonix', Helvetica, sans-serif
+    font-weight 100
+    margin 0
+    padding 0
+    user-select none
+    color #555056
+
+  p, li
+    font-family 'Avenir', sans-serif
+    font-weight 700
+    color #3c3c3c
+
+  input
+    margin 0
+    padding 0.5rem
+
+  input::placeholder
+    margin 0
+    padding 0
+
+  li
+    list-style-type decimal
+    font-size 0.9rem
+    margin 0.5rem 0
+    color #555056
+
+  label
+    font-size 1rem
+
+  a
+    cursor pointer
+    text-decoration none
+    outline none
+    color #808080
+
+    label
+      cursor pointer
+
+  h1
+    font-size 2.5rem
+    color #000000
+    font-weight 700
+
+  h2
+    font-size 2.5rem
+    font-weight 900
+    color #504550
+    line-height 1.3em
+
+    @media all and (max-width: 700px)
+      font-size 2em
+
+  h3
+    font-size 1.5em
+    margin 0.85rem 0
+    color #6A5B69
+    font-weight 600
+
+    @media all and (max-width: 700px)
+      font-size 1.4em
+
+    @media all and (max-width: 1200px)
+      font-size 1.1em
+
+  h4
+    font-size 3em
+    color #e86b37ed
+    font-weight 900
+
+    @media all and (max-width: 700px)
+      width 90%
+      font-size 1.5em
+
+    @media all and (max-width: 1200px)
+      font-size 2.5em
+      padding 20px 0
+      text-align center
+
+  img
+    width 100%
+
+  ::-webkit-scrollbar
+    display none

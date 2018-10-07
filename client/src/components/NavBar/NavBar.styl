@@ -1,72 +1,101 @@
-nav-bar-height = 100px
-
-.flip
-  transform: rotate3d(1, 0, 0, -90deg)
-
-.nav-bar-wrapper
-  perspective: 100vw
-  position: fixed
-  top: 0
-  left: 0
-  width: 100%
-  z-index: 9
+transform-squash(a)
+  transform scaleY(a) scaleX(a)
 
 .nav-bar
-  background: #131417
-  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5)
-  position: fixed
-  animation: slidefromtop 1s
-  top: 0
-  left: 0
-  z-index: 99
-  width: 100%
-  white-space: nowrap
-  display: flex
-  align-items: center
-  justify-content: center
-  transform-origin: top
-  transition: transform 0.5s ease
-  -webkit-font-smoothing: antialiased
-  padding: 0 24px
-  box-sizing: border-box
-  h1
-    padding: 0px 15px
-    @media all and (max-width: 1200px)
-      font-size: 1em
+  border-bottom 2px solid #fff
+  display flex
+  align-items center
+  height 4rem
 
-  ul
-    width: 100%
-    display: flex
-    justify-content: flex-end
-    align-items: center
-    height: nav-bar-height
+  @media all and (min-width: 1449px)
+    justify-content space-between
+    padding 1rem 21%
 
-    .nav-link:hover > .nav-item-above
-        transform: rotate3d(1 0 0 0)
+  @media all and (max-width: 1450px)
+    justify-content space-evenly
+    padding 0
 
-    .nav-link > .nav-item-above
-      @include transition(all 0.25s ease-in-out)
-      transform: rotate3d(1 0 0 -90deg)
-      transform-origin: center top 8px
-      height: 0vh
+  position fixed
+  z-index 3
+  background white
+  width 100vw
 
-    .nav-link:hover > .nav-item
-        transform: rotate3d(1 0 0 90deg)
+  .dropdown-trigger-label
+    padding 1rem
 
-    .nav-link > .nav-item
-      @include transition(all  0.25s ease-in-out)
-      transform: rotate3d(1 0 0 0)
-      transform-origin: center bottom 8px
+  .dropdown-items
+    animation fade-in 0.5s
+    position absolute
+    padding 1rem
+    background-color white
 
-    .nav-link
-      text-decoration: none
-      color: #635656
-      font-weight: 100
-      z-index: 9
+    .navbar-item
+      margin 0 0.05rem
 
-    li
-      list-style-type: none
-      padding: 0px 10px
+      &:hover > label
+        color #ff7e7e
 
-    .selected-page
-      color: #dea1a1
+  .input-field-container
+    width 17rem
+
+  .navbar-logged-in-items
+    display flex
+    justify-content center
+    align-items center
+
+    .navbar-logged-in-item
+      padding 0 1rem
+      animation appear 0.2s
+
+      label
+        cursor pointer
+
+      &:hover > label
+        color #ff7e7e
+
+  .nav-bar-title
+    font-size 1.3em
+    transition 0.5s ease-in-out
+    backface-visibility hidden
+    white-space nowrap
+    transform translateZ(0)
+    font-weight 900
+    -webkit-font-smoothing subpixel-antialiased
+
+  label
+    display block
+    font-size 0.75em
+    white-space nowrap
+
+  .dashboard-button:before
+    content '\f1fa'
+
+  #nav-bar-search-button
+    flex 0.5
+
+.nav-bar-mobile
+  padding 10px
+  display flex
+  justify-content center
+  align-items center
+  background white
+  position fixed
+  width 100%
+  z-index 3
+
+  a
+    margin-top 1rem
+
+  h2
+    transition 0.05s ease
+    font-size 1.3em
+    transition 0.2s ease-in-out
+    backface-visibility hidden
+    white-space nowrap
+    transform translateZ(0)
+    font-weight 900
+    -webkit-font-smoothing subpixel-antialiased
+    transform-squash(1)
+
+  .hide-nav-bar-title
+    transform-squash(0)

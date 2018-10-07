@@ -1,25 +1,43 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App.js'
-import './styl/main.styl'
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+// import registerServiceWorker from "./registerServiceWorker";
+import "./styl/globals.styl";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faCrown,
+  faImage,
+  faBullhorn,
+  faThLarge,
+  faStickyNote,
+  faPaperclip,
+  faUsers,
+  faCog,
+  faCamera,
+  faTh,
+  faSpinner,
+  faCheck,
+  faTimes,
+  faHeadphones,
+  faMobile,
+  faMusic,
+  faVideo
+} from "@fortawesome/fontawesome-free-solid";
+library.add(
+  faCrown,
+  faImage,
+  faBullhorn,
+  faThLarge,
+  faStickyNote,
+  faPaperclip,
+  faUsers,
+  faCog,
+  faCamera,
+  faTh,
+  faSpinner,
+  faCheck,
+  faTimes
+);
 
-var root = document.getElementById('root')
-
-document.body.addEventListener('scroll', function(e) {
-    console.log(e)
-    e.stopPropagation()
-})
-
-document.documentElement.addEventListener('scroll', function(e) {
-    console.log(e)
-    e.stopPropagation()
-})
-
-root.scroll="no"
-
-root.addEventListener('scroll', function(e) {
-    console.log(e)
-    e.stopPropagation()
-})
-
-ReactDOM.render(<App />, root);
+ReactDOM.render(<App />, document.getElementById("root"));
+// registerServiceWorker();

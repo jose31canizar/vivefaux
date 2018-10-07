@@ -1,3 +1,6 @@
-## Vivefaux
+##Vivefaux Client
 
-Faux's music sharing platform for artists.
+###Tech Stack
+
+React
+Firebase (Auth, Database, Storage with CORS)
