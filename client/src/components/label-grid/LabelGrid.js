@@ -182,7 +182,12 @@ export default class LabelGrid extends Component {
             >
               <h3>{title}</h3>
               <p>{description}</p>
-              <a href={soundcloud}>soundcloud</a>
+              <a
+                href={soundcloud}
+                style={{ visibility: soundcloud ? "visible" : "hidden" }}
+              >
+                soundcloud
+              </a>
             </div>
           </div>
         ))}

@@ -53,7 +53,7 @@ export default class LabelPanel extends Component {
           />
           <h1>{title}</h1>
           <p>{description}</p>
-          <a href={soundcloud}>soundcloud</a>
+          {soundcloud ? <a href={soundcloud}>soundcloud</a> : null}
         </div>
         {this.state.Content}
       </div>

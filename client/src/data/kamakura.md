@@ -16,3 +16,10 @@ To finish Kamakura Record’s first season, we have released the compilation alb
 
   <iframe src="https://open.spotify.com/embed/album/7zUX1w4MfJdLWFhUv0JpDY" width="300" height="380" frameBorder="0" allowtransparency="true"></iframe>
 
+
+https://open.spotify.com/album/0YgecA6sn3O4TylFPIKN0K
+https://open.spotify.com/album/4YEj9IekMFtZ3O0q6v492B
+https://open.spotify.com/album/6WN9itHwsXYauE6lXRUdCj
+https://open.spotify.com/album/1udDL5hn2DkZSCJti7Zvia
+https://open.spotify.com/album/20IdAawQs1X3SCmTqCBD3m
+https://open.spotify.com/album/5ZXPlwmc9qgTgNRMOmMwnF
