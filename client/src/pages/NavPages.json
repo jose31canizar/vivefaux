@@ -14,5 +14,9 @@
   {
     "path": "beat-store",
     "title": "Beat Store"
+  },
+  {
+    "path": "podcasts",
+    "title": "Podcasts"
   }
 ]

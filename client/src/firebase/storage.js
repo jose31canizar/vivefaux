@@ -1,18 +1,18 @@
 import { storage } from "./firebase";
-import { doUpdateUserField } from "./db";
+import { doUpdateUserField, doUpdatePage } from "./db";
 
-export const uploadFile = (name, file, metadata, id, field) =>
+export const uploadFile = (name, file, metadata, id, field, folder) =>
   storage
     .ref()
-    .child(name)
+    .child(`media/${name}`)
     .put(file, metadata)
     .then(snapshot => snapshot.ref.getDownloadURL())
-    .then(url => {
-      doUpdateUserField(field, url, id).then(() => {
-        console.log("saved image!");
-      });
-    })
+    .then(url => doUpdateUserField(field, folder, url, id))
     .catch(error => {
+      console.log(error.toString());
+      console.log(name, file, metadata, id, field, folder);
+      console.log(error.code);
+
       switch (error.code) {
         case "storage/unauthorized":
           console.log("user does not have permission to access the object");
@@ -26,13 +26,13 @@ export const uploadFile = (name, file, metadata, id, field) =>
       }
     });
 
-export const savePage = (name, data, cb) =>
+export const savePage = (name, data) =>
   storage
     .ref()
     .child(`pages/${name}`)
     .putString(data)
-    .then(snapshot => console.log("saved page!"))
-    .then(snapshot => cb())
+    .then(snapshot => snapshot.ref.getDownloadURL())
+    .then(url => doUpdatePage(name, url))
     .catch(error => {
       switch (error.code) {
         case "storage/unauthorized":

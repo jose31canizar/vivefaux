@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Navbar from "../components/navbar/Navbar";
 import Menubar from "./Menubar";
-import Page from "../pages/template/PageTemplate";
+import Page from "../pages/template/page";
 import "./Layout.styl";
 
 class Layout extends Component {

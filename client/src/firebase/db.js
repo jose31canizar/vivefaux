@@ -12,10 +12,40 @@ export const doUpdateUser = newData =>
 
 export const onceGetUsers = () => db.ref("users").once("value");
 
-export const doUpdateUserField = (field, value, id) =>
-  db.ref(`users/${id}`).update({
-    [field]: value
+export const doUpdateUserField = (field, folder, value, id) =>
+  db
+    .ref(`users/${id}`)
+    .child(folder)
+    .update({
+      [field]: value
+    });
+
+export const doUpdatePage = (field, data) =>
+  db.ref("pages").update({
+    [field]: data
   });
+
+export const loadPageIfExists = (field, cb) =>
+  db
+    .ref("pages")
+    .child(field)
+    .once("value")
+    .then(function(snapshot) {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      }
+    })
+    .then(url =>
+      fetch(url, {
+        mode: "cors"
+      })
+    )
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => {
+      return Promise.reject(err);
+    });
 
 export const loadAssetIfExists = (field, cb) =>
   db
@@ -24,5 +54,16 @@ export const loadAssetIfExists = (field, cb) =>
     .once("value", function(snapshot) {
       if (snapshot.exists()) {
         cb(snapshot.val());
+      }
+    });
+
+export const loadFolderIfExists = field =>
+  db
+    .ref(`users/${getId()}`)
+    .child(field)
+    .once("value")
+    .then(function(snapshot) {
+      if (snapshot.exists()) {
+        return snapshot.val();
       }
     });

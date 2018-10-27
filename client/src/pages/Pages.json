@@ -84,6 +84,15 @@
     "type": "editable"
   },
   {
+    "path": "edit-podcasts",
+    "title": "Edit Podcasts",
+    "image": "color-burst",
+    "editing": "podcasts",
+    "color": "#2a2a2b",
+    "icon": "headphones",
+    "type": "editable"
+  },
+  {
     "path": "settings",
     "title": "Settings",
     "image": "color-burst",

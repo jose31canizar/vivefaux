@@ -1,21 +1,24 @@
 import React, { Component } from "react";
-import withAuthorization from "../../components/withAuthorization";
-import { savePage, getPage } from "../../firebase/storage";
+import withAuthorization from "../../../components/withAuthorization";
 import {
-  Editor,
   EditorState,
   RichUtils,
   Modifier,
   getDefaultKeyBinding,
   KeyBindingUtil,
+  convertToRaw,
   convertFromRaw,
-  convertToRaw
+  CompositeDecorator,
+  Editor
 } from "draft-js";
-import "draft-js/dist/Draft.css";
+// import "draft-js/dist/Draft.css";
 import CodeUtils from "draft-js-code";
-import "./EditableTemplate.styl";
 import ColorPicker, { colorPickerPlugin } from "draft-js-color-picker";
-import { mdToDraftjs, draftjsToMd } from "draftjs-md-converter";
+import { db, storage } from "../../../firebase";
+import { Map } from "immutable";
+import { saveText } from "../../../elasticsearch";
+import { LinkPlugin, HashtagPlugin, IframePlugin, testText } from "./Plugins";
+import "./index.styl";
 
 const presetColors = [
   "#ff00aa",
@@ -50,7 +53,7 @@ var COLORS = [
 const ColorControls = props => {
   var currentStyle = props.editorState.getCurrentInlineStyle();
   return (
-    <div class="color-controls" style={styles.controls}>
+    <div style={styles.controls}>
       {COLORS.map((type, i) => (
         <StyleButton
           key={"style-button" + i}
@@ -64,7 +67,7 @@ const ColorControls = props => {
   );
 };
 
-const colorStyleMap = {
+export const colorStyleMap = {
   red: {
     color: "rgba(255, 0, 0, 1.0)"
   },
@@ -98,7 +101,8 @@ const styles = {
     marginTop: 20,
     fontSize: "1rem",
     minHeight: 400,
-    paddingTop: 20
+    paddingTop: 20,
+    width: "100%"
   },
   controls: {
     fontFamily: "'Avenir', sans-serif",
@@ -136,7 +140,7 @@ class StyleButton extends React.Component {
   }
 }
 
-const styleMap = {
+export const styleMap = {
   STRIKETHROUGH: {
     textDecoration: "line-through"
   },
@@ -153,6 +157,21 @@ const styleMap = {
     fontSize: "1rem"
   }
 };
+
+const blockRenderMap = Map({
+  "header-one": {
+    element: "h1"
+  },
+  "header-two": {
+    element: "h2"
+  },
+  "header-three": {
+    element: "h3"
+  },
+  unstyled: {
+    element: "p"
+  }
+});
 
 var INLINE_STYLES = [
   { label: "Bold", style: "BOLD" },
@@ -184,10 +203,24 @@ const InlineStyleControls = props => {
   );
 };
 
+function blockRenderer(contentBlock) {
+  const type = contentBlock.getType();
+  if (type === "atomic") {
+    return null;
+  }
+  return {
+    component: <div>I AM A COMPONENT</div>,
+    editable: false,
+    props: {
+      foo: "bar"
+    }
+  };
+}
+
 function getBlockStyle(block) {
   switch (block.getType()) {
     case "blockquote":
-      return "RichEditor-blockquote";
+      return "superFancyBlockquote";
     default:
       return null;
   }
@@ -197,24 +230,35 @@ class EditableTemplate extends Component {
   getEditorState = () => this.state.editorState;
   onChange = editorState => this.setState({ editorState });
   picker = colorPickerPlugin(this.onChange, this.getEditorState);
+
   constructor(props) {
     super(props);
-    // const content = window.localStorage.getItem("content");
-
     this.state = {
-      editorState: EditorState.createEmpty()
+      editorState: EditorState.createEmpty(),
+      savePageMessage: null
     };
   }
 
   componentDidMount() {
-    this.focus();
-    const content = getPage(this.props.editing).then(data => {
-      if (data) {
+    const { editing } = this.props;
+    console.log(editing);
+
+    db.loadPageIfExists(editing).then(content => {
+      if (content) {
+        const compositeDecorator = new CompositeDecorator([
+          LinkPlugin,
+          HashtagPlugin,
+          IframePlugin
+        ]);
         this.setState({
-          editorState: EditorState.createWithContent(convertFromRaw(data))
+          editorState: EditorState.createWithContent(
+            convertFromRaw(content),
+            compositeDecorator
+          )
         });
       }
     });
+    this.focus();
   }
   focus = () => this.editor.focus();
 
@@ -253,21 +297,25 @@ class EditableTemplate extends Component {
 
   handleKeyCommand = command => {
     const { editorState } = this.state;
-    const { notify } = this.props;
+    const { editing, notify } = this.props;
     let newState;
 
     if (command === "editor-save") {
-      console.log("result ", editorState.getCurrentContent());
-      const data = JSON.stringify(
-        convertToRaw(editorState.getCurrentContent())
-      );
+      saveText(editing, editorState.getCurrentContent().getPlainText());
+      storage
+        .savePage(
+          editing,
+          JSON.stringify(convertToRaw(editorState.getCurrentContent()))
+        )
+        .then(() => {
+          notify("save");
+        });
 
-      savePage(this.props.editing, data, () => notify("save"));
+      return "handled";
+    }
 
-      // window.localStorage.setItem(
-      //   "content",
-      //   JSON.stringify(convertToRaw(editorState.getCurrentContent()))
-      // );
+    if (command === "create-link") {
+      this.createEntity("LINK");
       return "handled";
     }
 
@@ -299,6 +347,10 @@ class EditableTemplate extends Component {
       return "editor-save";
     }
 
+    if (e.keyCode === 76 && hasCommandModifier(e)) {
+      return "create-link";
+    }
+
     if (!CodeUtils.hasSelectionInBlock(editorState))
       return getDefaultKeyBinding(e);
 
@@ -323,11 +375,62 @@ class EditableTemplate extends Component {
     if (CodeUtils.hasSelectionInBlock(editorState)) return "not-handled";
 
     this.onChange(CodeUtils.handleReturn(e, editorState));
+
     return "handled";
+  };
+
+  entityUpdate = contentStateWithEntity => {
+    const { editorState } = this.state;
+    const selectionState = editorState.getSelection();
+
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+    const contentStateWithLink = Modifier.applyEntity(
+      contentStateWithEntity,
+      selectionState,
+      entityKey
+    );
+
+    const newEditorState = EditorState.push(
+      editorState,
+      contentStateWithLink,
+      "create-link"
+    );
+
+    this.onChange(newEditorState);
+  };
+
+  createEntity = type => {
+    const { editorState } = this.state;
+    const contentState = editorState.getCurrentContent();
+    const selectionState = editorState.getSelection();
+
+    const anchorKey = selectionState.getAnchorKey();
+    const currentContent = editorState.getCurrentContent();
+    const currentContentBlock = currentContent.getBlockForKey(anchorKey);
+    const start = selectionState.getStartOffset();
+    const end = selectionState.getEndOffset();
+    const selectedText = currentContentBlock.getText().slice(start, end);
+
+    let contentStateWithEntity;
+    if (testText(type, selectedText)) {
+      console.log("passed test");
+
+      contentStateWithEntity = contentState.createEntity(type, "IMMUTABLE", {
+        url: selectedText
+      });
+      this.entityUpdate(contentStateWithEntity);
+    } else {
+      console.log("failed test");
+
+      // contentStateWithEntity = contentState.createEntity(type, "IMMUTABLE", {
+      //   url: "http://www.josecanizares.com"
+      // });
+    }
   };
 
   render() {
     const { editorState } = this.state;
+
     return (
       <div class="article rich-editor" style={styles.root}>
         <ColorPicker
@@ -339,18 +442,38 @@ class EditableTemplate extends Component {
           editorState={editorState}
           onToggle={this.toggleInlineStyle}
         />
+        <span class="entity-controls">
+          <span
+            class="create-entity-button"
+            onClick={() => this.createEntity("LINK")}
+          >
+            Link
+          </span>
+          <span
+            class="create-entity-button"
+            onClick={() => this.createEntity("HASHTAG")}
+          >
+            Hashtag
+          </span>
+          <span
+            class="create-entity-button"
+            onClick={() => this.createEntity("IFRAME")}
+          >
+            Iframe
+          </span>
+        </span>
+
         <ColorControls editorState={editorState} onToggle={this.toggleColor} />
-        <div class="editor" style={styles.editor} onClick={this.focus}>
+        <div style={styles.editor} onClick={this.focus}>
           <Editor
             tabIndex="5"
-            blockStyleFn={getBlockStyle}
+            placeholder="Tell a story..."
+            editorState={editorState}
+            onChange={this.onChange}
             customStyleFn={this.picker.customStyleFn}
             customStyleMap={{ ...styleMap, ...colorStyleMap }}
-            editorState={editorState}
             handleKeyCommand={this.handleKeyCommand}
-            onChange={this.onChange}
             keyBindingFn={this.mapKeyToEditorCommand}
-            placeholder="Tell a story..."
             handleReturn={this.handleReturn}
             onTab={this.onTab}
             spellCheck={true}
@@ -361,6 +484,9 @@ class EditableTemplate extends Component {
     );
   }
 }
+// blockStyleFn={getBlockStyle}
+// blockRendererFn={blockRenderer}
+// blockRenderMap={blockRenderMap}
 
 const authCondition = authUser => !!authUser;
 

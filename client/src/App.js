@@ -11,10 +11,10 @@ import Account from "./components/account/Account";
 import Layout from "./layout/Layout";
 import Pages from "./pages/Pages";
 import NavPages from "./pages/NavPages";
-import Article from "./pages/template/ArticleTemplate";
-import CustomPage from "./pages/template/CustomTemplate";
-import EditablePage from "./pages/template/EditableTemplate";
-import DisplayTemplate from "./pages/template/DisplayTemplate";
+import Article from "./pages/template/article";
+import CustomPage from "./pages/template/custom";
+import EditablePage from "./pages/template/editable";
+import Display from "./pages/template/display";
 import * as routes from "./constants/routes";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import withAuthentication from "./components/withAuthentication";
@@ -67,7 +67,18 @@ class App extends Component {
   };
 
   notify = t => {
-    this.setState({ notification: t === "save" ? "saved file" : null });
+    let text = t;
+    switch (t) {
+      case "save":
+        text = "saved file";
+        break;
+      case "upload":
+        text = "uploaded file";
+        break;
+      default:
+        break;
+    }
+    this.setState({ notification: text });
     setTimeout(() => {
       this.setState({ notification: null });
     }, 1000);
@@ -132,9 +143,7 @@ class App extends Component {
                         exact
                         path={`/${path}`}
                         panelState={panelState}
-                        render={() => (
-                          <DisplayTemplate path={path} title={title} />
-                        )}
+                        render={() => <Article path={path} title={title} />}
                       />
                     ))}
                     <Route
@@ -165,7 +174,7 @@ class App extends Component {
                       exact
                       path={routes.ACCOUNT}
                       panelState={panelState}
-                      render={() => <Account />}
+                      render={() => <Account notify={notify} />}
                     />
                     <Route
                       exact

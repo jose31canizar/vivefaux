@@ -23,7 +23,14 @@ const MediaUploader = ({
       ref={ref => (mediaUploader = ref)}
       onChange={e =>
         !!mediaItemName
-          ? uploadFile(e, mediaUploader, authUser.uid, mediaItemName, false)
+          ? uploadFile(
+              e,
+              mediaUploader,
+              authUser.uid,
+              mediaItemName,
+              false,
+              "media"
+            )
           : null
       }
     />
@@ -40,7 +47,9 @@ class AccountProfile extends Component {
     name: null,
     mediaItemName: ""
   };
-  uploadFile = (e, uploader, id, field, preview) => {
+  uploadFile = (e, uploader, id, field, preview, folder) => {
+    const { notify } = this.props;
+    console.log("notify", notify);
     const file = uploader.files[0];
     const type = file.type;
     const name = +new Date() + "-" + file.name;
@@ -50,7 +59,9 @@ class AccountProfile extends Component {
     if (preview) {
       this.previewImage(file, type);
     }
-    storage.uploadFile(name, file, metadata, id, field);
+    storage
+      .uploadFile(name, file, metadata, id, field, folder)
+      .then(() => notify("upload"));
   };
   componentDidMount() {
     db.loadAssetIfExists("profile_picture", imageData =>
@@ -139,7 +150,7 @@ class AccountPage extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
           <div class="account">
-            <AccountProfile authUser={authUser} />
+            <AccountProfile authUser={authUser} notify={this.props.notify} />
             <UpdateAccount />
             <PasswordForgetForm />
             <PasswordChangeForm />

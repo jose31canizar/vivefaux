@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { getPage } from "../../firebase/storage";
+import { getPage } from "../../../firebase/storage";
 import { convertFromRaw, ContentState } from "draft-js";
 import { stateToHTML } from "draft-js-export-html";
-import "./DisplayTemplate.styl";
+import "./index.styl";
 
 export default class DisplayTemplate extends Component {
   state = {
