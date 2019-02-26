@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "atob": "2.1.0",
-    "deep-extend": "0.5.1",
-    "hoek": "4.2.1",
-    "marked": "0.3.9",
-    "randomatic": "3.0.0"
-  }
-}
