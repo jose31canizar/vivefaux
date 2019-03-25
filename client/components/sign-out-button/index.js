@@ -5,7 +5,7 @@ import { LOG_IN } from "../../constants/routes";
 
 const SignOutButton = ({ history, className }) => (
   <Button
-    class={className}
+    className={className}
     onClick={() => auth.doSignOut().then(() => history.push(LOG_IN))}
     onTouchEnd={() => auth.doSignOut().then(() => history.push(LOG_IN))}
   >

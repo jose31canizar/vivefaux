@@ -2,6 +2,8 @@ import React from "react";
 import Layout from "../components/layout";
 import App, { Container } from "next/app";
 import { PageTransition } from "next-page-transitions";
+import withReduxStore from "../lib/with-redux-store";
+import { Provider } from "react-redux";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faCrown,
@@ -38,7 +40,7 @@ library.add(
   faTimes
 );
 
-export default class MyApp extends App {
+class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     let pageProps = {};
 
@@ -50,31 +52,35 @@ export default class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, reduxStore } = this.props;
     return (
       <Container>
-        <Layout>
-          <PageTransition timeout={300} classNames="page-transition">
-            <Component {...pageProps} />
-          </PageTransition>
-          <style jsx global>{`
-            .page-transition-enter {
-              opacity: 0;
-            }
-            .page-transition-enter-active {
-              opacity: 1;
-              transition: opacity 300ms;
-            }
-            .page-transition-exit {
-              opacity: 1;
-            }
-            .page-transition-exit-active {
-              opacity: 0;
-              transition: opacity 300ms;
-            }
-          `}</style>
-        </Layout>
+        <Provider store={reduxStore}>
+          <Layout>
+            <PageTransition timeout={500} classNames="page-transition">
+              <Component {...pageProps} />
+            </PageTransition>
+            <style jsx global>{`
+              .page-transition-enter {
+                transform: translate3d(-100vw, 0, 0);
+              }
+              .page-transition-enter-active {
+                transform: translate3d(0, 0, 0);
+                transition: all 500ms;
+              }
+              .page-transition-exit {
+                transform: translate3d(0, 0, 0);
+              }
+              .page-transition-exit-active {
+                transform: translate3d(-100vw, 0, 0);
+                transition: all 500ms;
+              }
+            `}</style>
+          </Layout>
+        </Provider>
       </Container>
     );
   }
 }
+
+export default withReduxStore(MyApp);

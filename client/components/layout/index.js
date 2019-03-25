@@ -6,7 +6,7 @@ import "./index.styl";
 export default class Layout extends Component {
   render() {
     return (
-      <div class="layout">
+      <div className="layout">
         <Head />
         <Nav />
         {this.props.children}

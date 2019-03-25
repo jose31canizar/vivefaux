@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import withAuthorization from "../../../components/withAuthorization";
+import withAuthorization from "../../../hocs/withAuthorization";
 import Footer from "../../../layout/Footer";
 import { db } from "../../../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,7 +19,7 @@ class CustomPage extends Component {
     const { className } = this.props;
     const { users } = this.state;
     return (
-      <div class="custom-page">
+      <div className="custom-page">
         <section className={className}>
           {!!users ? (
             <UserList users={users} />
@@ -37,18 +37,18 @@ class CustomPage extends Component {
 }
 
 const UserList = ({ users }) => (
-  <div class="user-list">
+  <div className="user-list">
     <h3>List of Users</h3>
     {Object.keys(users).map(key => (
-      <div class="user" key={"user-" + key}>
-        <div class="profile-picture">
+      <div className="user" key={"user-" + key}>
+        <div className="profile-picture">
           <img src={users[key].profile_picture} />
         </div>
-        <div class="user-info">
-          <p class="name" key={key}>
+        <div className="user-info">
+          <p className="name" key={key}>
             {users[key].name}
           </p>
-          <p class="email" key={key}>
+          <p className="email" key={key}>
             {users[key].email}
           </p>
         </div>

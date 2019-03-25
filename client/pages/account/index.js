@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import AuthUserContext from "../AuthUserContext";
-import { PasswordForgetForm } from "../password-forget/PasswordForget";
-import PasswordChangeForm from "../password-change/PasswordChange";
-import UpdateAccount from "../update-account/UpdateAccount";
-import withAuthorization from "../withAuthorization";
+// import { PasswordForgetForm } from "../password-forget/PasswordForget";
+// import PasswordChangeForm from "../../components/password-change";
+// import UpdateAccount from "../update-account/UpdateAccount";
+import withAuthorization from "../../hocs/withAuthorization";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import InputField from "../../items/input-field/InputField";
+import InputField from "../../components/input-field";
 import "./index.styl";
 
 const MediaUploader = ({ uploadFile, authUser, mediaItemName, loading }) => (
-  <div class="media-uploader-container">
+  <div className="media-uploader-container">
     <input
       type="file"
       name="media-file"
@@ -27,7 +26,7 @@ const MediaUploader = ({ uploadFile, authUser, mediaItemName, loading }) => (
     {loading ? (
       <FontAwesomeIcon icon="spinner" spin />
     ) : (
-      <label for="media-file" class="file-upload-button">
+      <label for="media-file" className="file-upload-button">
         upload media
       </label>
     )}
@@ -87,10 +86,10 @@ class AccountProfile extends Component {
     const { authUser } = this.props;
 
     return (
-      <div class="account-profile">
+      <div className="account-profile">
         {name ? (
           <div style={{ display: "flex" }}>
-            <div class="profile-picture-container">
+            <div className="profile-picture-container">
               <input
                 type="file"
                 name="file"
@@ -104,14 +103,14 @@ class AccountProfile extends Component {
                   target.value = "";
                 }}
               />
-              <label for="file" class="file-upload-button" />
+              <label for="file" className="file-upload-button" />
               {imageExists ? (
                 <img src={imageData} alt="could not load profile image" />
               ) : (
                 <FontAwesomeIcon icon="camera" />
               )}
             </div>
-            <div class="profile-info">
+            <div className="profile-info">
               <h3>Here's your account,</h3>
               <h3>{name}</h3>
               <h5>{authUser.email}</h5>
@@ -142,16 +141,12 @@ class AccountProfile extends Component {
 class AccountPage extends Component {
   render() {
     return (
-      <AuthUserContext.Consumer>
-        {authUser => (
-          <div class="account">
-            <AccountProfile authUser={authUser} notify={this.props.notify} />
-            <UpdateAccount />
-            <PasswordForgetForm />
-            <PasswordChangeForm />
-          </div>
-        )}
-      </AuthUserContext.Consumer>
+      <div className="account">
+        {/* <AccountProfile notify={this.props.notify} /> */}
+        {/* <UpdateAccount /> */}
+        {/* <PasswordForgetForm /> */}
+        {/* <PasswordChangeForm /> */}
+      </div>
     );
   }
 }

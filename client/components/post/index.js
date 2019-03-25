@@ -1,10 +1,11 @@
 import React from "react";
 import "./index.styl";
+import { parse, distanceInWordsToNow } from "date-fns";
 
 const Post = ({ title, date, description, links, iframes }) => (
   <div className="post">
     <h2>{title}</h2>
-    <p>{date}</p>
+    <p>{`${distanceInWordsToNow(parse(date))} ago`}</p>
     <p>{description}</p>
     <p>
       {links.map((link, j) => (

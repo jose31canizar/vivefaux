@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import withAuthorization from "../../../components/withAuthorization";
+import withAuthorization from "../../../hocs/withAuthorization";
 import {
   EditorState,
   RichUtils,
@@ -189,7 +189,7 @@ const InlineStyleControls = props => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
 
   return (
-    <div class="RichEditor-controls">
+    <div className="RichEditor-controls">
       {INLINE_STYLES.map(type => (
         <StyleButton
           key={type.label}
@@ -432,7 +432,7 @@ class EditableTemplate extends Component {
     const { editorState } = this.state;
 
     return (
-      <div class="article rich-editor" style={styles.root}>
+      <div className="article rich-editor" style={styles.root}>
         <ColorPicker
           toggleColor={color => this.picker.addColor(color)}
           presetColors={presetColors}
@@ -442,21 +442,21 @@ class EditableTemplate extends Component {
           editorState={editorState}
           onToggle={this.toggleInlineStyle}
         />
-        <span class="entity-controls">
+        <span className="entity-controls">
           <span
-            class="create-entity-button"
+            className="create-entity-button"
             onClick={() => this.createEntity("LINK")}
           >
             Link
           </span>
           <span
-            class="create-entity-button"
+            className="create-entity-button"
             onClick={() => this.createEntity("HASHTAG")}
           >
             Hashtag
           </span>
           <span
-            class="create-entity-button"
+            className="create-entity-button"
             onClick={() => this.createEntity("IFRAME")}
           >
             Iframe

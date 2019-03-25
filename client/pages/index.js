@@ -1,65 +1,29 @@
 import React, { Component } from "react";
-import NewsData from "../constants/news-feed.json";
-import LabelGrid from "../components/label-grid";
+import { connect } from "react-redux";
+import LabelGrid from "../components/grid";
 import Post from "../components/post";
+import { loadPosts } from "~/actions/posts";
 import "./index.styl";
 
-export default class Home extends Component {
+class Home extends Component {
   state = {
-    labelOpen: false,
-    posts: [
-      {
-        title: "Origin",
-        date: "8 - 22 - 17",
-        description:
-          "Vivefaux announces the release of Origin, a collaborative project stringing together various sounds from the Vivefaux collective.",
-        links: [
-          {
-            name: "Spotify",
-            url: "https://open.spotify.com/album/7zUX1w4MfJdLWFhUv0JpDY"
-          }
-        ],
-        iframes: ["https://open.spotify.com/embed/album/7zUX1w4MfJdLWFhUv0JpDY"]
-      },
-      {
-        title: "Origin",
-        date: "8 - 22 - 17",
-        description:
-          "Vivefaux announces the release of Origin, a collaborative project stringing together various sounds from the Vivefaux collective.",
-        links: [
-          {
-            name: "Spotify",
-            url: "https://open.spotify.com/album/7zUX1w4MfJdLWFhUv0JpDY"
-          }
-        ],
-        iframes: ["https://open.spotify.com/embed/album/7zUX1w4MfJdLWFhUv0JpDY"]
-      },
-      {
-        title: "Origin",
-        date: "8 - 22 - 17",
-        description:
-          "Vivefaux announces the release of Origin, a collaborative project stringing together various sounds from the Vivefaux collective.",
-        links: [
-          {
-            name: "Spotify",
-            url: "https://open.spotify.com/album/7zUX1w4MfJdLWFhUv0JpDY"
-          }
-        ],
-        iframes: ["https://open.spotify.com/embed/album/7zUX1w4MfJdLWFhUv0JpDY"]
-      }
-    ]
+    labelOpen: false
   };
-  componentDidMount() {
-    // loadPosts().then(posts => {
-    //   console.log(posts);
-    //   this.setState({ posts });
-    // });
+  // static getInitialProps({ reduxStore }) {
+  //   reduxStore.dispatch(loadPosts());
+
+  //   return {};
+  // }
+  async componentDidMount() {
+    this.props.loadPosts();
   }
   render() {
-    const { labelOpen, posts } = this.state;
+    const { labelOpen } = this.state;
+    const { posts } = this.props;
+
     return (
-      <div class={`home ${labelOpen ? "label-open" : ""}`}>
-        <div class="left-panel">
+      <div className={`home ${labelOpen ? "label-open" : ""}`}>
+        <div className="left-panel">
           <LabelGrid
             enableScroll={() => this.setState({ labelOpen: false })}
             disableScroll={() => this.setState({ labelOpen: true })}
@@ -68,7 +32,7 @@ export default class Home extends Component {
             src="//lightwidget.com/widgets/e750d4a7bf8b5bc690fc97adac21cc35.html"
             scrolling="no"
             allowtransparency="true"
-            class="lightwidget-widget"
+            className="lightwidget-widget"
             style={{
               width: "100%",
               border: 0,
@@ -78,12 +42,16 @@ export default class Home extends Component {
           />
         </div>
 
-        <div class="news-feed">
-          {posts.map((props, i) => (
-            <Post key={`post-${i}`} {...props} />
-          ))}
+        <div className="recent-releases">
+          {posts &&
+            posts.map((props, i) => <Post key={`post-${i}`} {...props} />)}
         </div>
       </div>
     );
   }
 }
+
+export default connect(
+  ({ posts }) => ({ posts: posts.posts }),
+  dispatch => ({ loadPosts: () => dispatch(loadPosts()) })
+)(Home);

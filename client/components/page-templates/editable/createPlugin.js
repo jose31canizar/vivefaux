@@ -29,7 +29,7 @@ export default function createPlugin(type, className, REGEX) {
   const component = props => {
     if (!props.entityKey) {
       console.log(props);
-      return <span class={className}>{props.children}</span>;
+      return <span className={className}>{props.children}</span>;
     }
 
     const { url } = props.contentState.getEntity(props.entityKey).getData();
@@ -45,14 +45,14 @@ export default function createPlugin(type, className, REGEX) {
       //       src={`${url}`}
       //     />
       return (
-        <span class={className} onClick={() => console.log(url)}>
+        <span className={className} onClick={() => console.log(url)}>
           {props.children}
         </span>
       );
     }
 
     return (
-      <span class={className} onClick={() => console.log(url)}>
+      <span className={className} onClick={() => console.log(url)}>
         {props.children}
       </span>
     );

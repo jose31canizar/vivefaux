@@ -12,10 +12,10 @@ const InputArea = ({
   datalist,
   datalistName
 }) => (
-  <div class="input-area-container">
+  <div className="input-area-container">
     <label>{label}</label>
     <textarea
-      class="input-area"
+      className="input-area"
       rows="5"
       value={value}
       onChange={event => setState(byPropKey(field, event.target.value))}

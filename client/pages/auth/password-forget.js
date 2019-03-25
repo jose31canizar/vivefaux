@@ -56,7 +56,7 @@ class PasswordForgetForm extends Component {
     const isInvalid = email === "";
 
     return (
-      <section class="auth container">
+      <section className="auth container">
         <h3>Reset your password below</h3>
         <InputField
           value={this.state.email}

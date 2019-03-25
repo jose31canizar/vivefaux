@@ -31,7 +31,7 @@ export default class DisplayTemplate extends Component {
     }
 
     return (
-      <div class="display-template">
+      <div className="display-template">
         <h1>{title}</h1>
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </div>

@@ -12,10 +12,10 @@ const InputField = ({
   datalistName,
   autoComplete
 }) => (
-  <div class="input-field-container">
+  <div className="input-field-container">
     <label>{label}</label>
     <input
-      class="input-field"
+      className="input-field"
       value={value}
       onChange={event => setState(byPropKey(field, event.target.value))}
       type={type}

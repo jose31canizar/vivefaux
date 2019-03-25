@@ -42,7 +42,7 @@ class PasswordChangeForm extends Component {
     const isInvalid = passwordOne !== passwordTwo || passwordOne === "";
 
     return (
-      <section class="auth container">
+      <section className="auth container">
         <h3>Change your password below</h3>
         <InputField
           value={passwordOne}

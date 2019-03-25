@@ -2,24 +2,18 @@ import React, { Component } from "react";
 import "./index.styl";
 import Document from "next/document";
 import Labels from "../../constants/labels";
-import LabelPanel from "../label-panel";
+import Panel from "~/components/panel";
 
 function getElementOffset(el) {
   let top = 0;
   let left = 0;
   let element = el;
 
-  console.log(element);
-
   // Loop through the DOM tree
   // and add it's parent's offset to get page offset
   do {
     top += element.offsetTop || 0;
     left += element.offsetLeft || 0;
-    console.log(
-      `top is ${top} and left is ${left} and parent is ${element.offsetParent}`
-    );
-    console.log(element.offsetParent);
 
     element = element.offsetParent;
   } while (element);
@@ -43,7 +37,7 @@ export default class LabelGrid extends Component {
   };
   componentDidMount() {
     const { width, height } = document
-      .querySelector(".label-grid-item")
+      .querySelector(".grid-item")
       .getBoundingClientRect();
 
     let docel = document.documentElement;
@@ -60,7 +54,6 @@ export default class LabelGrid extends Component {
   toggleLabel = (e, i) => {
     // const { top, left } = e.target.getBoundingClientRect();
     const { top, left } = getElementOffset(e.target);
-    console.log(`top is ${top} and left is ${left}`);
     const x = left + window.pageXOffset;
     const y = top + window.pageYOffset;
 
@@ -114,14 +107,23 @@ export default class LabelGrid extends Component {
           true
         );
         if (allClosed) {
-          console.log("enable scroll");
-
           enableScroll();
         } else {
           disableScroll();
         }
       }
     );
+  };
+  containerClasses = i => {
+    const { labelState } = this.state;
+    const isOpen =
+      labelState[i] === "opening" ||
+      labelState[i] === "opened" ||
+      labelState[i] === "closing";
+    const isOpened = labelState[i] === "opened";
+    return `
+    grid-item-container ${isOpen ? "open" : ""} ${isOpened ? "opened" : ""}
+    `;
   };
   render() {
     const { toggleLabel, onTransitionFinish, closeLabel } = this;
@@ -136,22 +138,15 @@ export default class LabelGrid extends Component {
       h
     } = this.state;
 
-    console.log(this.state);
-
     return (
-      <div class="label-grid-container">
+      <div className="grid-container">
         {Labels.map(({ title, name, description, soundcloud }, i) => (
           <div
-            class={`label-grid-item-container ${
-              labelState[i] === "opening" ||
-              labelState[i] === "opened" ||
-              labelState[i] === "closing"
-                ? "open"
-                : ""
-            }`}
+            className={this.containerClasses(i)}
+            key={`grid-item-container-${i}`}
           >
             {labelState[i] === "opened" ? (
-              <LabelPanel
+              <Panel
                 title={title}
                 name={name}
                 description={description}
@@ -172,8 +167,8 @@ export default class LabelGrid extends Component {
                     : 1
                 })`
               }}
-              key={"label-grid-item-" + i}
-              class="label-grid-item"
+              key={"grid-item-" + i}
+              className="grid-item"
               onMouseDown={e => toggleLabel(e, i)}
               onTouchEnd={e => !dragging && toggleLabel(e, i)}
               onTouchStart={e => this.setState({ dragging: false })}

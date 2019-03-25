@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import InputField from "../../../components/input-field/";
-import InputArea from "../../../components/input-area/";
-import Button from "../../../components/button/";
-import { IP } from "../../../api";
+import InputField from "~/components/input-field/";
+import InputArea from "~/components/input-area/";
+import Button from "~/components/button/";
+import { IP } from "~/config";
 import "./index.styl";
 import styled from "styled-components";
 

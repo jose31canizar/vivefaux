@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 // import Loadable from "react-loadable";
+import { connect } from "react-redux";
+import { loadPostsByTag } from "~/actions/posts";
 import DOMPurify from "dompurify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Post from "~/components/post";
 import "./index.styl";
 
 const Loading = () => (
@@ -10,28 +13,10 @@ const Loading = () => (
   </div>
 );
 
-export default class LabelPanel extends Component {
-  state = {
-    Content: null
-  };
-  componentDidMount() {
-    // this.loadLabel(this.props.name);
+class Panel extends Component {
+  async componentDidMount() {
+    this.props.loadPostsByTag(this.props.name);
   }
-  loadLabel = name =>
-    import(`../../constants/${name}.md`).then(loaded =>
-      this.setState({
-        Content: (
-          <article
-            class="right-side"
-            dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(loaded.default, {
-                ALLOWED_TAGS: ["iframe", "h1", "h2", "h3", "b", "p", "hr"]
-              })
-            }}
-          />
-        )
-      })
-    );
   render() {
     const {
       title,
@@ -39,11 +24,13 @@ export default class LabelPanel extends Component {
       soundcloud,
       name,
       onMouseDown,
-      onTouchEnd
+      onTouchEnd,
+      posts
     } = this.props;
+
     return (
-      <div class="label-panel">
-        <div class="left-side">
+      <div className="panel">
+        <div className="left-side">
           <FontAwesomeIcon
             icon="times"
             color="white"
@@ -55,8 +42,19 @@ export default class LabelPanel extends Component {
           <p>{description}</p>
           {soundcloud ? <a href={soundcloud}>soundcloud</a> : null}
         </div>
-        {this.state.Content}
+        <div className="right-side">
+          {posts ? (
+            posts.map(post => <Post key={`${name}-posts`} {...post} />)
+          ) : (
+            <Loading />
+          )}
+        </div>
       </div>
     );
   }
 }
+
+export default connect(
+  ({ posts }, props) => ({ posts: posts[props.name] }),
+  dispatch => ({ loadPostsByTag: tag => dispatch(loadPostsByTag(tag)) })
+)(Panel);

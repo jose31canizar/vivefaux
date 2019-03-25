@@ -1,22 +1,21 @@
-.label-grid-container
+.grid-container
   display grid
   grid-template-columns repeat(2, 1fr)
   grid-template-rows repeat(2, 1fr)
   width 100%
   height max-content
 
-  .label-grid-item-container
+  .grid-item-container
     @media all and (max-width: 33.99rem)
       padding 1rem
 
-      .label-grid-item
+      .grid-item
         margin 0
-        height 100%
 
     @media all and (min-width: 34rem)
       margin 1rem
 
-    .label-grid-item
+    .grid-item
       transform-origin top left
       background-color white
       box-shadow 0 0 4px 1px rgba(231, 228, 228, 0.9)
@@ -24,6 +23,7 @@
       padding 1rem
       transition transform 0.5s ease-in 0.5s
       display block
+      height 100%
 
       &:hover
         background-color black
@@ -40,7 +40,8 @@
   .open
     z-index 4
 
-    .label-grid-item
+    .grid-item
+      box-shadow 0 0 4px 1px rgba(34, 31, 31, 0.9)
       background-color black
 
       p, h3, a

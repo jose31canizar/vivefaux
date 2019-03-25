@@ -29,7 +29,7 @@ class Subscribe extends Component {
     const isInvalid = email === "";
 
     return (
-      <section class="auth container">
+      <section className="auth container">
         <h3>Subscribe to our email list!</h3>
         <InputField
           value={email}

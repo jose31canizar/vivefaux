@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "next/router";
+import { withRouter } from "next/router";
+import { Link } from "next/link";
 import "./index.styl";
 import InputField, { byPropKey } from "../../components/input-field";
 import Button from "../../components/button";
@@ -53,7 +54,7 @@ class Login extends Component {
     const { email, password, error } = this.state;
     const { authenticate } = this;
     return (
-      <section class="auth container">
+      <section className="auth container">
         <h3>Log into Vivefaux</h3>
         <InputField
           value={email}

@@ -28,7 +28,7 @@ export default class NavbarIcon extends Component {
   render() {
     const { style } = this.state;
     return (
-      <div id="nav-icon" class={style} onMouseDown={this.props.togglePanel}>
+      <div id="nav-icon" className={style} onMouseDown={this.props.togglePanel}>
         <span />
         <span />
         <span />

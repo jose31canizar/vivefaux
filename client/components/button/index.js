@@ -2,9 +2,9 @@ import React from "react";
 import "./index.styl";
 
 const Button = ({ attempt, action, disabled, htmlFor, label, className }) => (
-  <div class="button-wrapper" onMouseDown={attempt}>
+  <div className="button-wrapper" onMouseDown={attempt}>
     <button
-      class={`button ${className}`}
+      className={`button ${className}`}
       onMouseDown={action}
       disabled={disabled}
     >

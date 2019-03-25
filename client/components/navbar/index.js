@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { loadPagesByPrivacy } from "~/actions/pages";
 import Link from "next/link";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import NavLink from "~/components/active-link";
 import { withRouter } from "next/router";
 import "./index.styl";
 import InputField from "../input-field";
 import NavbarIcon from "../nav-bar-icon";
-import SignOutButton from "../sign-out-button";
+import SignOutButton from "~/components/sign-out-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthUserContext from "../../AuthUserContext";
 import * as routes from "../../constants/routes";
@@ -45,6 +50,9 @@ class Navbar extends Component {
       dropdown: false
     };
   }
+  async componentDidMount() {
+    this.props.loadPagesByPrivacy(false);
+  }
   onEnter = e => {
     const { history } = this.props;
     const { query, focused } = this.state;
@@ -56,87 +64,84 @@ class Navbar extends Component {
 
   render() {
     const { dropdown } = this.state;
-    const { authUser, history, width } = this.props;
-    console.log(width);
+    const { width, pages } = this.props;
     if (width > 800) {
       return (
-        <AuthUserContext.Consumer>
-          {authUser => (
-            <div class="nav-bar">
-              <Link href={routes.HOME} tabIndex="-1">
-                <h2 class="nav-bar-title">vivefaux</h2>
-              </Link>
-              <Link href={routes.CONTACT} tabIndex="-1" class="navbar-item">
-                <label>Contact</label>
-              </Link>
-              <div
-                class="dropdown-trigger"
-                onMouseOver={() => this.setState({ dropdown: true })}
-                onMouseLeave={() => this.setState({ dropdown: false })}
-              >
-                <label class="dropdown-trigger-label">Music</label>
-                {dropdown && (
-                  <div class="dropdown-items">
-                    {[{ page: "asdf", title: "asdf" }].map(
-                      ({ path, title }, i) => (
-                        <Link href={path} tabIndex="-1" class="navbar-item">
-                          <label>{title}</label>
-                        </Link>
-                      )
-                    )}
-                  </div>
-                )}
-              </div>
-
-              {authUser ? (
-                <div class="navbar-logged-in-items">
-                  <InputField
-                    onFocus={() => this.setState({ focused: true })}
-                    onBlur={() => this.setState({ focused: false })}
-                    placeholder="search"
-                    label="filter"
-                    field="query"
-                    text="search your dashboard..."
-                    setState={obj => this.setState(obj)}
-                    datalistName="sections"
-                    onClick={this.focusTextInput}
-                    onTouchStart={this.focusTextInput}
-                    datalist={
-                      <datalist id="sections">
-                        {[{ path: "asdf" }].map((page, i) => (
-                          <option key={"option-" + i} value={page.path} />
-                        ))}
-                      </datalist>
-                    }
-                  />
-
-                  <NavLink
-                    href={routes.DASHBOARD}
-                    tabIndex="-1"
-                    class="navbar-logged-in-item"
-                  >
-                    <FontAwesomeIcon icon="th" color="black" />
-                  </NavLink>
-                  <SignOutButton className="navbar-logged-in-item" />
-                  <NavLink
-                    href="/account"
-                    tabIndex="-1"
-                    class="navbar-logged-in-item"
-                  >
-                    <label>Account</label>
-                  </NavLink>
+        <div>
+          <div className="nav-bar">
+            <Link href="/" tabIndex="-1">
+              <h2 className="nav-bar-title">vivefaux</h2>
+            </Link>
+            <Link href={routes.CONTACT} tabIndex="-1">
+              <label className="navbar-item">Contact</label>
+            </Link>
+            <div
+              className="dropdown-trigger"
+              onMouseOver={() => this.setState({ dropdown: true })}
+              onMouseLeave={() => this.setState({ dropdown: false })}
+            >
+              <label className="dropdown-trigger-label">Music</label>
+              {dropdown && (
+                <div className="dropdown-items">
+                  {pages &&
+                    pages.map(({ path, title }, i) => (
+                      <Link href={path} tabIndex="-1" className="navbar-item">
+                        <label>{title}</label>
+                      </Link>
+                    ))}
                 </div>
-              ) : null}
+              )}
             </div>
-          )}
-        </AuthUserContext.Consumer>
+            <NavLink
+              activeClassName="active"
+              href={routes.DASHBOARD}
+              tabIndex="-1"
+              className="navbar-logged-in-item"
+            >
+              <label>
+                <FontAwesomeIcon icon="th" color="black" />
+              </label>
+            </NavLink>
+            <div className="navbar-logged-in-items">
+              <InputField
+                onFocus={() => this.setState({ focused: true })}
+                onBlur={() => this.setState({ focused: false })}
+                placeholder="search"
+                label="filter"
+                field="query"
+                text="search your dashboard..."
+                setState={obj => this.setState(obj)}
+                datalistName="sections"
+                onClick={this.focusTextInput}
+                onTouchStart={this.focusTextInput}
+                datalist={
+                  <datalist id="sections">
+                    {pages &&
+                      pages.map((page, i) => (
+                        <option key={"option-" + i} value={page.path} />
+                      ))}
+                  </datalist>
+                }
+              />
+              {/* <SignOutButton className="navbar-logged-in-item" /> */}
+            </div>
+            <NavLink
+              activeClassName="active"
+              href="/account"
+              tabIndex="-1"
+              className="navbar-logged-in-item"
+            >
+              <label>Account</label>
+            </NavLink>
+          </div>
+        </div>
       );
     } else {
       return (
-        <div class="nav-bar-mobile">
+        <div className="nav-bar-mobile">
           <Link href="/" tabIndex="-1">
             <h2
-              class={
+              className={
                 this.props.panelState === "closed" ? "" : "hide-nav-bar-title"
               }
             >
@@ -153,4 +158,11 @@ class Navbar extends Component {
   }
 }
 
-export default withRouter(withSize(Navbar));
+export default compose(
+  connect(
+    ({ pages }) => ({ pages: pages.publicPages }),
+    dispatch => bindActionCreators({ loadPagesByPrivacy }, dispatch)
+  ),
+  withRouter,
+  withSize
+)(Navbar);

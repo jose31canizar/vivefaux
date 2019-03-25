@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SmoothScroll from "../../../components/smooth-scroll/SmoothScroll";
-import withAuthorization from "../../../components/withAuthorization";
+import withAuthorization from "../../../hocs/withAuthorization";
 import Footer from "../../../layout/Footer";
 import DOMPurify from "dompurify";
 import { db } from "../../../firebase";
@@ -39,7 +39,6 @@ class ArticleTemplate extends Component {
     db.loadFolderIfExists("media").then(mediaItems => {
       this.setState({ mediaItems }, () => {
         const { path } = this.props;
-        console.log(path);
 
         if (path) {
           db.loadPageIfExists(path)
@@ -98,14 +97,13 @@ class ArticleTemplate extends Component {
               if (!markdown) {
                 return null;
               }
-              console.log(iframes);
               const newMarkdown = iframes.reduce((acc, url) => {
-                let x = acc.split(`<p class="iframe-span">${url}</p>`);
+                let x = acc.split(`<p className="iframe-span">${url}</p>`);
                 x.splice(
                   1,
                   0,
                   `<iframe
-                    class="iframe-span"
+                    className="iframe-span"
                     width="100%"
                     height="300"
                     scrolling="no"
@@ -119,7 +117,6 @@ class ArticleTemplate extends Component {
               }, markdown);
 
               const { mediaItems } = this.state;
-              console.log("bye", newMarkdown);
               if (!mediaItems) {
                 this.setState({ markdown: newMarkdown });
                 return null;
@@ -131,7 +128,7 @@ class ArticleTemplate extends Component {
                 const regex = new RegExp(`\\[${name}\\]`, "g");
                 return acc.replace(
                   regex,
-                  `<img class="markdown-image" src="${mediaItems[name]}"/>`
+                  `<img className="markdown-image" src="${mediaItems[name]}"/>`
                 );
               }, newMarkdown);
 
@@ -172,7 +169,7 @@ class ArticleTemplate extends Component {
     console.log("in render", markdown);
 
     return (
-      <div class="article">
+      <div className="article">
         <section className={className}>
           <article
             dangerouslySetInnerHTML={{
@@ -182,7 +179,7 @@ class ArticleTemplate extends Component {
             }}
           />
           <aside>
-            <ol class="sidebar-menu">
+            <ol className="sidebar-menu">
               {links.map(({ name, id }, i) => (
                 <SmoothScroll section={id} key={i} className="smooth-scroll">
                   <li>{name}</li>

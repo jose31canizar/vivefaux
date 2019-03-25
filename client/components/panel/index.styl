@@ -1,4 +1,13 @@
-.label-panel
+@keyframes peek-in
+  from
+    opacity 0
+    transform translate3d(0, 40px, 0)
+
+  100%
+    opacity 1
+    transform translate3d(0, 0, 0)
+
+.panel
   animation fade-in 0.5s
   position fixed
   z-index 1
@@ -17,6 +26,14 @@
     width 50%
     background rgba(27, 27, 27, 0.5)
 
+    for row in 1 2 3 4
+      > :nth-child({row})
+        transform translate3d(0, 40px, 0)
+        display block
+        opacity 0
+        animation peek-in 1s (row * 0.25s)
+        animation-fill-mode forwards
+
     @media all and (max-width: 64rem)
       width 100%
       padding 5rem 2rem 2rem
@@ -33,10 +50,10 @@
       color white
 
     h2
-      margin 4rem 0
+      color #d68280
 
     p
-      margin 2rem 0
+      color black
 
     @media all and (max-width: 64rem)
       width 100%

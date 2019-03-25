@@ -1,18 +1,22 @@
 import React from "react";
-import { Link } from "next/link";
+import Link from "next/link";
 import "./index.styl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Card = props => (
-  <span class="card">
-    <Link to={props.path} class="card-link" tabIndex="-1">
-      <div class="card-content" style={{ backgroundColor: props.color }}>
-        <FontAwesomeIcon icon={props.icon} color="#ffffff75" />
-      </div>
-      <div class="card-label">
-        <label>{props.title}</label>
-      </div>
-    </Link>
-  </span>
-);
+const Card = ({ path, icon, title, color }) => {
+  console.log(path, icon, title, color);
+
+  return (
+    <span className="card">
+      <Link href={path} className="card-link" tabIndex="-1">
+        {/* <div className="card-content" style={{ backgroundColor: color }}>
+          <FontAwesomeIcon icon={icon} color="#ffffff75" />
+        </div> */}
+        <div className="card-label">
+          <label>{title}</label>
+        </div>
+      </Link>
+    </span>
+  );
+};
 export default Card;

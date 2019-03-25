@@ -6,7 +6,7 @@ import "react-html5video/dist/styles.css";
 import movie from "../../movies/Savior_3.mp4";
 import "./index.styl";
 const CustomVideoPlayer = ({ video, videoEl, children, ...restProps }) => (
-  <div class="video-player">
+  <div className="video-player">
     <video
       style={{ width: "100%" }}
       controls={true}
@@ -25,7 +25,7 @@ const VideoPlayer = videoConnect(CustomVideoPlayer);
 export default class extends Component {
   render() {
     return (
-      <div class="trailer">
+      <div className="trailer">
         <VideoPlayer />
         <h3>Savior Behavior</h3>
         <h5>Jess G</h5>
