@@ -61,23 +61,27 @@ class Navbar extends Component {
       return (
         <AuthUserContext.Consumer>
           {authUser => (
-            <div class="nav-bar">
-              <Link to={routes.HOME} tabIndex="-1">
-                <h2 class="nav-bar-title">vivefaux</h2>
+            <div className="nav-bar">
+              <Link to="/" tabIndex="-1">
+                <h2 className="nav-bar-title">vivefaux</h2>
               </Link>
-              <NavLink to={routes.CONTACT} tabIndex="-1" class="navbar-item">
+              <NavLink
+                to={routes.CONTACT}
+                tabIndex="-1"
+                className="navbar-item"
+              >
                 <label>Contact</label>
               </NavLink>
               <div
-                class="dropdown-trigger"
+                className="dropdown-trigger"
                 onMouseOver={() => this.setState({ dropdown: true })}
                 onMouseLeave={() => this.setState({ dropdown: false })}
               >
-                <label class="dropdown-trigger-label">Music</label>
+                <label className="dropdown-trigger-label">Music</label>
                 {dropdown && (
-                  <div class="dropdown-items">
+                  <div className="dropdown-items">
                     {NavPages.map(({ path, title }, i) => (
-                      <NavLink to={path} tabIndex="-1" class="navbar-item">
+                      <NavLink to={path} tabIndex="-1" className="navbar-item">
                         <label>{title}</label>
                       </NavLink>
                     ))}
@@ -86,7 +90,7 @@ class Navbar extends Component {
               </div>
 
               {authUser ? (
-                <div class="navbar-logged-in-items">
+                <div className="navbar-logged-in-items">
                   <InputField
                     onFocus={() => this.setState({ focused: true })}
                     onBlur={() => this.setState({ focused: false })}
@@ -110,7 +114,7 @@ class Navbar extends Component {
                   <NavLink
                     to={routes.DASHBOARD}
                     tabIndex="-1"
-                    class="navbar-logged-in-item"
+                    className="navbar-logged-in-item"
                   >
                     <FontAwesomeIcon icon="th" color="black" />
                   </NavLink>
@@ -118,7 +122,7 @@ class Navbar extends Component {
                   <NavLink
                     to="/account"
                     tabIndex="-1"
-                    class="navbar-logged-in-item"
+                    className="navbar-logged-in-item"
                   >
                     <label>Account</label>
                   </NavLink>
@@ -130,10 +134,10 @@ class Navbar extends Component {
       );
     } else {
       return (
-        <div class="nav-bar-mobile">
+        <div className="nav-bar-mobile">
           <Link to="/" tabIndex="-1">
             <h2
-              class={
+              className={
                 this.props.panelState === "closed" ? "" : "hide-nav-bar-title"
               }
             >

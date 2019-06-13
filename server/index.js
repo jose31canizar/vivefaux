@@ -9,14 +9,19 @@ const postsByTag = posts.postsByTag;
 const pages = require("./controllers/pages");
 const allPages = pages.pages;
 const pagesByPrivacy = pages.pagesByPrivacy;
+const dev = process.env.NODE_ENV !== "production";
 
 const app = express();
 var router = express.Router();
 
-mongoose.connect("mongodb://localhost/vivefaux");
-// mongoose.connect(
-//   "mongodb://vivefaux_user:Kagome!!123@ds221095.mlab.com:21095/vivefaux"
-// );
+if (dev) {
+  mongoose.connect("mongodb://localhost/vivefaux");
+} else {
+  mongoose.connect(
+    "mongodb://vivefaux_user:Kagome!!123@ds221095.mlab.com:21095/vivefaux"
+  );
+}
+
 const mongooseConnection = mongoose.connection;
 
 app.use(function(req, res, next) {
@@ -64,6 +69,6 @@ router.get("/pages-by-privacy", pagesByPrivacy);
 
 app.use("/v1", router);
 
-const port = process.env.PORT || 9010;
+const port = process.env.PORT || 9008;
 app.listen(port);
 console.log(`express app listening on port ${port}`);

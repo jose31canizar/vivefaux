@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Post = require("./post.js");
-const Page = require("./page.js");
+const Post = require("./post");
+const Page = require("./page");
 const bcrypt = require("bcrypt-nodejs");
 
 var Promise = require("bluebird");
@@ -28,7 +28,7 @@ var userSchema = new Schema(
     },
     following: [{ type: Schema.ObjectId, ref: this }],
     followers: [{ type: Schema.ObjectId, ref: this }],
-    likes: [{ type: Schema.ObjectId, ref: Post }],
+    // likes: [{ type: Schema.ObjectId, ref: Post }],
     birthday: Date,
     gender: String,
     metadata: {
@@ -50,13 +50,15 @@ userSchema.pre("save", function(next) {
   });
 });
 
-userSchema.statics.signup = function(body, callback) {
+userSchema.statics.signup = function(
+  { name, username, email, password },
+  callback
+) {
   var user = new userModel({
-    firstName: body.firstName,
-    lastName: body.lastName,
-    username: body.username,
-    email: body.email,
-    password: body.password
+    name,
+    username,
+    email,
+    password
   });
 
   user.save((err, res) => {
@@ -67,7 +69,7 @@ userSchema.statics.signup = function(body, callback) {
   });
 };
 
-//authenticate input against database
+// authenticate input against database
 userSchema.statics.authenticate = function(email, password, callback) {
   userModel.findOne({ email: email }).exec(function(err, user) {
     if (err) {
@@ -87,5 +89,4 @@ userSchema.statics.authenticate = function(email, password, callback) {
   });
 };
 
-var userModel = mongoose.model("user", userSchema);
-module.exports = userModel;
+module.exports = mongoose.model("user", userSchema);

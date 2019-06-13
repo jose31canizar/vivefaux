@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-// import { PasswordForgetForm } from "../password-forget/PasswordForget";
-// import PasswordChangeForm from "../../components/password-change";
-// import UpdateAccount from "../update-account/UpdateAccount";
+import PasswordForget from "~/components/password-forget";
+import PasswordChange from "~/components/password-change";
+import UpdateAccount from "~/components/update-account";
 import withAuthorization from "../../hocs/withAuthorization";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import InputField from "../../components/input-field";
+import InputField from "~/components/input-field";
 import "./index.styl";
 
 const MediaUploader = ({ uploadFile, authUser, mediaItemName, loading }) => (
@@ -24,7 +24,7 @@ const MediaUploader = ({ uploadFile, authUser, mediaItemName, loading }) => (
       }}
     />
     {loading ? (
-      <FontAwesomeIcon icon="spinner" spin />
+      <FontAwesomeIcon icon="spinner-third" spin />
     ) : (
       <label for="media-file" className="file-upload-button">
         upload media
@@ -55,16 +55,16 @@ class AccountProfile extends Component {
       this.previewImage(file, type);
     }
     this.setState({ loading: true });
-    storage.uploadFile(name, file, metadata, id, field, folder).then(() => {
-      notify("upload");
-      this.setState({ loading: false });
-    });
+    // storage.uploadFile(name, file, metadata, id, field, folder).then(() => {
+    //   notify("upload");
+    //   this.setState({ loading: false });
+    // });
   };
   componentDidMount() {
-    db.loadAssetIfExists("profile_picture", imageData =>
-      this.setState({ imageData, imageExists: true })
-    );
-    db.loadAssetIfExists("name", name => this.setState({ name }));
+    // db.loadAssetIfExists("profile_picture", imageData =>
+    //   this.setState({ imageData, imageExists: true })
+    // );
+    // db.loadAssetIfExists("name", name => this.setState({ name }));
   }
   previewImage = (file, type) => {
     let reader = new FileReader();
@@ -142,10 +142,10 @@ class AccountPage extends Component {
   render() {
     return (
       <div className="account">
-        {/* <AccountProfile notify={this.props.notify} /> */}
-        {/* <UpdateAccount /> */}
-        {/* <PasswordForgetForm /> */}
-        {/* <PasswordChangeForm /> */}
+        <AccountProfile notify={this.props.notify} />
+        <UpdateAccount />
+        <PasswordForget />
+        <PasswordChange />
       </div>
     );
   }

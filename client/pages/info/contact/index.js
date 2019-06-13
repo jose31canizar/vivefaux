@@ -64,6 +64,7 @@ export default class Contact extends Component {
     return (
       <Page>
         <h1>Contact</h1>
+        <p>email: officialfaux@outlook.com</p>
         <p>
           {messageStatus === "failed"
             ? "failed to send"

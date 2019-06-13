@@ -1,9 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LabelGrid from "../components/grid";
+import Grid from "../components/grid";
 import Post from "../components/post";
 import { loadPosts } from "~/actions/posts";
+import { SplitPage } from "~/components/split-page";
+import styled from "styled-components";
+import Labels from "~/constants/labels";
 import "./index.styl";
+
+export const RecentReleases = styled.div`
+  min-height: 0;
+  height: 100vh;
+  overflow scroll;
+
+  & {
+    @media all and (max-width: 64em) {
+      height: auto;
+    }
+  }
+`;
 
 class Home extends Component {
   state = {
@@ -22,9 +37,15 @@ class Home extends Component {
     const { posts } = this.props;
 
     return (
-      <div className={`home ${labelOpen ? "label-open" : ""}`}>
+      <SplitPage
+        id="home"
+        className={`home ${labelOpen ? "label-open" : ""}`}
+        ref={r => (this.home = r)}
+      >
         <div className="left-panel">
-          <LabelGrid
+          <Grid
+            labels={Labels}
+            pageRef={this.home}
             enableScroll={() => this.setState({ labelOpen: false })}
             disableScroll={() => this.setState({ labelOpen: true })}
           />
@@ -41,17 +62,16 @@ class Home extends Component {
             }}
           />
         </div>
-
-        <div className="recent-releases">
+        <RecentReleases>
           {posts &&
             posts.map((props, i) => <Post key={`post-${i}`} {...props} />)}
-        </div>
-      </div>
+        </RecentReleases>
+      </SplitPage>
     );
   }
 }
 
 export default connect(
-  ({ posts }) => ({ posts: posts.posts }),
+  ({ posts }) => ({ posts: posts.all }),
   dispatch => ({ loadPosts: () => dispatch(loadPosts()) })
 )(Home);

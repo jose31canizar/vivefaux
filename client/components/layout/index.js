@@ -1,5 +1,6 @@
 import { Component } from "react";
-import Nav from "../navbar";
+import Nav from "~/components/nav-bar";
+import Menubar from "~/components/menu-bar";
 import Head from "../head";
 import "./index.styl";
 
@@ -10,6 +11,7 @@ export default class Layout extends Component {
         <Head />
         <Nav />
         {this.props.children}
+        <Menubar />
       </div>
     );
   }

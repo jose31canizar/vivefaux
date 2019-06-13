@@ -22,7 +22,8 @@ import {
   faHeadphones,
   faMobile,
   faMusic,
-  faVideo
+  faVideo,
+  faUser
 } from "@fortawesome/fontawesome-free-solid";
 library.add(
   faCrown,
@@ -37,7 +38,8 @@ library.add(
   faTh,
   faSpinner,
   faCheck,
-  faTimes
+  faTimes,
+  faUser
 );
 
 class MyApp extends App {

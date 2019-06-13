@@ -1,0 +1,1 @@
+NODE_ENV=production PORT=9009 node ssr-server

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { loadPagesByPrivacy } from "~/actions/pages";
+import { toggleSidebar } from "~/actions/navigation";
 import Link from "next/link";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -13,7 +14,8 @@ import SignOutButton from "~/components/sign-out-button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AuthUserContext from "../../AuthUserContext";
 import * as routes from "../../constants/routes";
-import withSize from "../withSize";
+import withSize from "~/hocs/withSize";
+import withSmoothScroll from "~/hocs/withSmoothScroll";
 
 const links = [
   {
@@ -45,7 +47,7 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      panelState: this.props.panelState,
+      sidebar: this.props.sidebar,
       query: "",
       dropdown: false
     };
@@ -62,17 +64,29 @@ class Navbar extends Component {
     }
   };
 
+  handleNavBarTouch = () => {
+    const page = document.querySelector(".page-transition-enter-done")
+      .firstChild;
+    if (page) {
+      this.props.scrollToTop(page);
+    }
+  };
+
   render() {
     const { dropdown } = this.state;
     const { width, pages } = this.props;
     if (width > 800) {
       return (
-        <div>
+        <div className="nav-bar-container">
           <div className="nav-bar">
-            <Link href="/" tabIndex="-1">
-              <h2 className="nav-bar-title">vivefaux</h2>
+            <Link href="/" tabindex="-1">
+              <h2 className="nav-bar-title">
+                {"vivefaux".split("").map((x, i) => (
+                  <span key={`nav-bar-letter-${i}`}>{x}</span>
+                ))}
+              </h2>
             </Link>
-            <Link href={routes.CONTACT} tabIndex="-1">
+            <Link href={routes.CONTACT} tabindex="-1">
               <label className="navbar-item">Contact</label>
             </Link>
             <div
@@ -85,7 +99,12 @@ class Navbar extends Component {
                 <div className="dropdown-items">
                   {pages &&
                     pages.map(({ path, title }, i) => (
-                      <Link href={path} tabIndex="-1" className="navbar-item">
+                      <Link
+                        key={`dropdown-item-${title}`}
+                        href={`/music/${path}`}
+                        tabindex="-1"
+                        className="navbar-item"
+                      >
                         <label>{title}</label>
                       </Link>
                     ))}
@@ -95,7 +114,7 @@ class Navbar extends Component {
             <NavLink
               activeClassName="active"
               href={routes.DASHBOARD}
-              tabIndex="-1"
+              tabindex="-1"
               className="navbar-logged-in-item"
             >
               <label>
@@ -128,7 +147,7 @@ class Navbar extends Component {
             <NavLink
               activeClassName="active"
               href="/account"
-              tabIndex="-1"
+              tabindex="-1"
               className="navbar-logged-in-item"
             >
               <label>Account</label>
@@ -138,19 +157,23 @@ class Navbar extends Component {
       );
     } else {
       return (
-        <div className="nav-bar-mobile">
-          <Link href="/" tabIndex="-1">
+        <div
+          className="nav-bar-mobile"
+          onMouseDown={this.handleNavBarTouch}
+          onTouchStart={this.handleNavBarTouch}
+        >
+          <Link href="/" tabindex="-1">
             <h2
               className={
-                this.props.panelState === "closed" ? "" : "hide-nav-bar-title"
+                this.props.sidebar === "closed" ? "" : "hide-nav-bar-title"
               }
             >
               vivefaux
             </h2>
           </Link>
           <NavbarIcon
-            togglePanel={this.props.togglePanel}
-            panelState={this.props.panelState}
+            toggleSidebar={this.props.toggleSidebar}
+            sidebar={this.props.sidebar}
           />
         </div>
       );
@@ -160,9 +183,14 @@ class Navbar extends Component {
 
 export default compose(
   connect(
-    ({ pages }) => ({ pages: pages.publicPages }),
-    dispatch => bindActionCreators({ loadPagesByPrivacy }, dispatch)
+    ({ pages, navigation }) => ({
+      pages: pages.publicPages,
+      sidebar: navigation.sidebar
+    }),
+    dispatch =>
+      bindActionCreators({ loadPagesByPrivacy, toggleSidebar }, dispatch)
   ),
   withRouter,
-  withSize
+  withSize,
+  withSmoothScroll
 )(Navbar);

@@ -5,6 +5,7 @@ const Page = require("./models/page");
 const Posts = require("./data/posts-data");
 const KamakuraPosts = require("./data/kamakura-posts-data");
 const BlacqPosts = require("./data/blacq-posts-data");
+const SokenPosts = require("./data/soken-posts-data");
 const Pages = require("./data/pages-data");
 
 var connection = mongoose.connect("mongodb://localhost:27017/vivefaux", {
@@ -52,6 +53,15 @@ results.map(user => {
           ...postData,
           author: newUser._id,
           tags: ["blacq"]
+        });
+        return post.save();
+      });
+
+      SokenPosts.map(postData => {
+        const post = new Post({
+          ...postData,
+          author: newUser._id,
+          tags: ["soken"]
         });
         return post.save();
       });

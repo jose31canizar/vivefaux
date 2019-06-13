@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "next/router";
-import { Link } from "next/link";
+import Link from "next/link";
 import "./index.styl";
 import InputField, { byPropKey } from "../../components/input-field";
 import Button from "../../components/button";

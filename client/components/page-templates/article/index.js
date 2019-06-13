@@ -166,8 +166,6 @@ class ArticleTemplate extends Component {
     const { style, className, path } = this.props;
     const { markdown, links, imageLink } = this.state;
 
-    console.log("in render", markdown);
-
     return (
       <div className="article">
         <section className={className}>

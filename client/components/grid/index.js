@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import "./index.styl";
 import Document from "next/document";
-import Labels from "../../constants/labels";
 import Panel from "~/components/panel";
+
+Math.clamp = function(number, min, max) {
+  return Math.max(min, Math.min(number, max));
+};
 
 function getElementOffset(el) {
   let top = 0;
@@ -24,31 +27,68 @@ function getElementOffset(el) {
   };
 }
 
+function easeInOutCubic(t) {
+  return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+}
+
 export default class LabelGrid extends Component {
   state = {
     x: [0, 0, 0, 0],
     y: [0, 0, 0, 0],
-    labelState: ["closed", "closed", "closed", "closed"],
+    labelState: [0, 0, 0, 0].map(x => "closed"),
     gridItemWidth: 0,
     gridItemHeight: 0,
     x1: null,
     y1: null,
-    dragging: false
+    dragging: false,
+    dropInValues: [1, 1, 1, 1]
   };
-  componentDidMount() {
+  animate = (index, initial, max, delay) => {
+    const step = y => {
+      const y2 = (y += 0.025);
+      this.setState(prev => ({
+        dropInValues: prev.dropInValues.map((x, i) =>
+          i === index ? y2 : easeInOutCubic(x)
+        )
+      }));
+      if (y < max) {
+        setTimeout(() => step(y2), 0);
+      }
+    };
+    setTimeout(() => step(initial), delay);
+  };
+  calculateDimensions = () => {
     const { width, height } = document
       .querySelector(".grid-item")
       .getBoundingClientRect();
-
     let docel = document.documentElement;
     let w = Math.max(docel.clientWidth, window.innerWidth || 0);
     let h = Math.max(docel.clientHeight, window.innerHeight || 0);
+
+    console.log("dim", w, h);
 
     this.setState({
       gridItemWidth: width,
       gridItemHeight: height,
       w,
       h
+    });
+  };
+  componentDidMount() {
+    // this.animate(0, 0, 1, 0);
+    // this.animate(1, 0, 1, 350);
+    // this.animate(2, 0, 1, 600);
+    // this.animate(3, 0, 1, 850);
+    this.calculateDimensions();
+    window.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        console.log(this.state.labelState);
+
+        const i = this.state.labelState.findIndex(x => x === "opened");
+        console.log("closing", i);
+
+        this.closeLabel(i);
+      }
     });
   }
   toggleLabel = (e, i) => {
@@ -87,16 +127,16 @@ export default class LabelGrid extends Component {
     }));
   };
 
-  onTransitionFinish = (e, i) => {
+  onTransitionFinish = (_, i) => {
     const { enableScroll, disableScroll } = this.props;
     this.setState(
-      (prev, props) => ({
+      prev => ({
         labelState: prev.labelState.map((state, j) =>
           i !== j
             ? state
             : state === "opening"
             ? "opened"
-            : state === "closing"
+            : state === "closing" || state === "first-render"
             ? "closed"
             : "closed"
         )
@@ -125,22 +165,38 @@ export default class LabelGrid extends Component {
     grid-item-container ${isOpen ? "open" : ""} ${isOpened ? "opened" : ""}
     `;
   };
+  calculateScale = (i, dim, gridDim, watchScroll) => {
+    let scroll = 0;
+    if (this.props.pageRef && watchScroll) {
+      // console.log("calculate scale", this.props.pageRef.scrollTop);
+      scroll = this.props.pageRef.scrollTop;
+    }
+
+    const { labelState, dropInValues } = this.state;
+    return labelState[i] === "first-render"
+      ? dropInValues[i]
+      : labelState[i] === "opening" || labelState[i] === "opened"
+      ? (dim + scroll) / gridDim
+      : 1;
+  };
   render() {
+    const { labels } = this.props;
     const { toggleLabel, onTransitionFinish, closeLabel } = this;
     const {
       x,
       y,
       labelState,
-      gridItemWidth,
-      gridItemHeight,
       dragging,
+      dropInValues,
       w,
-      h
+      gridItemWidth,
+      h,
+      gridItemHeight
     } = this.state;
 
     return (
       <div className="grid-container">
-        {Labels.map(({ title, name, description, soundcloud }, i) => (
+        {labels.map(({ title, name, description, soundcloud }, i) => (
           <div
             className={this.containerClasses(i)}
             key={`grid-item-container-${i}`}
@@ -157,15 +213,17 @@ export default class LabelGrid extends Component {
             ) : null}
             <div
               style={{
-                transform: `translate3d(${x[i]}px,${y[i]}px,0) scale(${
-                  labelState[i] === "opening" || labelState[i] === "opened"
-                    ? w / gridItemWidth
-                    : 1
-                },${
-                  labelState[i] === "opening" || labelState[i] === "opened"
-                    ? h / gridItemHeight
-                    : 1
-                })`
+                opacity: dropInValues[i],
+                transformOrigin:
+                  labelState[i] === "first-render" ? "center" : "left top",
+                transform: `translate3d(${x[i]}px,${
+                  y[i]
+                }px,0) scale(${this.calculateScale(
+                  i,
+                  w,
+                  gridItemWidth,
+                  false
+                )},${this.calculateScale(i, h, gridItemHeight, true)})`
               }}
               key={"grid-item-" + i}
               className="grid-item"

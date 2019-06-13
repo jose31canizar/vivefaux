@@ -36,17 +36,28 @@ module.exports = [
     private: false
   },
   {
+    title: "Artists",
+    path: "artists",
+    content: "Artists",
+    type: "artists",
+    private: false
+  },
+  {
     title: "Profile",
     path: "profile",
     content: "Profile",
     type: "profile",
-    private: false
+    icon: "user",
+    color: "rgb(42, 42, 43)",
+    private: true
   },
   {
     title: "Image Grid",
     path: "image-grid",
     content: "Image Grid",
     type: "image-grid",
+    icon: "image",
+    color: "rgb(42, 42, 43)",
     private: true
   },
   {
@@ -54,6 +65,8 @@ module.exports = [
     path: "settings",
     content: "Settings...",
     type: "settings",
+    icon: "cog",
+    color: "rgb(42, 42, 43)",
     private: true
   }
 ];

@@ -1,11 +1,27 @@
+@keyframes text-puzzle
+  from
+    opacity 0
+    transform translate3d(0, 55px, 0)
+
+  to
+    opacity 1
+    transform translate3d(0, 0, 0)
+
 transform-squash(a)
   transform scaleY(a) scaleX(a)
+
+.nav-bar-container
+  z-index 2
+  position absolute
+  top 0
+  left 0
 
 .nav-bar
   border-bottom 2px solid #fff
   display flex
   align-items center
   height 4rem
+  -webkit-overflow-scrolling touch
 
   @media all and (min-width: 1449px)
     justify-content space-between
@@ -15,7 +31,7 @@ transform-squash(a)
     justify-content space-evenly
     padding 0
 
-  position fixed
+  // position fixed
   z-index 3
   background white
   width 100vw
@@ -29,7 +45,7 @@ transform-squash(a)
     padding 1rem
     background-color white
 
-    .navbar-item
+    .nav-bar-item
       margin 0 0.05rem
 
       &:hover > label
@@ -38,14 +54,14 @@ transform-squash(a)
   .input-field-container
     width 17rem
 
-  .navbar-logged-in-items
+  .nav-bar-logged-in-items
     display flex
     justify-content center
     align-items center
 
-    .navbar-logged-in-item
+    .nav-bar-logged-in-item
       padding 0 1rem
-      animation appear 0.2s
+      animation drop-in 0.2s
 
       label
         cursor pointer
@@ -54,6 +70,13 @@ transform-squash(a)
         color #ff7e7e
 
   .nav-bar-title
+    transform translate3d(0, 10px, 0)
+
+    for row in 1 .. 8
+      > :nth-child({row})
+        display inline-block
+        animation text-puzzle (row * 0.1s) cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.5s normal forwards
+
     font-size 1.3em
     transition 0.5s ease-in-out
     backface-visibility hidden
@@ -78,8 +101,9 @@ transform-squash(a)
   display flex
   justify-content center
   align-items center
-  background white
-  position fixed
+  position absolute
+  top 0
+  left 0
   width 100%
   z-index 3
 

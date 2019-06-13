@@ -15,7 +15,7 @@ import {
   faCog,
   faCamera,
   faTh,
-  faSpinner,
+  faSpinnerThird,
   faCheck,
   faTimes,
   faHeadphones,
@@ -34,7 +34,7 @@ library.add(
   faCog,
   faCamera,
   faTh,
-  faSpinner,
+  faSpinnerThird,
   faCheck,
   faTimes
 );

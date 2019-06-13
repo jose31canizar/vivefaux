@@ -1,7 +1,10 @@
 import "isomorphic-unfetch";
 
-const HOSTNAME = "localhost";
-const PORT = 9010;
+const HOSTNAME =
+  process.env.NODE_ENV === "production" ? "50.112.136.57" : "192.168.0.13";
+
+// const HOSTNAME = "50.112.136.57";
+const PORT = 9008;
 
 const throwError = (type, error) => {
   return { type: type, error: error };
@@ -39,7 +42,7 @@ export const genericFetch = (endpoint, field = null) => (param = null) => {
         return data;
       })
       .catch(error => {
-        dispatch(throwError(`LOAD_${fieldType}_ERROR`, error));
+        dispatch(throwError(`LOAD_${model}_ERROR`, error));
         console.log(`request failed for endpoint`, error);
       });
   };

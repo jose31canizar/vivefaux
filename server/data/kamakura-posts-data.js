@@ -1,5 +1,29 @@
 module.exports = [
   {
+    title: "PB&GP3: BABYLON",
+    description: "PB&GP3: BABYLON",
+    links: [
+      {
+        name: "Spotify",
+        url:
+          "https://open.spotify.com/album/1d9TPvcAdLZazrSK5tt2gc?si=wwnH408wTJa8QDkaFL_u-g"
+      }
+    ],
+    iframes: ["https://open.spotify.com/embed/album/1d9TPvcAdLZazrSK5tt2gc"]
+  },
+  {
+    title: "panda bears & good players",
+    description: "PANDA BEARS & GOOD PLAYERS",
+    links: [
+      {
+        name: "Spotify",
+        url:
+          "https://open.spotify.com/album/3aL60Ux04wFY04GmBIiY9F?si=3voaR_4YT4udWAaGBNpypA"
+      }
+    ],
+    iframes: ["https://open.spotify.com/embed/album/3aL60Ux04wFY04GmBIiY9F"]
+  },
+  {
     title: "Cadillac Dreams",
     description: "CADILLAC DREAMS",
     links: [

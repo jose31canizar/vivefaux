@@ -12,21 +12,22 @@ body
   font-family 'Galano'
   src url('/static/Galano\ Grotesque.otf') format('otf')
 
-h1, h2, h3, p, li, label, input
+h1, h2, h3, p, li, label, input, textarea
   font-family Futura
   font-weight 100
   color #20202d
 
 a
   font-family Futura
+  font-size 0.7rem
   font-weight 100
 
 p
-  font-size 0.9rem
+  font-size 0.7rem
   color #723a65
 
 h2
-  font-size 4rem
+  font-size 3.45rem
   margin 0
 
 .title
@@ -64,11 +65,12 @@ h2
   align-items flex-start
   grid-auto-flow column
   width 100%
-  position fixed
+  position relative
   top 0
   left 0
   overflow-x hidden
   overflow-y scroll
+  -webkit-overflow-scrolling touch
   height 100vh
   flex-direction column
 
@@ -83,7 +85,6 @@ h2
     position absolute
 
   .recent-releases
-    width 100%
     min-height 0
     height 100vh
     overflow scroll

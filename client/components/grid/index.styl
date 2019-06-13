@@ -5,6 +5,11 @@
   width 100%
   height max-content
 
+  // .first-render
+  // for row in 1 .. 4
+  // > :nth-child({row})
+  // transform scale(0)
+  // animation drop-in (0.4 * row)s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.3s 1 normal forwards
   .grid-item-container
     @media all and (max-width: 33.99rem)
       padding 1rem
@@ -16,7 +21,7 @@
       margin 1rem
 
     .grid-item
-      transform-origin top left
+      // transform-origin top left
       background-color white
       box-shadow 0 0 4px 1px rgba(231, 228, 228, 0.9)
       min-width 0

@@ -466,7 +466,7 @@ class EditableTemplate extends Component {
         <ColorControls editorState={editorState} onToggle={this.toggleColor} />
         <div style={styles.editor} onClick={this.focus}>
           <Editor
-            tabIndex="5"
+            tabindex="5"
             placeholder="Tell a story..."
             editorState={editorState}
             onChange={this.onChange}

@@ -19,7 +19,7 @@ export default class NavbarIcon extends Component {
     });
   }
   componentWillReceiveProps(props) {
-    if (props.panelState === "open") {
+    if (props.sidebar === "open") {
       this.setState({ style: "menu-bar-icon open" });
     } else {
       this.setState({ style: "menu-bar-icon" });
@@ -28,7 +28,11 @@ export default class NavbarIcon extends Component {
   render() {
     const { style } = this.state;
     return (
-      <div id="nav-icon" className={style} onMouseDown={this.props.togglePanel}>
+      <div
+        id="nav-icon"
+        className={style}
+        onMouseDown={this.props.toggleSidebar}
+      >
         <span />
         <span />
         <span />

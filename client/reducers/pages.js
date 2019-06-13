@@ -1,7 +1,5 @@
 const defaultState = { pages: [], isLoading: false };
 export default function(state = defaultState, action) {
-  console.log(action.private);
-
   switch (action.type) {
     case "LOAD_PAGES":
       return { ...state, isLoading: true };
