@@ -1,0 +1,113 @@
+export default function Title({ color }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 98.94 8.96"
+      width="200px"
+    >
+      <title>vivefaux_logo</title>
+      <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+          <polygon
+            points="68.36 8.62 65.94 2.6 63.62 8.62 61.55 8.62 65.22 0.13 66.77 0.13 70.47 8.62 68.36 8.62"
+            fill="none"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="0.25"
+          />
+          <polygon
+            points="0.13 0.13 3.52 8.62 5.02 8.62 8.53 0.13 6.52 0.13 4.38 5.69 4.36 5.69 2.26 0.13 0.13 0.13"
+            fill="none"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="0.25"
+          />
+          <rect
+            x="14.79"
+            y="0.13"
+            width="1.87"
+            height="8.5"
+            fill="none"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="0.25"
+          />
+          <polygon
+            points="22.92 0.13 26.32 8.62 27.82 8.62 31.32 0.13 29.32 0.13 27.18 5.69 27.16 5.69 25.06 0.13 22.92 0.13"
+            fill="none"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="0.25"
+          />
+          <rect
+            x="37.68"
+            y="3.44"
+            width="5.56"
+            height="1.73"
+            fill="none"
+            stroke={color}
+            stroke-miterlimit="10"
+            stroke-width="0.25"
+          />
+          <rect
+            x="37.68"
+            y="6.89"
+            width="5.99"
+            height="1.73"
+            fill="none"
+            stroke={color}
+            stroke-miterlimit="10"
+            stroke-width="0.25"
+          />
+          <rect
+            x="37.68"
+            y="0.13"
+            width="5.77"
+            height="1.73"
+            fill="none"
+            stroke={color}
+            stroke-miterlimit="10"
+            stroke-width="0.25"
+          />
+          <rect
+            x="50.64"
+            y="0.13"
+            width="5.7"
+            height="1.73"
+            fill="none"
+            stroke={color}
+            stroke-miterlimit="10"
+            stroke-width="0.25"
+          />
+          <polygon
+            points="50.65 3.58 50.65 8.62 52.52 8.62 52.52 5.31 56.06 5.31 56.06 3.58 50.65 3.58"
+            fill="none"
+            stroke={color}
+            stroke-miterlimit="10"
+            stroke-width="0.25"
+          />
+          <path
+            d="M76.72.13V5.35a4.1,4.1,0,0,0,.23,1.39,3.07,3.07,0,0,0,.68,1.1,3.1,3.1,0,0,0,1.12.73,4.71,4.71,0,0,0,3.11,0A3.11,3.11,0,0,0,83,7.84a3.06,3.06,0,0,0,.68-1.1,4.1,4.1,0,0,0,.23-1.39V.13H82V5.27a2.07,2.07,0,0,1-.13.73,1.75,1.75,0,0,1-.35.58A1.62,1.62,0,0,1,81,7a1.68,1.68,0,0,1-.68.14A1.72,1.72,0,0,1,79.62,7a1.6,1.6,0,0,1-.55-.38A1.75,1.75,0,0,1,78.72,6a2.07,2.07,0,0,1-.13-.73V.13Z"
+            fill="none"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="0.25"
+          />
+          <polygon
+            points="90.15 8.62 92.37 8.62 94.38 5.2 96.46 8.62 98.81 8.62 95.74 4.14 98.49 0.13 96.22 0.13 94.48 3.1 92.67 0.13 90.32 0.13 93.12 4.18 90.15 8.62"
+            fill="none"
+            stroke={color}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="0.25"
+          />
+        </g>
+      </g>
+    </svg>
+  );
+}

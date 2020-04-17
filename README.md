@@ -1,3 +1,2 @@
-# vivefaux
-Music, Film, and Upcoming Artists.
-
+# VIVEFAUX
+Record Company
