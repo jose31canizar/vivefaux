@@ -4,8 +4,32 @@
         "next/babel"
     ],
     "plugins": [
+        "@babel/plugin-transform-runtime",
         "babel-plugin-root-import",
         "babel-plugin-styled-components",
+        [
+            "module-resolver",
+            {
+              "alias": {
+                "components": "./components",
+                "containers": "./containers",
+                "context": "./context",
+                "custom": "./custom",
+                "hocs": "./hocs",
+                "hooks": "./hooks",
+                "lib": "./lib",
+                "pages": "./pages",
+                "public": "./public",
+                "static": "./static",
+                "serverUtils": "./serverUtils",
+                "translations": "./translations",
+                "routes": "./routes",
+                "utils": "./utils",
+                "staticUtils": "./staticUtils",
+                "apiUtils": "./apiUtils"
+              }
+            }
+          ],
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
         ["@babel/plugin-proposal-class-properties", { "loose": true }]
     ]
